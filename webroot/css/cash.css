@@ -1,0 +1,128 @@
+body {
+   width : 100%;
+   height : 100%; 
+   overflow : hidden;
+   background-color : #777;
+   font-family: Verdana;
+}
+
+#cash {
+   position : absolute;
+   top : 0.5em;
+   left : 0.5em;
+   bottom : 0.5em;
+   right : 0.5em;
+   border-radius : 1em 1em 1em 1em;
+   background-color : transparent;
+   z-index : 1;
+}
+
+#cash > #tabs {
+   position : absolute;
+   top : 0;
+   left : 0;
+   width : 100%;
+   height : 3em;
+   border-radius : 1em 1em 0 0;
+   background-color : transparent;
+   font-size : 1em;
+   line-height: 3em;
+   text-align: center;
+}
+
+#cash > #tabs > #invoice {
+   position : absolute;
+   top : 0;
+   left : 0;
+   height : 3em;
+   width : 50%;
+   border-radius : 1em 1em 0 0;
+   background-color : #DDDDDD;
+}
+
+#cash > #tabs > #administration {
+   position : absolute;
+   top : 0;
+   right : 0;
+   height : 3em;
+   width : 50%;
+   border-radius : 1em 1em 0 0;
+   background-color : #AAAAAA;
+}
+
+#cash > #content {
+   position : absolute;
+   top : 3em;
+   left : 0;
+   bottom : 2em;
+   width : 100%;
+   border-radius : 0 0 0 0;
+   background-color : #DDDDDD;
+}
+
+#cash > #content > #invoice {
+   position : absolute;
+   top : 0.5em;
+   left : 0.5em;
+   bottom : 0.5em;
+   right : 0.5em;
+   border-radius : 0 0 0 0;
+   background-color : transparent;
+   visibility : visible;
+}
+
+#cash > #content  > #invoice  > #items {
+   position : absolute;
+   top : 0;
+   left : 0;
+   bottom : 5em;
+   width: 60%;
+   background-color : #FFFF00;
+   overflow-y: auto;
+}
+
+#cash > #content  > #invoice  > #total {
+   position : absolute;
+   left : 0;
+   bottom : 0;
+   height : 5em;
+   width: 100%;
+   background-color : #00FFFF;
+}
+
+#cash > #content  > #invoice  > #sidebar {
+   position : absolute;
+   top : 0;
+   right : 0;
+   bottom : 0;
+   width: 40%;
+   border-radius : 0 0 0 0;
+   background-color : #0000FF;
+}
+
+#cash > #content  > #administration {
+   position : absolute;
+   top : 0.5em;
+   left : 0.5em;
+   bottom : 0.5em;
+   right : 0.5em;
+   border-radius : 0 0 0 0;
+   background-color : #FF0000;
+   visibility : hidden;
+}
+
+#cash > #footer {
+   position : absolute;
+   left : 0;
+   bottom : 0;
+   width : 100%;
+   height : 2em;
+   border-radius : 0 0 1em 1em;
+   background-color : #AAAAAA;
+}
+
+#cash > #footer > #author  {
+   text-align : center;
+   font-size : 0.5em;
+   margin : 1.5em 0 1.5em 0;
+}

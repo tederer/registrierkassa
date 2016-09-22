@@ -1,0 +1,6 @@
+* Produktliste bearbeiten
+* Umsatzliste anzeigen (default heutiger Tag)
+* Tagesumsatz anzeigen
+
+
+Rechnung enthält PositionsId anstelle der ProduktId ?

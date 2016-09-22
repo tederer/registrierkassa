@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html class=" js fontface no-webkit no-chrome windows no-ie8" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<script src="Git%20-%20Viewing%20the%20Commit%20History-Dateien/20c4a8c482" type="text/javascript"></script><script src="Git%20-%20Viewing%20the%20Commit%20History-Dateien/nr-984.js"></script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"20c4a8c482","applicationID":"454369","transactionName":"dl5cQkcLXF9XRBoHW1paQRlGAVNHW1lb","queueTime":3,"applicationTime":168,"ttGuid":"","agentToken":null,"agent":""}</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(){}function o(e,t,n){return function(){return i(e,[(new Date).getTime()].concat(u(arguments)),t?null:this,n),t?void 0:this}}var i=e("handle"),a=e(2),u=e(3),c=e("ee").get("tracer"),f=NREUM;"undefined"==typeof window.newrelic&&(newrelic=f);var s=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit"],l="api-",p=l+"ixn-";a(s,function(e,t){f[t]=o(l+t,!0,"api")}),f.addPageAction=o(l+"addPageAction",!0),f.setCurrentRouteName=o(l+"routeName",!0),t.exports=newrelic,f.interaction=function(){return(new r).get()};var d=r.prototype={createTracer:function(e,t){var n={},r=this,o="function"==typeof t;return i(p+"tracer",[Date.now(),e,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[Date.now(),r,o],n),o)try{return t.apply(this,arguments)}finally{c.emit("fn-end",[Date.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){d[t]=o(p+t)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,(new Date).getTime()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(o<0?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?u(e,a,i):i()}function n(n,r,o){e&&e(n,r,o);for(var i=t(o),a=p(n),u=a.length,c=0;c<u;c++)a[c].apply(i,r);var s=f[m[n]];return s&&s.push([w,n,r,i]),i}function l(e,t){g[e]=p(e).concat(t)}function p(e){return g[e]||[]}function d(e){return s[e]=s[e]||o(n)}function v(e,t){c(e,function(e,n){t=t||"feature",m[n]=t,t in f||(f[t]=[])})}var g={},m={},w={on:l,emit:n,get:d,listeners:p,context:t,buffer:v};return w}function i(){return new r}var a="nr@context",u=e("gos"),c=e(2),f={},s={},l=t.exports=o();l.backlog=f},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!h++){var e=y.info=NREUM.info,t=s.getElementsByTagName("script")[0];if(e&&e.licenseKey&&e.applicationID&&t){c(m,function(t,n){e[t]||(e[t]=n)}),u("mark",["onload",a()],null,"api");var n=s.createElement("script");n.src="https://"+e.agent,t.parentNode.insertBefore(n,t)}}}function o(){"complete"===s.readyState&&i()}function i(){u("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var u=e("handle"),c=e(2),f=window,s=f.document,l="addEventListener",p="attachEvent",d=f.XMLHttpRequest,v=d&&d.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:d,REQ:f.Request,EV:f.Event,PR:f.Promise,MO:f.MutationObserver},e(1);var g=""+location,m={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-984.min.js"},w=d&&v&&v[l]&&!/CriOS/.test(navigator.userAgent),y=t.exports={offset:a(),origin:g,features:{},xhrWrappable:w};s[l]?(s[l]("DOMContentLoaded",i,!1),f[l]("load",r,!1)):(s[p]("onreadystatechange",o),f[p]("onload",r)),u("mark",["firstbyte",a()],null,"api");var h=0},{}]},{},["loader"]);</script>
+
+  <title>Git - Viewing the Commit History</title>
+
+  <link href="https://git-scm.com/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link rel="alternate" href="https://git-scm.com/blog.rss" type="application/rss+xml" title="Git - Blog">
+
+  <link rel="stylesheet" media="screen" href="Git%20-%20Viewing%20the%20Commit%20History-Dateien/git-scm-65ca8280a031499ee9e8e2b10c8a596c.css">
+  <script src="Git%20-%20Viewing%20the%20Commit%20History-Dateien/modernizr-10d8d48497292341fc1c4a63d06c6f61.js"></script>
+<script src="Git%20-%20Viewing%20the%20Commit%20History-Dateien/modernizr-tests-0e26a9afd9c6455a99b7b4165485c366.js"></script>
+  <!--[if (gte IE 6)&(lte IE 8)]>
+  <script src="/javascripts/selectivizr-min.js"></script>
+  <![endif]-->
+
+  <script src="Git%20-%20Viewing%20the%20Commit%20History-Dateien/jsq2fql.txt" type="text/javascript"></script>
+  <script>
+    //<![CDATA[
+      try{Typekit.load();}catch(e){}
+    //]]>
+  </script>
+
+</head>
+
+<body id="documentation">
+
+  <div id="banner">
+    <div class="inner">
+      <h3>The 2016 Git User's Survey is now up! <em>12 September — 20 October 2016.</em></h3>
+
+      <p>Please devote a few moments of your time to
+      <a href="https://survs.com/survey/0janvqmmyg">fill out the simple questionnaire</a>.
+      It will help the Git community understand your needs, what you like
+      about Git (and what you don't), and help us improve it in general.
+      The results will be published at the
+      <a href="http://git.wiki.kernel.org/index.php/GitSurvey2016">GitSurvey2016</a>
+      wiki page.
+    </p></div>
+  </div>
+
+  <div class="inner">
+    <header>
+
+  <a href="https://git-scm.com/"><img src="Git%20-%20Viewing%20the%20Commit%20History-Dateien/logo2x.png" alt="Git" height="46" width="110"></a>
+  <span id="tagline">
+    <em>--</em>fast-version-control
+  </span>
+
+  <form id="search" action="/search/results">
+    <input id="search-text" name="search" placeholder="Search entire site..." autocomplete="off" type="text">
+  </form>
+  <div id="search-results"></div>
+
+</header>
+
+  </div> <!-- .inner -->
+
+    <div class="inner">
+      <div id="content-wrapper">
+        <aside class="sidebar">
+  <nav>
+    <ul>
+      <li>
+        <a href="https://git-scm.com/about">About</a>
+      </li>
+      <li>
+        <a class="active" href="https://git-scm.com/doc">Documentation</a>
+        <ul class="expanded">
+          <li>
+            <a href="https://git-scm.com/docs">Reference</a>
+          </li>
+          <li>
+            <a href="https://git-scm.com/book">Book</a>
+          </li>
+          <li>
+            <a href="https://git-scm.com/videos">Videos</a>
+          </li>
+          <li>
+            <a href="https://git-scm.com/doc/ext">External Links</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="https://git-scm.com/blog">Blog</a>
+      </li>
+      <li>
+        <a href="https://git-scm.com/downloads">Downloads</a>
+        <ul class="">
+          <li>
+            <a href="https://git-scm.com/downloads/guis">GUI Clients</a>
+          </li>
+          <li>
+            <a href="https://git-scm.com/downloads/logos">Logos</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="https://git-scm.com/community">Community</a>
+      </li>
+    </ul>
+      <hr class="sidebar">
+        <p>Download this book in <a href="https://progit2.s3.amazonaws.com/en/2016-03-22-f3531/progit-en.1084.pdf">PDF</a>,
+   <a href="https://progit2.s3.amazonaws.com/en/2016-03-22-f3531/progit-en.1084.mobi" type="application/x-mobipocket-ebook">mobi</a>,
+or <a href="https://progit2.s3.amazonaws.com/en/2016-03-22-f3531/progit-en.1084.epub" type="application/epub+zip">ePub</a> form for free.</p>
+
+  <p>
+This book is translated into
+  <a href="https://git-scm.com/book/de">Deutsch</a>,
+  <a href="https://git-scm.com/book/zh">简体中文</a>,
+  <a href="https://git-scm.com/book/zh-tw">正體中文</a>,
+  <a href="https://git-scm.com/book/fr/v2">Français</a>,
+  <a href="https://git-scm.com/book/ja">日本語</a>,
+  <a href="https://git-scm.com/book/nl">Nederlands</a>,
+  <a href="https://git-scm.com/book/ru">Русский</a>,
+  <a href="https://git-scm.com/book/ko">한국어</a>,
+  <a href="https://git-scm.com/book/pt-br">Português (Brasil)</a> and
+  <a href="https://git-scm.com/book/cs">Čeština</a>.
+</p>
+<p>
+Partial translations available in
+  <a href="https://git-scm.com/book/ar">Arabic</a>,
+  <a href="https://git-scm.com/book/es">Español</a>,
+  <a href="https://git-scm.com/book/id">Indonesian</a>,
+  <a href="https://git-scm.com/book/it">Italiano</a>,
+  <a href="https://git-scm.com/book/fi">Suomi</a>,
+  <a href="https://git-scm.com/book/mk">Македонски</a>,
+  <a href="https://git-scm.com/book/pl">Polski</a> and
+  <a href="https://git-scm.com/book/tr">Türkçe</a>.
+</p>
+<p>
+Translations started for
+  <a href="https://git-scm.com/book/az">Azərbaycan dili</a>,
+  <a href="https://git-scm.com/book/be">Беларуская</a>,
+  <a href="https://git-scm.com/book/ca">Català</a>,
+  <a href="https://git-scm.com/book/eo">Esperanto</a>,
+  <a href="https://git-scm.com/book/es-ni">Español (Nicaragua)</a>,
+  <a href="https://git-scm.com/book/fa" dir="rtl">فارسی</a>,
+  <a href="https://git-scm.com/book/hi">हिन्दी</a>,
+  <a href="https://git-scm.com/book/hu">Magyar</a>,
+  <a href="https://git-scm.com/book/no-nb">Norwegian Bokmål</a>,
+  <a href="https://git-scm.com/book/ro">Română</a>,
+  <a href="https://git-scm.com/book/sr">Српски</a>,
+  <a href="https://git-scm.com/book/th">ภาษาไทย</a>,
+  <a href="https://git-scm.com/book/vi">Tiếng Việt</a>,
+  <a href="https://git-scm.com/book/uk">Українська</a> and
+  <a href="https://git-scm.com/book/uz/v2">Ўзбекча</a>.
+</p>
+<hr class="sidebar">
+<p>
+The source of this book is <a href="https://github.com/progit/progit2">hosted on GitHub.</a><br>
+Patches, suggestions and comments are welcome.
+</p>
+
+    <h4>Related Material</h4>
+  <ul class="related-material">
+      <li class="reference">
+      <strong><a href="https://git-scm.com/ref/git-log">git-log</a></strong>
+        in <a href="https://git-scm.com/docs">Reference</a>
+      </li>
+      <li class="reference">
+      <strong><a href="https://git-scm.com/ref/git-clone">git-clone</a></strong>
+        in <a href="https://git-scm.com/docs">Reference</a>
+      </li>
+      <li class="reference">
+      <strong><a href="https://git-scm.com/ref/git-pull">git-pull</a></strong>
+        in <a href="https://git-scm.com/docs">Reference</a>
+      </li>
+  </ul>
+
+
+  </nav>
+</aside>
+        <div id="content">
+          
+
+<div id="book-chapters">
+  <a class="dropdown-trigger" id="book-chapters-trigger" data-panel-id="chapters-dropdown" href="#">Chapters ▾</a>
+<div class="dropdown-panel" id="chapters-dropdown">
+  <div class="three-column">
+    <div class="column-left">
+      <ol class="book-toc">
+  <li class="chapter">
+  <h2>1. <a href="https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control">Getting Started</a></h2>
+    <ol>
+          <li>
+            1.1
+            <a href="https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control">About Version Control</a>
+          </li>
+          <li>
+            1.2
+            <a href="https://git-scm.com/book/en/v2/Getting-Started-A-Short-History-of-Git">A Short History of Git</a>
+          </li>
+          <li>
+            1.3
+            <a href="https://git-scm.com/book/en/v2/Getting-Started-Git-Basics">Git Basics</a>
+          </li>
+          <li>
+            1.4
+            <a href="https://git-scm.com/book/en/v2/Getting-Started-The-Command-Line">The Command Line</a>
+          </li>
+          <li>
+            1.5
+            <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Installing Git</a>
+          </li>
+          <li>
+            1.6
+            <a href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">First-Time Git Setup</a>
+          </li>
+          <li>
+            1.7
+            <a href="https://git-scm.com/book/en/v2/Getting-Started-Getting-Help">Getting Help</a>
+          </li>
+          <li>
+            1.8
+            <a href="https://git-scm.com/book/en/v2/Getting-Started-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+  <li class="chapter">
+  <h2>2. <a href="https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository">Git Basics</a></h2>
+    <ol>
+          <li>
+            2.1
+            <a href="https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository">Getting a Git Repository</a>
+          </li>
+          <li>
+            2.2
+            <a href="https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository">Recording Changes to the Repository</a>
+          </li>
+          <li>
+            2.3
+            <a href="https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History">Viewing the Commit History</a>
+          </li>
+          <li>
+            2.4
+            <a href="https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things">Undoing Things</a>
+          </li>
+          <li>
+            2.5
+            <a href="https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes">Working with Remotes</a>
+          </li>
+          <li>
+            2.6
+            <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging">Tagging</a>
+          </li>
+          <li>
+            2.7
+            <a href="https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases">Git Aliases</a>
+          </li>
+          <li>
+            2.8
+            <a href="https://git-scm.com/book/en/v2/Git-Basics-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+  <li class="chapter">
+  <h2>3. <a href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell">Git Branching</a></h2>
+    <ol>
+          <li>
+            3.1
+            <a href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell">Branches in a Nutshell</a>
+          </li>
+          <li>
+            3.2
+            <a href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging">Basic Branching and Merging</a>
+          </li>
+          <li>
+            3.3
+            <a href="https://git-scm.com/book/en/v2/Git-Branching-Branch-Management">Branch Management</a>
+          </li>
+          <li>
+            3.4
+            <a href="https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows">Branching Workflows</a>
+          </li>
+          <li>
+            3.5
+            <a href="https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches">Remote Branches</a>
+          </li>
+          <li>
+            3.6
+            <a href="https://git-scm.com/book/en/v2/Git-Branching-Rebasing">Rebasing</a>
+          </li>
+          <li>
+            3.7
+            <a href="https://git-scm.com/book/en/v2/Git-Branching-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+  <li class="chapter">
+  <h2>4. <a href="https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols">Git on the Server</a></h2>
+    <ol>
+          <li>
+            4.1
+            <a href="https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols">The Protocols</a>
+          </li>
+          <li>
+            4.2
+            <a href="https://git-scm.com/book/en/v2/Git-on-the-Server-Getting-Git-on-a-Server">Getting Git on a Server</a>
+          </li>
+          <li>
+            4.3
+            <a href="https://git-scm.com/book/en/v2/Git-on-the-Server-Generating-Your-SSH-Public-Key">Generating Your SSH Public Key</a>
+          </li>
+          <li>
+            4.4
+            <a href="https://git-scm.com/book/en/v2/Git-on-the-Server-Setting-Up-the-Server">Setting Up the Server</a>
+          </li>
+          <li>
+            4.5
+            <a href="https://git-scm.com/book/en/v2/Git-on-the-Server-Git-Daemon">Git Daemon</a>
+          </li>
+          <li>
+            4.6
+            <a href="https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP">Smart HTTP</a>
+          </li>
+          <li>
+            4.7
+            <a href="https://git-scm.com/book/en/v2/Git-on-the-Server-GitWeb">GitWeb</a>
+          </li>
+          <li>
+            4.8
+            <a href="https://git-scm.com/book/en/v2/Git-on-the-Server-GitLab">GitLab</a>
+          </li>
+          <li>
+            4.9
+            <a href="https://git-scm.com/book/en/v2/Git-on-the-Server-Third-Party-Hosted-Options">Third Party Hosted Options</a>
+          </li>
+          <li>
+            4.10
+            <a href="https://git-scm.com/book/en/v2/Git-on-the-Server-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+  <li class="chapter">
+  <h2>5. <a href="https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows">Distributed Git</a></h2>
+    <ol>
+          <li>
+            5.1
+            <a href="https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows">Distributed Workflows</a>
+          </li>
+          <li>
+            5.2
+            <a href="https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project">Contributing to a Project</a>
+          </li>
+          <li>
+            5.3
+            <a href="https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project">Maintaining a Project</a>
+          </li>
+          <li>
+            5.4
+            <a href="https://git-scm.com/book/en/v2/Distributed-Git-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+</ol>
+
+    </div>
+    <div class="column-middle">
+      <ol class="book-toc">
+  <li class="chapter">
+  <h2>6. <a href="https://git-scm.com/book/en/v2/GitHub-Account-Setup-and-Configuration">GitHub</a></h2>
+    <ol>
+          <li>
+            6.1
+            <a href="https://git-scm.com/book/en/v2/GitHub-Account-Setup-and-Configuration">Account Setup and Configuration</a>
+          </li>
+          <li>
+            6.2
+            <a href="https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project">Contributing to a Project</a>
+          </li>
+          <li>
+            6.3
+            <a href="https://git-scm.com/book/en/v2/GitHub-Maintaining-a-Project">Maintaining a Project</a>
+          </li>
+          <li>
+            6.4
+            <a href="https://git-scm.com/book/en/v2/GitHub-Managing-an-organization">Managing an organization</a>
+          </li>
+          <li>
+            6.5
+            <a href="https://git-scm.com/book/en/v2/GitHub-Scripting-GitHub">Scripting GitHub</a>
+          </li>
+          <li>
+            6.6
+            <a href="https://git-scm.com/book/en/v2/GitHub-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+  <li class="chapter">
+  <h2>7. <a href="https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection">Git Tools</a></h2>
+    <ol>
+          <li>
+            7.1
+            <a href="https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection">Revision Selection</a>
+          </li>
+          <li>
+            7.2
+            <a href="https://git-scm.com/book/en/v2/Git-Tools-Interactive-Staging">Interactive Staging</a>
+          </li>
+          <li>
+            7.3
+            <a href="https://git-scm.com/book/en/v2/Git-Tools-Stashing-and-Cleaning">Stashing and Cleaning</a>
+          </li>
+          <li>
+            7.4
+            <a href="https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work">Signing Your Work</a>
+          </li>
+          <li>
+            7.5
+            <a href="https://git-scm.com/book/en/v2/Git-Tools-Searching">Searching</a>
+          </li>
+          <li>
+            7.6
+            <a href="https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History">Rewriting History</a>
+          </li>
+          <li>
+            7.7
+            <a href="https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified">Reset Demystified</a>
+          </li>
+          <li>
+            7.8
+            <a href="https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging">Advanced Merging</a>
+          </li>
+          <li>
+            7.9
+            <a href="https://git-scm.com/book/en/v2/Git-Tools-Rerere">Rerere</a>
+          </li>
+          <li>
+            7.10
+            <a href="https://git-scm.com/book/en/v2/Git-Tools-Debugging-with-Git">Debugging with Git</a>
+          </li>
+          <li>
+            7.11
+            <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">Submodules</a>
+          </li>
+          <li>
+            7.12
+            <a href="https://git-scm.com/book/en/v2/Git-Tools-Bundling">Bundling</a>
+          </li>
+          <li>
+            7.13
+            <a href="https://git-scm.com/book/en/v2/Git-Tools-Replace">Replace</a>
+          </li>
+          <li>
+            7.14
+            <a href="https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage">Credential Storage</a>
+          </li>
+          <li>
+            7.15
+            <a href="https://git-scm.com/book/en/v2/Git-Tools-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+  <li class="chapter">
+  <h2>8. <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration">Customizing Git</a></h2>
+    <ol>
+          <li>
+            8.1
+            <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration">Git Configuration</a>
+          </li>
+          <li>
+            8.2
+            <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes">Git Attributes</a>
+          </li>
+          <li>
+            8.3
+            <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks">Git Hooks</a>
+          </li>
+          <li>
+            8.4
+            <a href="https://git-scm.com/book/en/v2/Customizing-Git-An-Example-Git-Enforced-Policy">An Example Git-Enforced Policy</a>
+          </li>
+          <li>
+            8.5
+            <a href="https://git-scm.com/book/en/v2/Customizing-Git-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+  <li class="chapter">
+  <h2>9. <a href="https://git-scm.com/book/en/v2/Git-and-Other-Systems-Git-as-a-Client">Git and Other Systems</a></h2>
+    <ol>
+          <li>
+            9.1
+            <a href="https://git-scm.com/book/en/v2/Git-and-Other-Systems-Git-as-a-Client">Git as a Client</a>
+          </li>
+          <li>
+            9.2
+            <a href="https://git-scm.com/book/en/v2/Git-and-Other-Systems-Migrating-to-Git">Migrating to Git</a>
+          </li>
+          <li>
+            9.3
+            <a href="https://git-scm.com/book/en/v2/Git-and-Other-Systems-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+  <li class="chapter">
+  <h2>10. <a href="https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain">Git Internals</a></h2>
+    <ol>
+          <li>
+            10.1
+            <a href="https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain">Plumbing and Porcelain</a>
+          </li>
+          <li>
+            10.2
+            <a href="https://git-scm.com/book/en/v2/Git-Internals-Git-Objects">Git Objects</a>
+          </li>
+          <li>
+            10.3
+            <a href="https://git-scm.com/book/en/v2/Git-Internals-Git-References">Git References</a>
+          </li>
+          <li>
+            10.4
+            <a href="https://git-scm.com/book/en/v2/Git-Internals-Packfiles">Packfiles</a>
+          </li>
+          <li>
+            10.5
+            <a href="https://git-scm.com/book/en/v2/Git-Internals-The-Refspec">The Refspec</a>
+          </li>
+          <li>
+            10.6
+            <a href="https://git-scm.com/book/en/v2/Git-Internals-Transfer-Protocols">Transfer Protocols</a>
+          </li>
+          <li>
+            10.7
+            <a href="https://git-scm.com/book/en/v2/Git-Internals-Maintenance-and-Data-Recovery">Maintenance and Data Recovery</a>
+          </li>
+          <li>
+            10.8
+            <a href="https://git-scm.com/book/en/v2/Git-Internals-Environment-Variables">Environment Variables</a>
+          </li>
+          <li>
+            10.9
+            <a href="https://git-scm.com/book/en/v2/Git-Internals-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+</ol>
+
+    </div>
+    <div class="column-right">
+      <ol class="book-toc">
+  <li class="chapter">
+  <h2>A1. <a href="https://git-scm.com/book/en/v2/Git-in-Other-Environments-Graphical-Interfaces">Git in Other Environments</a></h2>
+    <ol>
+          <li>
+            A1.1
+            <a href="https://git-scm.com/book/en/v2/Git-in-Other-Environments-Graphical-Interfaces">Graphical Interfaces</a>
+          </li>
+          <li>
+            A1.2
+            <a href="https://git-scm.com/book/en/v2/Git-in-Other-Environments-Git-in-Visual-Studio">Git in Visual Studio</a>
+          </li>
+          <li>
+            A1.3
+            <a href="https://git-scm.com/book/en/v2/Git-in-Other-Environments-Git-in-Eclipse">Git in Eclipse</a>
+          </li>
+          <li>
+            A1.4
+            <a href="https://git-scm.com/book/en/v2/Git-in-Other-Environments-Git-in-Bash">Git in Bash</a>
+          </li>
+          <li>
+            A1.5
+            <a href="https://git-scm.com/book/en/v2/Git-in-Other-Environments-Git-in-Zsh">Git in Zsh</a>
+          </li>
+          <li>
+            A1.6
+            <a href="https://git-scm.com/book/en/v2/Git-in-Other-Environments-Git-in-Powershell">Git in Powershell</a>
+          </li>
+          <li>
+            A1.7
+            <a href="https://git-scm.com/book/en/v2/Git-in-Other-Environments-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+  <li class="chapter">
+  <h2>A2. <a href="https://git-scm.com/book/en/v2/Embedding-Git-in-your-Applications-Command-line-Git">Embedding Git in your Applications</a></h2>
+    <ol>
+          <li>
+            A2.1
+            <a href="https://git-scm.com/book/en/v2/Embedding-Git-in-your-Applications-Command-line-Git">Command-line Git</a>
+          </li>
+          <li>
+            A2.2
+            <a href="https://git-scm.com/book/en/v2/Embedding-Git-in-your-Applications-Libgit2">Libgit2</a>
+          </li>
+          <li>
+            A2.3
+            <a href="https://git-scm.com/book/en/v2/Embedding-Git-in-your-Applications-JGit">JGit</a>
+          </li>
+    </ol>
+  </li>
+  <li class="chapter">
+  <h2>A3. <a href="https://git-scm.com/book/en/v2/Git-Commands-Setup-and-Config">Git Commands</a></h2>
+    <ol>
+          <li>
+            A3.1
+            <a href="https://git-scm.com/book/en/v2/Git-Commands-Setup-and-Config">Setup and Config</a>
+          </li>
+          <li>
+            A3.2
+            <a href="https://git-scm.com/book/en/v2/Git-Commands-Getting-and-Creating-Projects">Getting and Creating Projects</a>
+          </li>
+          <li>
+            A3.3
+            <a href="https://git-scm.com/book/en/v2/Git-Commands-Basic-Snapshotting">Basic Snapshotting</a>
+          </li>
+          <li>
+            A3.4
+            <a href="https://git-scm.com/book/en/v2/Git-Commands-Branching-and-Merging">Branching and Merging</a>
+          </li>
+          <li>
+            A3.5
+            <a href="https://git-scm.com/book/en/v2/Git-Commands-Sharing-and-Updating-Projects">Sharing and Updating Projects</a>
+          </li>
+          <li>
+            A3.6
+            <a href="https://git-scm.com/book/en/v2/Git-Commands-Inspection-and-Comparison">Inspection and Comparison</a>
+          </li>
+          <li>
+            A3.7
+            <a href="https://git-scm.com/book/en/v2/Git-Commands-Debugging">Debugging</a>
+          </li>
+          <li>
+            A3.8
+            <a href="https://git-scm.com/book/en/v2/Git-Commands-Patching">Patching</a>
+          </li>
+          <li>
+            A3.9
+            <a href="https://git-scm.com/book/en/v2/Git-Commands-Email">Email</a>
+          </li>
+          <li>
+            A3.10
+            <a href="https://git-scm.com/book/en/v2/Git-Commands-External-Systems">External Systems</a>
+          </li>
+          <li>
+            A3.11
+            <a href="https://git-scm.com/book/en/v2/Git-Commands-Administration">Administration</a>
+          </li>
+          <li>
+            A3.12
+            <a href="https://git-scm.com/book/en/v2/Git-Commands-Plumbing-Commands">Plumbing Commands</a>
+          </li>
+    </ol>
+  </li>
+</ol>
+
+    </div>
+  </div>
+ </div>
+
+    <span class="light" id="edition">
+      2nd Edition
+    </span>
+</div>
+
+<div id="main" class="book edition2">
+    <h1>2.3 Git Basics - Viewing the Commit History</h1>
+  <div><a id="_viewing_history"></a>
+<h2>Viewing the Commit History</h2>
+
+<p>After you have created several commits, or if you have cloned a 
+repository with an existing commit history, you’ll probably want to look
+ back to see what has happened.
+The most basic and powerful tool to do this is the <code>git log</code> command.</p>
+
+<p>These examples use a very simple project called “simplegit”.
+To get the project, run</p>
+
+<pre data-type="programlisting" data-code-language="console"><code class="gp">$</code> git clone https://github.com/schacon/simplegit-progit</pre>
+
+<p>When you run <code>git log</code> in this project, you should get output that looks something like this:<a data-type="indexterm" data-primary="git commands" data-secondary="log" id="id-Qdcnhzu7u6"></a></p>
+
+<pre data-type="programlisting" data-code-language="console"><code class="gp">$</code> git log
+<code class="go">commit ca82a6dff817ec66f44342007202690a93763949</code>
+<code class="go">Author: Scott Chacon &lt;schacon@gee-mail.com&gt;</code>
+<code class="go">Date:   Mon Mar 17 21:52:11 2008 -0700</code>
+
+<code class="go">    changed the version number</code>
+
+<code class="go">commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7</code>
+<code class="go">Author: Scott Chacon &lt;schacon@gee-mail.com&gt;</code>
+<code class="go">Date:   Sat Mar 15 16:40:33 2008 -0700</code>
+
+<code class="go">    removed unnecessary test</code>
+
+<code class="go">commit a11bef06a3f659402fe7563abf99ad00de2209e6</code>
+<code class="go">Author: Scott Chacon &lt;schacon@gee-mail.com&gt;</code>
+<code class="go">Date:   Sat Mar 15 10:31:28 2008 -0700</code>
+
+<code class="go">    first commit</code></pre>
+
+<p>By default, with no arguments, <code>git log</code> lists the commits
+ made in that repository in reverse chronological order – that is, the 
+most recent commits show up first.
+As you can see, this command lists each commit with its SHA-1 checksum, 
+the author’s name and email, the date written, and the commit message.</p>
+
+<p>A huge number and variety of options to the <code>git log</code> command are available to show you exactly what you’re looking for.
+Here, we’ll show you some of the most popular.</p>
+
+<p>One of the more helpful options is <code>-p</code>, which shows the difference introduced in each commit.
+You can also use <code>-2</code>, which limits the output to only the last two entries:</p>
+
+<pre data-type="programlisting" data-code-language="console"><code class="gp">$</code> git log -p -2
+<code class="go">commit ca82a6dff817ec66f44342007202690a93763949</code>
+<code class="go">Author: Scott Chacon &lt;schacon@gee-mail.com&gt;</code>
+<code class="go">Date:   Mon Mar 17 21:52:11 2008 -0700</code>
+
+<code class="go">    changed the version number</code>
+
+<code class="go">diff --git a/Rakefile b/Rakefile</code>
+<code class="go">index a874b73..8f94139 100644</code>
+<code class="go">--- a/Rakefile</code>
+<code class="go">+++ b/Rakefile</code>
+<code class="go">@@ -5,7 +5,7 @@ require 'rake/gempackagetask'</code>
+<code class="go"> spec = Gem::Specification.new do |s|</code>
+<code class="go">     s.platform  =   Gem::Platform::RUBY</code>
+<code class="go">     s.name      =   "simplegit"</code>
+<code class="go">-    s.version   =   "0.1.0"</code>
+<code class="go">+    s.version   =   "0.1.1"</code>
+<code class="go">     s.author    =   "Scott Chacon"</code>
+<code class="go">     s.email     =   "schacon@gee-mail.com"</code>
+<code class="go">     s.summary   =   "A simple gem for using Git in Ruby code."</code>
+
+<code class="go">commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7</code>
+<code class="go">Author: Scott Chacon &lt;schacon@gee-mail.com&gt;</code>
+<code class="go">Date:   Sat Mar 15 16:40:33 2008 -0700</code>
+
+<code class="go">    removed unnecessary test</code>
+
+<code class="go">diff --git a/lib/simplegit.rb b/lib/simplegit.rb</code>
+<code class="go">index a0a60ae..47c6340 100644</code>
+<code class="go">--- a/lib/simplegit.rb</code>
+<code class="go">+++ b/lib/simplegit.rb</code>
+<code class="go">@@ -18,8 +18,3 @@ class SimpleGit</code>
+<code class="go">     end</code>
+
+<code class="go"> end</code>
+<code class="go">-</code>
+<code class="go">-if $0 == __FILE__</code>
+<code class="go">-  git = SimpleGit.new</code>
+<code class="go">-  puts git.show</code>
+<code class="go">-end</code>
+<code class="go">\ No newline at end of file</code></pre>
+
+<p>This option displays the same information but with a diff directly 
+following each entry.
+This is very helpful for code review or to quickly browse what happened 
+during a series of commits that a collaborator has added.
+You can also use a series of summarizing options with <code>git log</code>.
+For example, if you want to see some abbreviated stats for each commit, you can use the <code>--stat</code> option:</p>
+
+<pre data-type="programlisting" data-code-language="console"><code class="gp">$</code> git log --stat
+<code class="go">commit ca82a6dff817ec66f44342007202690a93763949</code>
+<code class="go">Author: Scott Chacon &lt;schacon@gee-mail.com&gt;</code>
+<code class="go">Date:   Mon Mar 17 21:52:11 2008 -0700</code>
+
+<code class="go">    changed the version number</code>
+
+<code class="go"> Rakefile | 2 +-</code>
+<code class="go"> 1 file changed, 1 insertion(+), 1 deletion(-)</code>
+
+<code class="go">commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7</code>
+<code class="go">Author: Scott Chacon &lt;schacon@gee-mail.com&gt;</code>
+<code class="go">Date:   Sat Mar 15 16:40:33 2008 -0700</code>
+
+<code class="go">    removed unnecessary test</code>
+
+<code class="go"> lib/simplegit.rb | 5 -----</code>
+<code class="go"> 1 file changed, 5 deletions(-)</code>
+
+<code class="go">commit a11bef06a3f659402fe7563abf99ad00de2209e6</code>
+<code class="go">Author: Scott Chacon &lt;schacon@gee-mail.com&gt;</code>
+<code class="go">Date:   Sat Mar 15 10:31:28 2008 -0700</code>
+
+<code class="go">    first commit</code>
+
+<code class="go"> README           |  6 ++++++</code>
+<code class="go"> Rakefile         | 23 +++++++++++++++++++++++</code>
+<code class="go"> lib/simplegit.rb | 25 +++++++++++++++++++++++++</code>
+<code class="go"> 3 files changed, 54 insertions(+)</code></pre>
+
+<p>As you can see, the <code>--stat</code> option prints below each 
+commit entry a list of modified files, how many files were changed, and 
+how many lines in those files were added and removed.
+It also puts a summary of the information at the end.</p>
+
+<p>Another really useful option is <code>--pretty</code>.
+This option changes the log output to formats other than the default.
+A few prebuilt options are available for you to use.
+The <code>oneline</code> option prints each commit on a single line, which is useful if you’re looking at a lot of commits.
+In addition, the <code>short</code>, <code>full</code>, and <code>fuller</code> options show the output in roughly the same format but with less or more information, respectively:</p>
+
+<pre data-type="programlisting" data-code-language="console"><code class="gp">$</code> git log --pretty<code class="o">=</code>oneline
+<code class="go">ca82a6dff817ec66f44342007202690a93763949 changed the version number</code>
+<code class="go">085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7 removed unnecessary test</code>
+<code class="go">a11bef06a3f659402fe7563abf99ad00de2209e6 first commit</code></pre>
+
+<p>The most interesting option is <code>format</code>, which allows you 
+to specify your own log output format.
+This is especially useful when you’re generating output for machine 
+parsing – because you specify the format explicitly, you know it won’t 
+change with updates to Git:<a data-type="indexterm" data-primary="log formatting" id="id-adc7h6hEuz"></a></p>
+
+<pre data-type="programlisting" data-code-language="console"><code class="gp">$</code> git log --pretty<code class="o">=</code>format:<code class="s2">"%h - %an, %ar : %s"</code>
+<code class="go">ca82a6d - Scott Chacon, 6 years ago : changed the version number</code>
+<code class="go">085bb3b - Scott Chacon, 6 years ago : removed unnecessary test</code>
+<code class="go">a11bef0 - Scott Chacon, 6 years ago : first commit</code></pre>
+
+<p><a data-type="xref" href="https://git-scm.com/book/en/v2/ch00/pretty_format">Table&nbsp;2-1</a> lists some of the more useful options that <code>format</code> takes.</p>
+<table id="pretty_format">
+<caption>
+<span class="label">Table 2-1. </span>Useful options for <code>git log --pretty=format</code>
+</caption>
+<thead>
+<tr>
+<th width="20%">Option</th>
+<th>Description of Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>%H</code></p></td>
+<td><p>Commit hash</p></td>
+</tr>
+<tr>
+<td><p><code>%h</code></p></td>
+<td><p>Abbreviated commit hash</p></td>
+</tr>
+<tr>
+<td><p><code>%T</code></p></td>
+<td><p>Tree hash</p></td>
+</tr>
+<tr>
+<td><p><code>%t</code></p></td>
+<td><p>Abbreviated tree hash</p></td>
+</tr>
+<tr>
+<td><p><code>%P</code></p></td>
+<td><p>Parent hashes</p></td>
+</tr>
+<tr>
+<td><p><code>%p</code></p></td>
+<td><p>Abbreviated parent hashes</p></td>
+</tr>
+<tr>
+<td><p><code>%an</code></p></td>
+<td><p>Author name</p></td>
+</tr>
+<tr>
+<td><p><code>%ae</code></p></td>
+<td><p>Author email</p></td>
+</tr>
+<tr>
+<td><p><code>%ad</code></p></td>
+<td><p>Author date (format respects the --date=option)</p></td>
+</tr>
+<tr>
+<td><p><code>%ar</code></p></td>
+<td><p>Author date, relative</p></td>
+</tr>
+<tr>
+<td><p><code>%cn</code></p></td>
+<td><p>Committer name</p></td>
+</tr>
+<tr>
+<td><p><code>%ce</code></p></td>
+<td><p>Committer email</p></td>
+</tr>
+<tr>
+<td><p><code>%cd</code></p></td>
+<td><p>Committer date</p></td>
+</tr>
+<tr>
+<td><p><code>%cr</code></p></td>
+<td><p>Committer date, relative</p></td>
+</tr>
+<tr>
+<td><p><code>%s</code></p></td>
+<td><p>Subject</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>You may be wondering what the difference is between <em>author</em> and <em>committer</em>.
+The author is the person who originally wrote the work, whereas the 
+committer is the person who last applied the work.
+So, if you send in a patch to a project and one of the core members 
+applies the patch, both of you get credit – you as the author, and the 
+core member as the committer.
+We’ll cover this distinction a bit more in <a data-type="xref" href="https://git-scm.com/book/en/v2/ch00/_distributed_git">Distributed Git</a>.</p>
+
+<p>The <code>oneline</code> and <code>format</code> options are particularly useful with another <code>log</code> option called <code>--graph</code>.
+This option adds a nice little ASCII graph showing your branch and merge history:</p>
+
+<pre data-type="programlisting" data-code-language="console"><code class="gp">$</code> git log --pretty<code class="o">=</code>format:<code class="s2">"%h %s"</code> --graph
+<code class="go">* 2d3acf9 ignore errors from SIGCHLD on trap</code>
+<code class="go">*  5e3ee11 Merge branch 'master' of git://github.com/dustin/grit</code>
+<code class="go">|\</code>
+<code class="go">| * 420eac9 Added a method for getting the current branch.</code>
+<code class="go">* | 30e367c timeout code and tests</code>
+<code class="go">* | 5a09431 add timeout protection to grit</code>
+<code class="go">* | e1193f8 support for heads with slashes in them</code>
+<code class="go">|/</code>
+<code class="go">* d6016bc require time for xmlschema</code>
+<code class="go">*  11d191e Merge branch 'defunkt' into local</code></pre>
+
+<p>This type of output will become more interesting as we go through branching and merging in the next chapter.</p>
+
+<p>Those are only some simple output-formatting options to <code>git log</code> – there are many more.
+<a data-type="xref" href="https://git-scm.com/book/en/v2/ch00/log_options">Table&nbsp;2-2</a>
+ lists the options we’ve covered so far, as well as some other common 
+formatting options that may be useful, along with how they change the 
+output of the log command.</p>
+<table id="log_options">
+<caption>
+<span class="label">Table 2-2. </span>Common options to <code>git log</code>
+</caption>
+<thead>
+<tr>
+<th width="20%">Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>-p</code></p></td>
+<td><p>Show the patch introduced with each commit.</p></td>
+</tr>
+<tr>
+<td><p><code>--stat</code></p></td>
+<td><p>Show statistics for files modified in each commit.</p></td>
+</tr>
+<tr>
+<td><p><code>--shortstat</code></p></td>
+<td><p>Display only the changed/insertions/deletions line from the --stat command.</p></td>
+</tr>
+<tr>
+<td><p><code>--name-only</code></p></td>
+<td><p>Show the list of files modified after the commit information.</p></td>
+</tr>
+<tr>
+<td><p><code>--name-status</code></p></td>
+<td><p>Show the list of files affected with added/modified/deleted information as well.</p></td>
+</tr>
+<tr>
+<td><p><code>--abbrev-commit</code></p></td>
+<td><p>Show only the first few characters of the SHA-1 checksum instead of all 40.</p></td>
+</tr>
+<tr>
+<td><p><code>--relative-date</code></p></td>
+<td><p>Display the date in a relative format (for example, “2 weeks ago”) instead of using the full date format.</p></td>
+</tr>
+<tr>
+<td><p><code>--graph</code></p></td>
+<td><p>Display an ASCII graph of the branch and merge history beside the log output.</p></td>
+</tr>
+<tr>
+<td><p><code>--pretty</code></p></td>
+<td><p>Show commits in an alternate format. Options include oneline, 
+short, full, fuller, and format (where you specify your own format).</p></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+<section data-type="sect2" id="limiting-log-output-RetVtluY">
+<h3 id="Limiting-Log-Output"><a href="#Limiting-Log-Output">Limiting Log Output</a></h3>
+
+<p>In addition to output-formatting options, <code>git log</code> takes a number of useful limiting options – that is, options that let you show only a subset of commits.
+You’ve seen one such option already – the <code>-2</code> option, which show only the last two commits.
+In fact, you can do <code>-&lt;n&gt;</code>, where <code>n</code> is any integer to show the last <code>n</code>
+ commits.
+In reality, you’re unlikely to use that often, because Git by default 
+pipes all output through a pager so you see only one page of log output 
+at a time.</p>
+
+<p>However, the time-limiting options such as <code>--since</code> and <code>--until</code> are very useful.
+For example, this command gets the list of commits made in the last two weeks:</p>
+
+<pre data-type="programlisting" data-code-language="console"><code class="gp">$</code> git log --since<code class="o">=</code>2.weeks</pre>
+
+<p>This command works with lots of formats – you can specify a specific date like <code>"2008-01-15"</code>, or a relative date such as <code>"2 years 1 day 3 minutes ago"</code>.</p>
+
+<p>You can also filter the list to commits that match some search criteria.
+The <code>--author</code> option allows you to filter on a specific author, and the <code>--grep</code> option lets you search for keywords in the commit messages.
+(Note that if you want to specify both author and grep options, you have to add <code>--all-match</code> or the command will match commits with either.)</p>
+
+<p>Another really helpful filter is the <code>-S</code> option which takes a string and only shows the commits that introduced a change to the code that added or removed that string.
+For instance, if you wanted to find the last commit that added or removed a reference to a specific function, you could call:</p>
+
+<pre data-type="programlisting" data-code-language="console"><code class="gp">$</code> git log -Sfunction_name</pre>
+
+<p>The last really useful option to pass to <code>git log</code> as a filter is a path.
+If you specify a directory or file name, you can limit the log output to commits that introduced a change to those files.
+This is always the last option and is generally preceded by double dashes (<code>--</code>) to separate the paths from the options.</p>
+
+<p>In <a data-type="xref" href="https://git-scm.com/book/en/v2/ch00/limit_options">Table&nbsp;2-3</a> we’ll list these and a few other common options for your reference.</p>
+<table id="limit_options">
+<caption>
+<span class="label">Table 2-3. </span>Options to limit the output of <code>git log</code>
+</caption>
+<thead>
+<tr>
+<th width="33%">Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>-(n)</code></p></td>
+<td><p>Show only the last n commits</p></td>
+</tr>
+<tr>
+<td><p><code>--since</code>, <code>--after</code></p></td>
+<td><p>Limit the commits to those made after the specified date.</p></td>
+</tr>
+<tr>
+<td><p><code>--until</code>, <code>--before</code></p></td>
+<td><p>Limit the commits to those made before the specified date.</p></td>
+</tr>
+<tr>
+<td><p><code>--author</code></p></td>
+<td><p>Only show commits in which the author entry matches the specified string.</p></td>
+</tr>
+<tr>
+<td><p><code>--committer</code></p></td>
+<td><p>Only show commits in which the committer entry matches the specified string.</p></td>
+</tr>
+<tr>
+<td><p><code>--grep</code></p></td>
+<td><p>Only show commits with a commit message containing the string</p></td>
+</tr>
+<tr>
+<td><p><code>-S</code></p></td>
+<td><p>Only show commits adding or removing code matching the string</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>For example, if you want to see which commits modifying test files in
+ the Git source code history are merged and were committed by Junio 
+Hamano in the month of October 2008, you can run something like this:<a data-type="indexterm" data-primary="log filtering" id="id-1LcoSLtgtoud"></a></p>
+
+<pre data-type="programlisting" data-code-language="console"><code class="gp">$</code> git log --pretty<code class="o">=</code><code class="s2">"%h - %s"</code> --author<code class="o">=</code>gitster --since<code class="o">=</code><code class="s2">"2008-10-01"</code> <code class="se">\</code>
+<code class="go">   --before="2008-11-01" --no-merges -- t/</code>
+<code class="go">5610e3b - Fix testcase failure when extended attributes are in use</code>
+<code class="go">acd3b9e - Enhance hold_lock_file_for_{update,append}() API</code>
+<code class="go">f563754 - demonstrate breakage of detached checkout with symbolic link HEAD</code>
+<code class="go">d1a43f2 - reset --hard/read-tree --reset -u: remove unmerged new paths</code>
+<code class="go">51a94af - Fix "checkout --track -b newbranch" on detached HEAD</code>
+<code class="go">b0ad11e - pull: allow "git pull origin $something:$current_branch" into an unborn branch</code></pre>
+
+<p>Of the nearly 40,000 commits in the Git source code history, this command shows the 6 that match those criteria.</p>
+</section>
+
+
+
+
+
+<div id="nav"><a href="https://git-scm.com/book/en/Git-Basics-Recording-Changes-to-the-Repository">prev</a> | <a href="https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things">next</a></div></div>
+</div>
+
+        </div>
+      </div>
+      <footer>
+  <div class="site-source">
+    This <a href="https://github.com/git/git-scm.com/blob/master/README.md#license">open sourced</a> site is <a href="https://github.com/git/git-scm.com">hosted on GitHub.</a><br>
+    Patches, suggestions and comments are welcome.
+  </div>
+  <div class="sfc-member">
+    Git is a member of <a href="https://git-scm.com/sfc">Software Freedom Conservancy</a>
+  </div>
+</footer>
+
+<script src="Git%20-%20Viewing%20the%20Commit%20History-Dateien/jquery-1.js"></script>
+<script src="Git%20-%20Viewing%20the%20Commit%20History-Dateien/jquery-ui-1.js"></script>
+<script src="Git%20-%20Viewing%20the%20Commit%20History-Dateien/jquery.js"></script>
+<script src="Git%20-%20Viewing%20the%20Commit%20History-Dateien/session.js"></script>
+<script src="Git%20-%20Viewing%20the%20Commit%20History-Dateien/site-1dedb2e04243f2cda0b571c1ade66561.js"></script>
+
+    </div>
+
+
+
+</body></html>

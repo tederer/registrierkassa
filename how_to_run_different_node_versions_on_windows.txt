@@ -1,0 +1,16 @@
+Zuerst muss man sich die Executables https://nodejs.org herunterladen und lokal speichern (z.B. in 
+D:\Software\node.js).
+
+Gibt man grunt ein, wird im %PATH% der Pfad zu npm (%HOMEPATH%\Anwendungsdaten\npm") gefunden. 
+In diesem Verzeichnis befindet sich das Script grunt.cmd, das node startet. Wenn man die Zeile 6
+vom grunt.cmd durch folgenden Code ersetzt, dann kann man für bestimmte Projekte andere Node-Versionen
+starten.
+
+D:\Registrierkassen\Registrierkassa ist das Wurzelverzeichnis des Projekts.
+
+  if %CD%==D:\Registrierkassen\Registrierkassa (
+   echo VERWENDE NODES 4.4.7.0 ...
+   D:\Software\node.js\4.4.7.0\node32.exe "%~dp0\node_modules\grunt-cli\bin\grunt" %*
+  ) else (
+    node  "%~dp0\node_modules\grunt-cli\bin\grunt" %*
+  )

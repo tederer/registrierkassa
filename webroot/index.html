@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<title>client test</title>
+<script type="text/javascript" src="javascripts/RequireMock.js"></script>
+<script type="text/javascript" src="javascripts/NamespaceUtils.js"></script>
+<script type="text/javascript" src="javascripts/common/infrastructure/bus/Bus.js"></script>
+<script type="text/javascript" src="javascripts/common/infrastructure/busbridge/BusBridge.js"></script>
+<script type="text/javascript" src="javascripts/common/infrastructure/busbridge/MessageFactory.js"></script>
+<script type="text/javascript" src="javascripts/common/infrastructure/busbridge/ClientSocketIoBusBridge.js"></script>
+<script type="text/javascript" src="javascripts/common/infrastructure/busbridge/connection/ClientSocketIoConnection.js"></script>
+<script type="text/javascript" src="javascripts/client/cash.js"></script>
+<script type="text/javascript" src="javascripts/client/cash.customer.js"></script>
+<script type="text/javascript" src="javascripts/client/cash.product.js"></script>
+<script type="text/javascript" src="lib/jquery-3.1.0.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+   var textarea;
+   var bus;
+   
+   var onTextChanged = function onTextChanged() {
+      bus.publish('/message', textarea.val());
+   };
+   
+   $(document).ready(function() {
+      textarea = $('#myTextarea');
+      
+      bus = new common.infrastructure.bus.Bus();
+      
+      bus.subscribeToPublication(common.infrastructure.busbridge.CONNECTION_STATE_TOPIC, function(data) {
+         console.log(common.infrastructure.busbridge.CONNECTION_STATE_TOPIC + ' = ' + data);
+      });
+      
+      bus.subscribeToPublication('counter', function(data) {
+         console.log('counter = ' + data);
+      });
+      
+      bus.subscribeToPublication('/message', function(data) {
+         console.log('message = ' + data);
+      });
+      
+      var topicsToTransmit = ['/message'];
+      var busBridge = new common.infrastructure.busbridge.ClientSocketIoBusBridge(bus, topicsToTransmit, io);
+      
+      textarea.change(onTextChanged);
+   });
+</script>
+</head>
+
+<body>
+Client test
+
+<textarea id="myTextarea"></textarea>
+</body>
+</html>

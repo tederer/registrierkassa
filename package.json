@@ -1,0 +1,39 @@
+{
+   "name": "registrierkassa",
+   "version": "0.0.1",
+   "description": "Testimplementierung einer Registrierkassa",
+   "private": true,
+   "author": {
+    "name": "Thomas Ederer",
+    "email": "thomas@orchideenvermehrung.at"
+   },
+  
+   "licenses": [
+      {
+      "type": "BSD-3-Clause"
+      }
+   ],
+  
+   "dependencies" : {
+     "express" : "4.x",
+     "socket.io" : "1.x"
+   },
+   
+   "devDependencies": {
+      "expect.js": "0.x",
+      "grunt": "1.x",
+      "mocha": "2.x",
+      "pug-lint" : "2.x",
+      "grunt-contrib-clean": "1.x",
+      "grunt-contrib-concat": "1.x",
+      "grunt-contrib-copy": "1.x",
+      "grunt-contrib-jshint": "1.x",
+      "grunt-mocha-test": "0.x",
+      "sinon": "1.x",
+      "sinon-expect": "0.x"
+   },
+  
+   "engines": {
+      "node": ">=4.4.x"
+   }
+}
