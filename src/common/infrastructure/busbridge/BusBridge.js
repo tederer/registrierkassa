@@ -61,7 +61,7 @@ common.infrastructure.busbridge.BusBridge = function BusBridge(bus, topicsToTran
       bus.subscribeToPublication(topic, function(data) {
          var lastReceivedPublication = lastReceivedPublicationByTopic[topic];
          
-         if (!lastReceivedPublication && data !== lastReceivedPublication) {
+         if (data !== lastReceivedPublication) {
             var message = common.infrastructure.busbridge.MessageFactory.createPublicationMessage(topic, data);
             connection.send(message);
          }
@@ -69,7 +69,7 @@ common.infrastructure.busbridge.BusBridge = function BusBridge(bus, topicsToTran
       bus.subscribeToCommand(topic, function(data) {
          var lastReceivedCommand = lastReceivedCommandByTopic[topic];
          
-         if (!lastReceivedCommand && data !== lastReceivedCommand) {
+         if (data !== lastReceivedCommand) {
             var message = common.infrastructure.busbridge.MessageFactory.createCommandMessage(topic, data);
             connection.send(message);
          }
