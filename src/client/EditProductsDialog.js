@@ -65,13 +65,16 @@ cash.ui.EditProductsDialog = function EditProductsDialog(containerId, bus) {
       };
       
       var initializeContainerContent = function initializeContainerContent() {
-         var containerContent = '<div id="content"><div id="body"></div><div id="sidebar"></div><div id="footer"></div></div>';
+         var containerContent = '<div id="content"><div id="header"></div><div id="body"></div><div id="sidebar"></div><div id="footer"></div></div>';
          var tableHtml        = '<table id="table" width="90%" class="stripe hover cell-border"><thead><tr><th>Name</th><th>Preis</th><th></th></tr></thead></table>';
+         var newProductButton = '<button type="button" id="newProductButton">Produkt hinzufügen</button>';
          var okButton         = '<button type="button" id="okButton">OK</button>';
          var cancelButton     = '<button type="button" id="cancelButton">Abbrechen</button>';
 
          $(containerId).html(containerContent);
+         $(contentContainerId + ' > #header').html('Produkte bearbeiten ...');
          $(contentContainerId + ' > #body').html(tableHtml);
+         $(contentContainerId + ' > #sidebar').html(newProductButton);
          $(contentContainerId + ' > #footer').html(okButton + cancelButton);
          
          $(contentContainerId + ' > #footer > #okButton').on('click', onOkClicked);
