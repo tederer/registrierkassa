@@ -2,7 +2,7 @@
 
 assertNamespace('cash.client.topics');
 
-// COMMANDS
+//                COMMANDS
 /**
  * Adds items to the invoice. The data of the command is an array of items.
  * Each item is an object containing the values (keys):
@@ -38,6 +38,11 @@ cash.client.topics.EDIT_INVOICE_ITEM_COMMAND = '/client/invoice/editItemCommand'
  */
 cash.client.topics.UPDATE_INVOICE_ITEM_COMMAND = '/client/invoice/updateItemCommand';
 
+/**
+ * This command gets sent when the user wants to create a new product.
+ * The data of this command is an empty object.
+ */
+cash.client.topics.SHOW_CREATE_NEW_PRODUCT_COMMAND = '/client/products/showNewProductDialogCommand';
 
 
 //                PUBLICATIONS

@@ -56,6 +56,10 @@ cash.ui.EditProductsDialog = function EditProductsDialog(containerId, bus) {
          setVisible(false);
       };
       
+      var onShowNewProductDialog = function onShowNewProductDialog() {console.log('sending SHOW_CREATE_NEW_PRODUCT_COMMAND');
+         bus.sendCommand(cash.client.topics.SHOW_CREATE_NEW_PRODUCT_COMMAND,{});
+      };
+      
       var onProductsReceived = function onProductsReceived(products) {
          table.clear();
          products.forEach(function(product) {
@@ -77,6 +81,7 @@ cash.ui.EditProductsDialog = function EditProductsDialog(containerId, bus) {
          $(contentContainerId + ' > #sidebar').html(newProductButton);
          $(contentContainerId + ' > #footer').html(okButton + cancelButton);
          
+         $(contentContainerId + ' > #sidebar > #newProductButton').on('click', onShowNewProductDialog);
          $(contentContainerId + ' > #footer > #okButton').on('click', onOkClicked);
          $(contentContainerId + ' > #footer > #cancelButton').on('click', onCancelClicked);
       };
