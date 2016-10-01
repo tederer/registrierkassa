@@ -6,52 +6,27 @@ assertNamespace('cash.ui');
  * constructor for a CreateNewProductDialog that is invisible after its creation.
  */
 cash.ui.CreateNewProductDialog = function CreateNewProductDialog(containerId, bus) {
-      var contentContainerId = containerId + ' > #content';
-      var nameInput;
-      var priceInput;
       
-      var setVisible = function setVisible(visible) {
-         $(containerId).css('visibility', visible ? 'visible' : 'hidden');
+      var onShowCreateNewProductCommand = function onShowCreateNewProductCommand() {
+         this.setVisible(true);
       };
       
-      var onOkClicked = function onOkClicked() {
-         // send command to cash.topics.CREATE_NEW_PRODUCT_COMMAND
-         setVisible(false);
+      this.getDialogTitle = function getDialogTitle() {
+         return 'Neues Produkt anlegen ...';
       };
       
-      var onCancelClicked = function onCancelClicked() {
-         setVisible(false);
+      this.getContainerId = function getContainerId() {
+         return containerId;
       };
       
-      var onShowCreateNewProductCommand = function onShowCreateNewProductCommand() {console.log('onShowCreateNewProductCommand');
-         nameInput.val('');
-         priceInput.val('');
-         setVisible(true);
+      this.initializeBodyContent = function initializeBodyContent(selector) {
+         var bodyContent = '<table><tr><td>Name:</td><td><input id="name" type="text"/></td></tr><tr><td>Preis:</td><td><input id="price" type="number" step="0.5"/></td></tr></table>';
+         $(selector).html(bodyContent);
       };
       
-      var initializeContainerContent = function initializeContainerContent() {
-         var containerContent = '<div id="content"><div id="header"></div><div id="body"></div><div id="footer"></div></div>';
-         var bodyContent      = '<table><tr><td>Name:</td><td><input id="name" type="text"/></td></tr><tr><td>Preis:</td><td><input id="price" type="number" step="0.5"/></td></tr></table>';
-         var okButton         = '<button type="button" id="okButton">OK</button>';
-         var cancelButton     = '<button type="button" id="cancelButton">Abbrechen</button>';
-
-         $(containerId).html(containerContent);
-         $(contentContainerId + ' > #header').html('Neues Produkt anlegen ...');
-         $(contentContainerId + ' > #body').html(bodyContent);
-         $(contentContainerId + ' > #footer').html(okButton + cancelButton);
-         
-         nameInput = $(contentContainerId + ' #name');
-         priceInput = $(contentContainerId + ' #price');
-         
-         $(contentContainerId + ' > #footer > #okButton').on('click', onOkClicked);
-         $(contentContainerId + ' > #footer > #cancelButton').on('click', onCancelClicked);
-      };
-      
-      this.initialize = function initialize() {
-         setVisible(false);
-         initializeContainerContent();
-         bus.subscribeToCommand(cash.client.topics.SHOW_CREATE_NEW_PRODUCT_COMMAND, onShowCreateNewProductCommand);
+      this.completeInitialization = function completeInitialization() {
+         bus.subscribeToCommand(cash.client.topics.SHOW_CREATE_NEW_PRODUCT_COMMAND, onShowCreateNewProductCommand.bind(this));
       };
 };
 
-cash.ui.CreateNewProductDialog.prototype = new cash.ui.UiComponent();
+cash.ui.CreateNewProductDialog.prototype = new cash.ui.ModalDialog();

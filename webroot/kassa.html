@@ -21,6 +21,7 @@
    <script type="text/javascript" src="javascripts/common/infrastructure/busbridge/connection/ClientSocketIoConnection.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/Tabs.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/UiComponent.js" charset="UTF-8"></script>
+   <script type="text/javascript" src="javascripts/client/ModalDialog.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/ItemSelectionDialog.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/EditInvoiceItemDialog.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/EditProductsDialog.js" charset="UTF-8"></script>
@@ -63,8 +64,8 @@
          invoiceTable.initialize();
          totalPanel.initialize();
          
-         $('#cash > #content > #invoice > #sidebar > #addItemButton').on('click', itemSelectionDialog.show);
-         $('#cash > #content > #administration > #editProductsButton').on('click', editProductsDialog.show);
+         $('#cash > #content > #invoice > #sidebar > #addItemButton').on('click', function() {itemSelectionDialog.show();});
+         $('#cash > #content > #administration > #editProductsButton').on('click', function() {editProductsDialog.setVisible(true);});
       });
    </script>
 </head>
