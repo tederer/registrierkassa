@@ -98,4 +98,4 @@ cash.ui.InvoiceTable = function InvoiceTable(containerId, bus) {
       };
 };
 
-cash.ui.ItemSelectionDialog.prototype = new cash.ui.UiComponent();
+cash.ui.InvoiceTable.prototype = new cash.ui.UiComponent();

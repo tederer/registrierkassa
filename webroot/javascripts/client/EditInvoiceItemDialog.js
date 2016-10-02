@@ -3,7 +3,8 @@
 assertNamespace('cash.ui');
 
 /**
- * constructor for a EditInvoiceItemDialog that is invisible after its creation.
+ * constructor for a EditInvoiceItemDialog that can be used to modify an entry
+ * of the invoice.
  */
 cash.ui.EditInvoiceItemDialog = function EditInvoiceItemDialog(containerId, bus) {
       var rowIndex;

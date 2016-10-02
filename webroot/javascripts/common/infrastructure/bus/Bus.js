@@ -48,7 +48,7 @@ common.infrastructure.bus.Bus = (function () {
          if(topic && (typeof callback === 'function')) {
             add(callback).relatedTo(topic).to(publicationCallbacksPerTopic);
             
-            var lastPublishedData = lastPublishedDataPerTopic.topic;
+            var lastPublishedData = lastPublishedDataPerTopic[topic];
             
             if (lastPublishedData) {
                callback(lastPublishedData);
@@ -63,8 +63,7 @@ common.infrastructure.bus.Bus = (function () {
       };
       
       this.publish = function publish(topic, data) {
-         
-         lastPublishedDataPerTopic.topic = data;
+         lastPublishedDataPerTopic[topic] = data;
          invokeAllCallbacksOf(publicationCallbacksPerTopic).ofType(topic).withData(data);
       };
       

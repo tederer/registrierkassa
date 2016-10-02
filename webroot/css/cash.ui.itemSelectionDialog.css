@@ -18,9 +18,19 @@
    background-color : #990000;
 }
 
-#cash  > #itemSelectionDialog > #content > #body {
+#cash  > #itemSelectionDialog > #content > #header {
    position : absolute;
    top : 1em;
+   left : 1em;
+   height : 2em;
+   right : 1em;
+   background-color : #FFFF00;
+   overflow-y: auto;
+}
+  
+#cash  > #itemSelectionDialog > #content > #body {
+   position : absolute;
+   top : 3em;
    left : 1em;
    bottom : 4em;
    right : 1em;

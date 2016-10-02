@@ -147,6 +147,18 @@ describe('Bus', function() {
       expect(capturedPublications.get(topic)[1]).to.be.eql(data);
    });
    
+   it('a publication on a different topic does not influence a subscription on another topic', function() {
+      
+      var topic1 = '/my/topic1';
+      var topic2 = '/my/topic2';
+      
+      bus.publish(topic1, 'a test');
+      
+      givenASubscriptionForPublication(topic2);
+      
+      expect(capturedPublications.has(topic2)).to.be.eql(false);
+   });
+   
    it('the current data of a publication get notified to a subscriber that subscribed after the data were published (late joining behaviour)', function() {
       
       var topic = '/late/join/test';
