@@ -18,9 +18,19 @@
    background-color : #990000;
 }
 
-#cash  > #editInvoiceItemDialog > #content > #body {
+#cash  > #editInvoiceItemDialog > #content > #header {
    position : absolute;
    top : 1em;
+   left : 1em;
+   height : 2em;
+   right : 1em;
+   background-color : #FFFF00;
+   overflow-y: auto;
+}
+  
+#cash  > #editInvoiceItemDialog > #content > #body {
+   position : absolute;
+   top : 3em;
    left : 1em;
    bottom : 4em;
    right : 1em;

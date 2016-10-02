@@ -7,12 +7,14 @@ assertNamespace('cash.ui');
  */
 cash.ui.ModalDialog = function ModalDialog() {
       
-      var onOkClicked = function onOkClicked() {
+      var processOkButtonClicked = function processOkButtonClicked() {
          this.setVisible(false);
+         this.onOkClicked();
       };
       
-      var onCancelClicked = function onCancelClicked() {
+      var processCancelButtonClicked = function processCancelButtonClicked() {
          this.setVisible(false);
+         this.onCancelClicked();
       };
       
       var initializeContainerContent = function initializeContainerContent(thisInstance) {
@@ -28,13 +30,17 @@ cash.ui.ModalDialog = function ModalDialog() {
          thisInstance.initializeBodyContent(contentContainerId + ' > #body');
          thisInstance.initializeSidebarContent(contentContainerId + ' > #sidebar');
          
-         $(contentContainerId + ' > #footer > #okButton').on('click', onOkClicked.bind(thisInstance));
-         $(contentContainerId + ' > #footer > #cancelButton').on('click', onCancelClicked.bind(thisInstance));
+         $(contentContainerId + ' > #footer > #okButton').on('click', processOkButtonClicked.bind(thisInstance));
+         $(contentContainerId + ' > #footer > #cancelButton').on('click', processCancelButtonClicked.bind(thisInstance));
       };
       
       this.getContainerId = function getContainerId() {
          return '';
       };
+      
+      this.onOkClicked = function onOkClicked() {};
+      
+      this.onCancelClicked = function onCancelClicked() {};
       
       this.setVisible = function setVisible(visible) {
          $(this.getContainerId()).css('visibility', visible ? 'visible' : 'hidden');
