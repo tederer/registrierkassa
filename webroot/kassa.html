@@ -8,7 +8,7 @@
    <link rel="stylesheet" type="text/css" href="css/cash.ui.itemSelectionDialog.css">
    <link rel="stylesheet" type="text/css" href="css/cash.ui.editInvoiceItemDialog.css">
    <link rel="stylesheet" type="text/css" href="css/cash.ui.editProductsDialog.css">
-   <link rel="stylesheet" type="text/css" href="css/cash.ui.createNewProductDialog.css">
+   <link rel="stylesheet" type="text/css" href="css/cash.ui.createProductDialog.css">
 
    <script type="text/javascript" src="javascripts/RequireMock.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/NamespaceUtils.js" charset="UTF-8"></script>
@@ -25,7 +25,7 @@
    <script type="text/javascript" src="javascripts/client/ItemSelectionDialog.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/EditInvoiceItemDialog.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/EditProductsDialog.js" charset="UTF-8"></script>
-   <script type="text/javascript" src="javascripts/client/CreateNewProductDialog.js" charset="UTF-8"></script>
+   <script type="text/javascript" src="javascripts/client/CreateProductDialog.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/InvoiceTable.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/TotalPanel.js" charset="UTF-8"></script>
    <script type="text/javascript" src="lib/jquery-3.1.0.js" charset="UTF-8"></script>
@@ -37,7 +37,7 @@
       var itemSelectionDialog = new cash.ui.ItemSelectionDialog('#cash > #itemSelectionDialog', bus);
       var editInvoiceItemDialog = new cash.ui.EditInvoiceItemDialog('#cash > #editInvoiceItemDialog', bus);
       var editProductsDialog = new cash.ui.EditProductsDialog('#cash > #editProductsDialog', bus);
-      var createNewProductDialog = new cash.ui.CreateNewProductDialog('#cash > #newProductDialog', bus);
+      var createProductDialog = new cash.ui.CreateProductDialog('#cash > #newProductDialog', bus);
       var invoiceTable = new cash.ui.InvoiceTable('#cash > #content > #invoice > #items', bus);
       var totalPanel = new cash.ui.TotalPanel('#cash > #content > #invoice > #total', bus);
       
@@ -52,8 +52,8 @@
          bus.subscribeToCommand(cash.topics.DELETE_PRODUCT_COMMAND, function(commandData) {
             console.log(cash.topics.DELETE_PRODUCT_COMMAND + ' = ' + JSON.stringify(commandData));
          });
-         bus.subscribeToCommand(cash.topics.CREATE_NEW_PRODUCT_COMMAND, function(commandData) {
-            console.log(cash.topics.CREATE_NEW_PRODUCT_COMMAND + ' = ' + JSON.stringify(commandData));
+         bus.subscribeToCommand(cash.topics.CREATE_PRODUCT_COMMAND, function(commandData) {
+            console.log(cash.topics.CREATE_PRODUCT_COMMAND + ' = ' + JSON.stringify(commandData));
          });
       };
       
@@ -66,7 +66,7 @@
          itemSelectionDialog.initialize();
          editInvoiceItemDialog.initialize();
          editProductsDialog.initialize();
-         createNewProductDialog.initialize();
+         createProductDialog.initialize();
          invoiceTable.initialize();
          totalPanel.initialize();
          

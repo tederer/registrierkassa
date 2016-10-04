@@ -30,7 +30,7 @@ cash.topics.PRODUCTS = '/products';
  *
  * example data: { name: 'fertilizer 4-5-6', price: 5}
  */ 
-cash.topics.CREATE_NEW_PRODUCT_COMMAND = '/products/createNewProductCommand';
+cash.topics.CREATE_PRODUCT_COMMAND = '/products/createProductCommand';
 
 /**
  * A client send this command to inform the server that the user wants to
