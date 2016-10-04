@@ -49,6 +49,12 @@
                      {id:5, name: 'Kunststofftopf 12cm', price: 1.5}];
                      
          bus.publish(cash.topics.PRODUCTS, data);
+         bus.subscribeToCommand(cash.topics.DELETE_PRODUCT_COMMAND, function(commandData) {
+            console.log(cash.topics.DELETE_PRODUCT_COMMAND + ' = ' + JSON.stringify(commandData));
+         });
+         bus.subscribeToCommand(cash.topics.CREATE_NEW_PRODUCT_COMMAND, function(commandData) {
+            console.log(cash.topics.CREATE_NEW_PRODUCT_COMMAND + ' = ' + JSON.stringify(commandData));
+         });
       };
       
       simulateServerStartup();

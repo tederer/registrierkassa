@@ -33,11 +33,20 @@ cash.ui.EditProductsDialog = function EditProductsDialog(containerId, bus) {
       };
       
       var onProductsReceived = function onProductsReceived(products) {
+         
+         var selector = this.getContentContainerId() + ' #table #deleteButton';
+         $(selector).off('click');
+
          table.clear();
          products.forEach(function(product) {
             table.row.add(product);
          });
          table.draw();
+         
+         $(selector).on('click', function() {
+            var row = table.row( $(this).parents('tr'));
+            bus.sendCommand(cash.topics.DELETE_PRODUCT_COMMAND, row.data());
+         });
       };
       
       this.getDialogTitle = function getDialogTitle() {
@@ -61,7 +70,7 @@ cash.ui.EditProductsDialog = function EditProductsDialog(containerId, bus) {
       };
       
       this.completeInitialization = function completeInitialization() {
-         bus.subscribeToPublication(cash.topics.PRODUCTS, onProductsReceived);
+         bus.subscribeToPublication(cash.topics.PRODUCTS, onProductsReceived.bind(this));
       };
 };
 

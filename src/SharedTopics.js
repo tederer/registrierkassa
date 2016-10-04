@@ -31,3 +31,16 @@ cash.topics.PRODUCTS = '/products';
  * example data: { name: 'fertilizer 4-5-6', price: 5}
  */ 
 cash.topics.CREATE_NEW_PRODUCT_COMMAND = '/products/createNewProductCommand';
+
+/**
+ * A client send this command to inform the server that the user wants to
+ * delete an existing product. 
+ * The data of this command is an object containg the values (keys):
+ *
+ * - id     : number    a unique number
+ * - name   : string    the name describing the product
+ * - price  : number    the price of this product
+ *
+ * example of such a product: {"id":1,"name":"in vitro flask","price":10}
+ */ 
+cash.topics.DELETE_PRODUCT_COMMAND = '/products/deleteProductCommand';

@@ -3,4 +3,4 @@
 * Tagesumsatz anzeigen
 
 
-Rechnung enthält PositionsId anstelle der ProduktId ?
+"Neues Produkt anlegen ..."-Dialog verschickt noch nicht den nötigen Command wenn OK angeklickt wird!
