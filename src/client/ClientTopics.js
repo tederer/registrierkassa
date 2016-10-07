@@ -44,6 +44,18 @@ cash.client.topics.UPDATE_INVOICE_ITEM_COMMAND = '/client/invoice/updateItemComm
  */
 cash.client.topics.SHOW_CREATE_NEW_PRODUCT_COMMAND = '/client/products/showNewProductDialogCommand';
 
+/**
+ * This command gets sent when the user wants to add an item(product) to the invoice.
+ * The data of this command is an empty object.
+ */
+cash.client.topics.SHOW_ITEM_SELECTION_DIALOG_COMMAND = '/client/products/showItemSelectionDialogCommand';
+
+/**
+ * This command gets sent when the user wants to edit an product.
+ * The data of this command is an empty object.
+ */
+cash.client.topics.SHOW_EDIT_PRODUCTS_DIALOG_COMMAND = '/client/products/showEditProductsDialogCommand';
+
 
 //                PUBLICATIONS
 

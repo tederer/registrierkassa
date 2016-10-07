@@ -49,6 +49,10 @@ cash.ui.EditProductsDialog = function EditProductsDialog(containerId, bus) {
          });
       };
       
+      var onShowEditProductDialogReceived = function onShowEditProductDialogReceived() {
+         this.setVisible(true);
+      };
+      
       this.getDialogTitle = function getDialogTitle() {
          return 'Produkte bearbeiten ...';
       };
@@ -71,6 +75,7 @@ cash.ui.EditProductsDialog = function EditProductsDialog(containerId, bus) {
       
       this.completeInitialization = function completeInitialization() {
          bus.subscribeToPublication(cash.topics.PRODUCTS, onProductsReceived.bind(this));
+         bus.subscribeToPublication(cash.client.topics.SHOW_EDIT_PRODUCTS_DIALOG_COMMAND, onShowEditProductDialogReceived.bind(this));
       };
 };
 

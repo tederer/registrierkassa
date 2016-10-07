@@ -14,6 +14,9 @@ cash.ui.InvoiceSidebar = function InvoiceSidebar(containerId, bus) {
       
       this.initialize = function initialize() {
          initializeContainerContent();
+         $(containerId + '> #addItemButton').on('click', function() {
+            bus.publish(cash.client.topics.SHOW_ITEM_SELECTION_DIALOG_COMMAND, {});
+         });
       };
 };
 
