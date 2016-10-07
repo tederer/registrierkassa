@@ -1,5 +1,7 @@
 /* global cash, assertNamespace */
 
+require('./NamespaceUtils.js');
+
 assertNamespace('cash.topics');
 
 //                PUBLICATIONS

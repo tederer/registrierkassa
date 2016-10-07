@@ -1,8 +1,9 @@
-﻿/* global setInterval, common */
+﻿/* global setInterval, common, cash */
+require('../SharedTopics.js');
 var FileSystem = require('../utils/FileSystem.js');
 var fileSystem = new FileSystem();
 var express = require('express');
-	
+
 var WEB_ROOT_FOLDER  = 'webroot';
 var SERVER_PORT      = 8080;
 var LOGGING_ENABLED  = false;
@@ -91,6 +92,13 @@ var Constructor = function Constructor() {
          console.log('message = ' + data);
       });
       
+      bus.subscribeToCommand(cash.topics.DELETE_PRODUCT_COMMAND, function(commandData) {
+         console.log(cash.topics.DELETE_PRODUCT_COMMAND + ' = ' + JSON.stringify(commandData));
+      });
+      bus.subscribeToCommand(cash.topics.CREATE_PRODUCT_COMMAND, function(commandData) {
+         console.log(cash.topics.CREATE_PRODUCT_COMMAND + ' = ' + JSON.stringify(commandData));
+      });
+
       var topicsToTransmit = ['counter'];
       var busBridge = new common.infrastructure.busbridge.ServerSocketIoBusBridge(bus, topicsToTransmit, io);
       

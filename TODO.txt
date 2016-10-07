@@ -2,5 +2,5 @@
 * Umsatzliste anzeigen (default heutiger Tag)
 * Tagesumsatz anzeigen
 
-
-"Neues Produkt anlegen ..."-Dialog verschickt noch nicht den nötigen Command wenn OK angeklickt wird!
+Buttons aus kassa.html in InvoiceSidebar & Co verschieben
+Datenbank testen
