@@ -1,6 +1,6 @@
-/* global common, assertNamespace, cash */
+/* global assertNamespace, cash */
 
-require('../../../NamespaceUtils.js');
+require('../../NamespaceUtils.js');
 
 assertNamespace('cash.server.database');
 
@@ -9,15 +9,15 @@ assertNamespace('cash.server.database');
  * An implementation of a database (e.g. for MongoDB) should implement the functions
  * defined in this interface.
  */
-
-/**
- * constructor for a BusBridge.
- */
 cash.server.database.Database = function Database() {
    
-   this.insert = function insert(collection, data) {};
+   // inserts a document into the collection specified collection
+   this.insert = function insert(collectionName, document) {};
    
-   this.remove = function remove(collection, data) {};
+   // removes a document with the id in the specified collection
+   this.remove = function remove(collectionName, documentId) {};
    
+   // provides an array of all documents in the specified collection
+   this.getAllDocumentsInCollection = function getAllDocumentsInCollection(collectionName, callback) {};
 };
  

@@ -16,7 +16,8 @@
   
    "dependencies" : {
      "express" : "4.x",
-     "socket.io" : "1.x"
+     "socket.io" : "1.x",
+     "tingodb" : "0.x"
    },
    
    "devDependencies": {

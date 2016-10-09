@@ -2,4 +2,4 @@
 * Umsatzliste anzeigen (default heutiger Tag)
 * Tagesumsatz anzeigen
 
-Datenbank testen
+Products weiter bauen
