@@ -39,10 +39,8 @@ cash.topics.CREATE_PRODUCT_COMMAND = '/products/createProductCommand';
  * delete an existing product. 
  * The data of this command is an object containg the values (keys):
  *
- * - id     : number    a unique number
- * - name   : string    the name describing the product
- * - price  : number    the price of this product
+ * - id     : number    a unique identifier
  *
- * example of such a product: {"id":1,"name":"in vitro flask","price":10}
+ * example of such a product: {"id": "1e33"}
  */ 
 cash.topics.DELETE_PRODUCT_COMMAND = '/products/deleteProductCommand';

@@ -45,7 +45,7 @@ cash.ui.EditProductsDialog = function EditProductsDialog(containerId, bus) {
          
          $(selector).on('click', function() {
             var row = table.row( $(this).parents('tr'));
-            bus.sendCommand(cash.topics.DELETE_PRODUCT_COMMAND, row.data());
+            bus.sendCommand(cash.topics.DELETE_PRODUCT_COMMAND, {id: row.data().id});
          });
       };
       

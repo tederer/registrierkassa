@@ -7,8 +7,8 @@ require(global.PROJECT_SOURCE_ROOT_PATH + '/common/infrastructure/bus/Bus.js');
 var bus;
 var database;
 var products;
-var capturedCollectionName;
-var capturedDocument;
+var capturedInsertation;
+var capturedRemoval;
 
 function valueIsAnObject(val) {
    if (val === null) { return false;}
@@ -16,19 +16,21 @@ function valueIsAnObject(val) {
 }
 
 var TestingDatabase = function TestingDatabase() {
+   
    this.insert = function insert(collectionName, document) {
-      capturedCollectionName = collectionName;
-      capturedDocument = document;
+      capturedInsertation = {collectionName: collectionName, document: document};
    };
    
-   this.remove = function remove(collectionName, documentId) {};
+   this.remove = function remove(collectionName, documentId) {
+      capturedRemoval = {collectionName: collectionName, documentId: documentId};
+   };
    
    this.getAllDocumentsInCollection = function getAllDocumentsInCollection(collectionName, callback) {};
 };
 
 var setup = function setup() {
-   capturedDocument = undefined;
-   capturedCollectionName = undefined;
+   capturedInsertation = undefined;
+   capturedRemoval = undefined;
    bus = new common.infrastructure.bus.Bus();
    database = new TestingDatabase();
    products = new cash.server.model.Products(bus, database);
@@ -59,7 +61,15 @@ describe('Products', function() {
       
       var data = {name: 'donald', price: 12.4};
       whenTheCommand(cash.topics.CREATE_PRODUCT_COMMAND).withData(data).getsSent();
-      expect(capturedCollectionName).to.be.eql('products');
-      expect(capturedDocument).to.be.eql(data);
+      expect(capturedInsertation.collectionName).to.be.eql('products');
+      expect(capturedInsertation.document).to.be.eql(data);
+   });
+   
+   it('a DELETE_PRODUCT_COMMAND triggers products to add the received data to the database', function() {
+      
+      var data = {id: 'myId'};
+      whenTheCommand(cash.topics.DELETE_PRODUCT_COMMAND).withData(data).getsSent();
+      expect(capturedRemoval.collectionName).to.be.eql('products');
+      expect(capturedRemoval.documentId).to.be.eql('myId');
    });
 });  
