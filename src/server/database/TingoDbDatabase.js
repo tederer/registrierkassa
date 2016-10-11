@@ -10,12 +10,12 @@ cash.server.database.TingoDbDatabase = function TingoDbDatabase(databaseFolder) 
    
    var database = new TingoDatabase(databaseFolder, {});
    
-   this.insert = function insert(collectionName, document) {
+   this.insert = function insert(collectionName, document, callback) {
       var collection = database.collection(collectionName);
       collection.insert(document);
    };
    
-   this.remove = function remove(collectionName, documentId) {
+   this.remove = function remove(collectionName, documentId, callback) {
       var collection = database.collection(collectionName);
       collection.remove({id:documentId});      
    };
