@@ -12,6 +12,7 @@ var capturedRemoval;
 var capturedPublishedProducts;
 var insertationWasSuccessful;
 var productsInDatabase;
+var numberOfProductsPublications;
 
 function valueIsAnObject(val) {
    if (val === null) { return false;}
@@ -32,8 +33,10 @@ var TestingDatabase = function TestingDatabase() {
    };
    
    this.getAllDocumentsInCollection = function getAllDocumentsInCollection(collectionName, callback) {
-      if (productsInDatabase && collectionName === 'products') {
-         callback(null, productsInDatabase);
+      if (productsInDatabase === undefined) {
+         callback('error', null);
+      } else {
+         callback(null, collectionName === 'products' ? productsInDatabase : []);
       }
    };
 };
@@ -43,10 +46,13 @@ var setup = function setup() {
    capturedRemoval = undefined;
    capturedPublishedProducts = undefined;
    insertationWasSuccessful = undefined;
+   productsInDatabase = undefined;
+   numberOfProductsPublications = 0;
    bus = new common.infrastructure.bus.Bus();
    database = new TestingDatabase();
    products = new cash.server.model.Products(bus, database);
    bus.subscribeToPublication(cash.topics.PRODUCTS, function(data) {
+      numberOfProductsPublications++;
       capturedPublishedProducts = data;
    });
 };
@@ -75,6 +81,10 @@ var whenTheCommand = function whenTheCommand(commandTopic) {
    };
 };
 
+var whenANewProductsInstanceGetsCreated = function whenANewProductsInstanceGetsCreated() {
+   products = new cash.server.model.Products(bus, database);   
+};
+
 describe('Products', function() {
 	
    beforeEach(setup);
@@ -82,6 +92,16 @@ describe('Products', function() {
    it('creating an instance of a products is an instance/object', function() {
       
       expect(valueIsAnObject(products)).to.be.eql(true);
+   });
+   
+   it('products publishes the products after its creation', function() {
+      
+      var productA = {id:1, name:'prod1', price: 20};
+      var productB = {id:2, name:'prod2', price: 10};
+      
+      givenTheDatabaseContainsTheProducts([productA, productB]);
+      whenANewProductsInstanceGetsCreated();
+      expect(capturedPublishedProducts).to.be.eql([productA, productB]);
    });
    
    it('a CREATE_PRODUCT_COMMAND triggers products to add the received data to the database', function() {
@@ -113,16 +133,24 @@ describe('Products', function() {
       expect(capturedPublishedProducts).to.be.eql([productA, productB, productC]);
    });
    
-   /*it('products does not publish the products when CREATE_PRODUCT_COMMAND was not executed successfully', function() {
+   it('products does not publish the products when CREATE_PRODUCT_COMMAND was not executed successfully', function() {
       
       var data = {name: 'daisy', price: 29.9};
       var productA = {id:1, name:'prod1', price: 20};
-      var productB = {id:2, name:'prod2', price: 10};
-      var productC = {id:3, name:'prod3', price: 15};
+      
+      givenTheDatabaseDoesNotHandleTheInsertationSuccessfully();
+      givenTheDatabaseContainsTheProducts([productA]);
+      whenTheCommand(cash.topics.CREATE_PRODUCT_COMMAND).withData(data).getsSent();
+      expect(numberOfProductsPublications).to.be.eql(0);
+   });
+   
+   it('products does not publish the products when CREATE_PRODUCT_COMMAND was executed successfully and products query fails', function() {
+      
+      var data = {name: 'daisy', price: 29.9};
+      var productA = {id:1, name:'prod1', price: 20};
       
       givenTheDatabaseSuccessfullyHandlesTheInsertation();
-      givenTheDatabaseContainsTheProducts([productA, productB, productC]);
       whenTheCommand(cash.topics.CREATE_PRODUCT_COMMAND).withData(data).getsSent();
-      expect(capturedPublishedProducts).to.be.eql([productA, productB, productC]);
-   });*/
+      expect(numberOfProductsPublications).to.be.eql(0);
+   });
 });  
