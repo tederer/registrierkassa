@@ -2,4 +2,4 @@
 * Umsatzliste anzeigen (default heutiger Tag)
 * Tagesumsatz anzeigen
 
-Products weiter bauen
+Products testen ob beim einfuegen die daten auch bei der datenbank ankommen und ob beim entfernen die id bei der datenbank ankommen.

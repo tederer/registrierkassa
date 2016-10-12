@@ -11,6 +11,7 @@ var capturedInsertation;
 var capturedRemoval;
 var capturedPublishedProducts;
 var insertationWasSuccessful;
+var deletionWasSuccessful;
 var productsInDatabase;
 var numberOfProductsPublications;
 
@@ -23,13 +24,20 @@ var TestingDatabase = function TestingDatabase() {
    
    this.insert = function insert(collectionName, document, callback) {
       capturedInsertation = {collectionName: collectionName, document: document};
-      if (insertationWasSuccessful !== undefined) {
+      if (insertationWasSuccessful === undefined) {
+         callback('error', null);
+      } else {
          callback(insertationWasSuccessful === true ? null : 'Error', insertationWasSuccessful === true ? {} : null);
       }
    };
    
    this.remove = function remove(collectionName, documentId, callback) {
       capturedRemoval = {collectionName: collectionName, documentId: documentId};
+      if (deletionWasSuccessful === undefined) {
+         callback('error', null);
+      } else {
+         callback(deletionWasSuccessful === true ? null : 'Error', deletionWasSuccessful === true ? {} : null);
+      }
    };
    
    this.getAllDocumentsInCollection = function getAllDocumentsInCollection(collectionName, callback) {
@@ -46,6 +54,7 @@ var setup = function setup() {
    capturedRemoval = undefined;
    capturedPublishedProducts = undefined;
    insertationWasSuccessful = undefined;
+   deletionWasSuccessful = undefined;
    productsInDatabase = undefined;
    numberOfProductsPublications = 0;
    bus = new common.infrastructure.bus.Bus();
@@ -67,6 +76,14 @@ var givenTheDatabaseSuccessfullyHandlesTheInsertation = function givenTheDatabas
 
 var givenTheDatabaseDoesNotHandleTheInsertationSuccessfully = function givenTheDatabaseDoesNotHandleTheInsertationSuccessfully() {
    insertationWasSuccessful = false;
+};
+
+var givenTheDatabaseSuccessfullyHandlesTheDeletion = function givenTheDatabaseSuccessfullyHandlesTheDeletion() {
+   deletionWasSuccessful = true;
+};
+
+var givenTheDatabaseDoesNotHandleTheDeletionSuccessfully = function givenTheDatabaseDoesNotHandleTheDeletionSuccessfully() {
+   deletionWasSuccessful = false;
 };
 
 var whenTheCommand = function whenTheCommand(commandTopic) {
@@ -112,14 +129,6 @@ describe('Products', function() {
       expect(capturedInsertation.document).to.be.eql(data);
    });
    
-   it('a DELETE_PRODUCT_COMMAND triggers products to add the received data to the database', function() {
-      
-      var data = {id: 'myId'};
-      whenTheCommand(cash.topics.DELETE_PRODUCT_COMMAND).withData(data).getsSent();
-      expect(capturedRemoval.collectionName).to.be.eql('products');
-      expect(capturedRemoval.documentId).to.be.eql('myId');
-   });
-   
    it('products publishes the products when CREATE_PRODUCT_COMMAND was executed successfully', function() {
       
       var data = {name: 'daisy', price: 29.9};
@@ -151,6 +160,44 @@ describe('Products', function() {
       
       givenTheDatabaseSuccessfullyHandlesTheInsertation();
       whenTheCommand(cash.topics.CREATE_PRODUCT_COMMAND).withData(data).getsSent();
+      expect(numberOfProductsPublications).to.be.eql(0);
+   });
+   
+   // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   
+   it('a DELETE_PRODUCT_COMMAND triggers products to remove the received data from the database', function() {
+      
+      whenTheCommand(cash.topics.DELETE_PRODUCT_COMMAND).withData({id: 'myId'}).getsSent();
+      expect(capturedRemoval.collectionName).to.be.eql('products');
+      expect(capturedRemoval.documentId).to.be.eql('myId');
+   });
+   
+   it('products publishes the products when DELETE_PRODUCT_COMMAND was executed successfully', function() {
+      
+      var productA = {id:1, name:'prod1', price: 20};
+      var productB = {id:2, name:'prod2', price: 10};
+      var productC = {id:3, name:'prod3', price: 15};
+      
+      givenTheDatabaseSuccessfullyHandlesTheDeletion();
+      givenTheDatabaseContainsTheProducts([productA, productC]);
+      whenTheCommand(cash.topics.DELETE_PRODUCT_COMMAND).withData({id: 2}).getsSent();
+      expect(capturedPublishedProducts).to.be.eql([productA, productC]);
+   });
+   
+   it('products does not publish the products when DELETE_PRODUCT_COMMAND was not executed successfully', function() {
+      
+      var productA = {id:1, name:'prod1', price: 20};
+      
+      givenTheDatabaseDoesNotHandleTheDeletionSuccessfully();
+      givenTheDatabaseContainsTheProducts([productA]);
+      whenTheCommand(cash.topics.DELETE_PRODUCT_COMMAND).withData({id: 1}).getsSent();
+      expect(numberOfProductsPublications).to.be.eql(0);
+   });
+   
+   it('products does not publish the products when DELETE_PRODUCT_COMMAND was executed successfully and products query fails', function() {
+      
+      givenTheDatabaseSuccessfullyHandlesTheDeletion();
+      whenTheCommand(cash.topics.DELETE_PRODUCT_COMMAND).withData({id: 1}).getsSent();
       expect(numberOfProductsPublications).to.be.eql(0);
    });
 });  
