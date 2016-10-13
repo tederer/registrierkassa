@@ -19,6 +19,7 @@ cash.ui.EditProductsDialog = function EditProductsDialog(containerId, bus) {
                  },
                  className: 'dt-body-right'
                },
+               { defaultContent: '<button id="editButton">Bearbeiten</button>' },
                { defaultContent: '<button id="deleteButton">Löschen</button>' }
             ],
             paging: false,
@@ -34,8 +35,11 @@ cash.ui.EditProductsDialog = function EditProductsDialog(containerId, bus) {
       
       var onProductsReceived = function onProductsReceived(products) {
          
-         var selector = this.getContentContainerId() + ' #table #deleteButton';
-         $(selector).off('click');
+         var deleteButtonSelector = this.getContentContainerId() + ' #table #deleteButton';
+         var editButtonSelector = this.getContentContainerId() + ' #table #editButton';
+         
+         $(deleteButtonSelector).off('click');
+         $(editButtonSelector).off('click');
 
          table.clear();
          products.forEach(function(product) {
@@ -43,9 +47,12 @@ cash.ui.EditProductsDialog = function EditProductsDialog(containerId, bus) {
          });
          table.draw();
          
-         $(selector).on('click', function() {
+         $(deleteButtonSelector).on('click', function() {
             var row = table.row( $(this).parents('tr'));
             bus.sendCommand(cash.topics.DELETE_PRODUCT_COMMAND, {id: row.data().id});
+         });
+         $(editButtonSelector).on('click', function() {
+            console.log('edit button clicked');
          });
       };
       
@@ -62,7 +69,7 @@ cash.ui.EditProductsDialog = function EditProductsDialog(containerId, bus) {
       };
       
       this.initializeBodyContent = function initializeBodyContent(selector) {
-         var tableHtml = '<table id="table" width="90%" class="stripe hover cell-border"><thead><tr><th>Name</th><th>Preis</th><th></th></tr></thead></table>';
+         var tableHtml = '<table id="table" width="90%" class="stripe hover cell-border"><thead><tr><th>Name</th><th>Preis</th><th></th><th></th></tr></thead></table>';
          $(selector).html(tableHtml);
          initializeTable(selector + ' #table');
       };
