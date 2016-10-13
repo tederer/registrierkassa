@@ -1,6 +1,7 @@
 /* global assertNamespace, cash */
 
-require('./NamespaceUtils.js');
+require('./Database.js');
+require('../../NamespaceUtils.js');
 
 var TingoDatabase = require('tingodb')().Db;
 
@@ -12,12 +13,12 @@ cash.server.database.TingoDbDatabase = function TingoDbDatabase(databaseFolder) 
    
    this.insert = function insert(collectionName, document, callback) {
       var collection = database.collection(collectionName);
-      collection.insert(document);
+      collection.insert(document, callback);
    };
    
    this.remove = function remove(collectionName, documentId, callback) {
       var collection = database.collection(collectionName);
-      collection.remove({id:documentId});      
+      collection.remove({_id: documentId}, callback);      
    };
    
    this.getAllDocumentsInCollection = function getAllDocumentsInCollection(collectionName, callback) {

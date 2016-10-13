@@ -1,18 +1,22 @@
 ﻿/* global setInterval, common, cash */
 require('../SharedTopics.js');
+require('../common/infrastructure/bus/Bus.js');
+require('../common/infrastructure/busbridge/ServerSocketIoBusBridge.js');
+require('../server/database/TingoDbDatabase.js');
+require('../server/model/Products.js');
+
 var FileSystem = require('../utils/FileSystem.js');
 var fileSystem = new FileSystem();
 var express = require('express');
 
-var WEB_ROOT_FOLDER  = 'webroot';
-var SERVER_PORT      = 8080;
-var LOGGING_ENABLED  = false;
+var WEB_ROOT_FOLDER        = 'webroot';
+var DATABASE_ROOT_FOLDER   = 'database';
+var SERVER_PORT            = 8080;
+var LOGGING_ENABLED        = false;
 
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-require('../common/infrastructure/bus/Bus.js');
-require('../common/infrastructure/busbridge/ServerSocketIoBusBridge.js');
 
 var counter = 0;
 
@@ -83,6 +87,8 @@ var Constructor = function Constructor() {
 	this.start = function start() {
 	
       var bus = new common.infrastructure.bus.Bus();
+      var database = new cash.server.database.TingoDbDatabase(DATABASE_ROOT_FOLDER);
+      var products = new cash.server.model.Products(bus, database);
       
       bus.subscribeToPublication(common.infrastructure.busbridge.CONNECTION_STATE_TOPIC, function(data) {
          console.log(common.infrastructure.busbridge.CONNECTION_STATE_TOPIC + ' = ' + data);
@@ -92,14 +98,7 @@ var Constructor = function Constructor() {
          console.log('message = ' + data);
       });
       
-      bus.subscribeToCommand(cash.topics.DELETE_PRODUCT_COMMAND, function(commandData) {
-         console.log(cash.topics.DELETE_PRODUCT_COMMAND + ' = ' + JSON.stringify(commandData));
-      });
-      bus.subscribeToCommand(cash.topics.CREATE_PRODUCT_COMMAND, function(commandData) {
-         console.log(cash.topics.CREATE_PRODUCT_COMMAND + ' = ' + JSON.stringify(commandData));
-      });
-
-      var topicsToTransmit = ['counter'];
+      var topicsToTransmit = [cash.topics.PRODUCTS];
       var busBridge = new common.infrastructure.busbridge.ServerSocketIoBusBridge(bus, topicsToTransmit, io);
       
       //setInterval( function() {bus.publish('counter', counter++);}, 1000 );

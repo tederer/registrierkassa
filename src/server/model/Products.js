@@ -15,7 +15,7 @@ cash.server.model.Products = function Products(bus, database) {
       }
    };
    
-   var insertCallback = function insertCallback(err, result) {
+   var insertCallback = function insertCallback(err, result) { 
       if (!err) {
          database.getAllDocumentsInCollection(PRODUCTS_COLLECTION_NAME, productsCallback);
       }
@@ -28,7 +28,7 @@ cash.server.model.Products = function Products(bus, database) {
    };
    
    bus.subscribeToCommand(cash.topics.CREATE_PRODUCT_COMMAND, function(data) {
-      database.insert(PRODUCTS_COLLECTION_NAME, data, insertCallback);
+       database.insert(PRODUCTS_COLLECTION_NAME, data, insertCallback);
    });
    
    bus.subscribeToCommand(cash.topics.DELETE_PRODUCT_COMMAND, function(data) {

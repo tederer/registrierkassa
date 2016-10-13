@@ -163,8 +163,6 @@ describe('Products', function() {
       expect(numberOfProductsPublications).to.be.eql(0);
    });
    
-   // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-   
    it('a DELETE_PRODUCT_COMMAND triggers products to remove the received data from the database', function() {
       
       whenTheCommand(cash.topics.DELETE_PRODUCT_COMMAND).withData({id: 'myId'}).getsSent();

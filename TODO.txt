@@ -1,5 +1,4 @@
-* Produktliste bearbeiten
 * Umsatzliste anzeigen (default heutiger Tag)
 * Tagesumsatz anzeigen
 
-Products testen ob beim einfuegen die daten auch bei der datenbank ankommen und ob beim entfernen die id bei der datenbank ankommen.
+* Produktliste bearbeiten: es fehlt das bearbeiten bereits vorhandener eintraege
