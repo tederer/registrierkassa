@@ -38,7 +38,7 @@ cash.ui.CreateProductDialog = function CreateProductDialog(containerId, bus) {
       };
       
       this.completeInitialization = function completeInitialization() {
-         bus.subscribeToCommand(cash.client.topics.SHOW_CREATE_NEW_PRODUCT_COMMAND, onShowCreateNewProductCommand.bind(this));
+         bus.subscribeToCommand(cash.client.topics.SHOW_CREATE_PRODUCT_DIALOG_COMMAND, onShowCreateNewProductCommand.bind(this));
       };
 };
 

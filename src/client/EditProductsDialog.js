@@ -30,7 +30,7 @@ cash.ui.EditProductsDialog = function EditProductsDialog(containerId, bus) {
       };
       
       var onShowNewProductDialog = function onShowNewProductDialog() {
-         bus.sendCommand(cash.client.topics.SHOW_CREATE_NEW_PRODUCT_COMMAND,{});
+         bus.sendCommand(cash.client.topics.SHOW_CREATE_PRODUCT_DIALOG_COMMAND,{});
       };
       
       var onProductsReceived = function onProductsReceived(products) {
@@ -52,7 +52,9 @@ cash.ui.EditProductsDialog = function EditProductsDialog(containerId, bus) {
             bus.sendCommand(cash.topics.DELETE_PRODUCT_COMMAND, {id: row.data().id});
          });
          $(editButtonSelector).on('click', function() {
-            console.log('edit button clicked');
+            var row = table.row( $(this).parents('tr'));
+            bus.sendCommand(cash.client.topics.SHOW_UPDATE_PRODUCT_DIALOG_COMMAND, {id: row.data().id, name: row.data().name, price: row.data().price});
+            console.log('edit button clicked for ' + JSON.stringify({id: row.data().id, name: row.data().name, price: row.data().price}));
          });
       };
       
