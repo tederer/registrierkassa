@@ -42,7 +42,7 @@ cash.client.topics.UPDATE_INVOICE_ITEM_COMMAND = '/client/invoice/updateItemComm
  * This command gets sent when the user wants to create a new product.
  * The data of this command is an empty object.
  */
-cash.client.topics.SHOW_CREATE_PRODUCT_DIALOG_COMMAND = '/client/products/showNewProductDialogCommand';
+cash.client.topics.SHOW_CREATE_PRODUCT_DIALOG_COMMAND = '/client/products/showCreateProductDialogCommand';
 
 /**
  * This command gets sent when the user wants to add an item(product) to the invoice.
@@ -64,7 +64,7 @@ cash.client.topics.SHOW_EDIT_PRODUCTS_DIALOG_COMMAND = '/client/products/showEdi
  * - name      : string    the name describing the item
  * - price     : number    the price of this product
  *
- * example data: {rowIndex: 2, name: 'fertilizer 4-5-6', price: 5}
+ * example data: {id: 2, name: 'fertilizer 4-5-6', price: 5}
  */
 cash.client.topics.SHOW_UPDATE_PRODUCT_DIALOG_COMMAND = '/client/products/showUpdateProductDialogCommand';
 
