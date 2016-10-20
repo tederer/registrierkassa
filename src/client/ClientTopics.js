@@ -39,34 +39,34 @@ cash.client.topics.EDIT_INVOICE_ITEM_COMMAND = '/client/invoice/editItemCommand'
 cash.client.topics.UPDATE_INVOICE_ITEM_COMMAND = '/client/invoice/updateItemCommand';
 
 /**
- * This command gets sent when the user wants to create a new product.
- * The data of this command is an empty object.
- */
-cash.client.topics.SHOW_CREATE_PRODUCT_DIALOG_COMMAND = '/client/products/showCreateProductDialogCommand';
-
-/**
  * This command gets sent when the user wants to add an item(product) to the invoice.
  * The data of this command is an empty object.
  */
-cash.client.topics.SHOW_ITEM_SELECTION_DIALOG_COMMAND = '/client/products/showItemSelectionDialogCommand';
+cash.client.topics.SHOW_ITEM_SELECTION_DIALOG_COMMAND = '/client/invoice/showItemSelectionDialogCommand';
+
+/**
+ * This command gets sent when the user wants to create a new product.
+ * The data of this command is an empty object.
+ */
+cash.client.topics.SHOW_CREATE_PRODUCT_DIALOG_COMMAND = '/client/productrange/showCreateProductDialogCommand';
 
 /**
  * This command gets sent when the user wants to edit the product range.
  * The data of this command is an empty object.
  */
-cash.client.topics.SHOW_EDIT_PRODUCT_RANGE_DIALOG_COMMAND = '/client/products/showEditProductRangeDialogCommand';
+cash.client.topics.SHOW_EDIT_PRODUCT_RANGE_DIALOG_COMMAND = '/client/productrange/showEditProductRangeDialogCommand';
 
 /**
- * This command gets sent when a product needs to be updated.
- * The data of this command is an object containg the values (keys):
+ * This command gets sent when the used wants to edit a product of the product range.
+ * The data of this command is an object containing the values (keys):
  *
- * - id        : number    a unique identifier of the product
+ * - id        : number    the unique identifier of the product
  * - name      : string    the name describing the item
  * - price     : number    the price of this product
  *
  * example data: {id: 2, name: 'fertilizer 4-5-6', price: 5}
  */
-cash.client.topics.SHOW_UPDATE_PRODUCT_DIALOG_COMMAND = '/client/products/showUpdateProductDialogCommand';
+cash.client.topics.EDIT_PRODUCT_COMMAND = '/client/productrange/editProductCommand';
 
 
 //                PUBLICATIONS
