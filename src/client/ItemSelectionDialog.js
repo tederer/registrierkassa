@@ -73,7 +73,7 @@ cash.ui.ItemSelectionDialog = function ItemSelectionDialog(containerId, bus) {
       this.completeInitialization = function completeInitialization() {
          initializeTable(this);
          bus.subscribeToPublication(cash.topics.PRODUCTS, onProductsReceived.bind(this));
-         bus.subscribeToPublication(cash.client.topics.SHOW_ITEM_SELECTION_DIALOG_COMMAND, onShowItemSelectionDialogCommandReceived.bind(this));
+         bus.subscribeToCommand(cash.client.topics.SHOW_ITEM_SELECTION_DIALOG_COMMAND, onShowItemSelectionDialogCommandReceived.bind(this));
       };
       
       this.initializeBodyContent = function initializeBodyContent(selector) {

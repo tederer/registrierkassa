@@ -7,7 +7,7 @@
    <link rel="stylesheet" type="text/css" href="css/cash.css">
    <link rel="stylesheet" type="text/css" href="css/cash.ui.itemSelectionDialog.css">
    <link rel="stylesheet" type="text/css" href="css/cash.ui.editInvoiceItemDialog.css">
-   <link rel="stylesheet" type="text/css" href="css/cash.ui.editProductsDialog.css">
+   <link rel="stylesheet" type="text/css" href="css/cash.ui.editProductRangeDialog.css">
    <link rel="stylesheet" type="text/css" href="css/cash.ui.createProductDialog.css">
 
    <script type="text/javascript" src="javascripts/RequireMock.js" charset="UTF-8"></script>
@@ -24,7 +24,7 @@
    <script type="text/javascript" src="javascripts/client/ModalDialog.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/ItemSelectionDialog.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/EditInvoiceItemDialog.js" charset="UTF-8"></script>
-   <script type="text/javascript" src="javascripts/client/EditProductsDialog.js" charset="UTF-8"></script>
+   <script type="text/javascript" src="javascripts/client/EditProductRangeDialog.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/CreateProductDialog.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/InvoiceTable.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/InvoiceSidebar.js" charset="UTF-8"></script>
@@ -40,7 +40,7 @@
       
       var itemSelectionDialog = new cash.ui.ItemSelectionDialog('#cash > #itemSelectionDialog', bus);
       var editInvoiceItemDialog = new cash.ui.EditInvoiceItemDialog('#cash > #editInvoiceItemDialog', bus);
-      var editProductsDialog = new cash.ui.EditProductsDialog('#cash > #editProductsDialog', bus);
+      var editProductRangeDialog = new cash.ui.EditProductRangeDialog('#cash > #editProductRangeDialog', bus);
       var createProductDialog = new cash.ui.CreateProductDialog('#cash > #newProductDialog', bus);
       var invoiceTable = new cash.ui.InvoiceTable('#cash > #content > #invoice > #items', bus);
       var invoiceSidebar = new cash.ui.InvoiceSidebar('#cash > #content > #invoice > #sidebar', bus);
@@ -53,7 +53,7 @@
          
          itemSelectionDialog.initialize();
          editInvoiceItemDialog.initialize();
-         editProductsDialog.initialize();
+         editProductRangeDialog.initialize();
          createProductDialog.initialize();
          invoiceTable.initialize();
          invoiceSidebar.initialize();
@@ -67,7 +67,7 @@
 <div id="cash">
    <div id="itemSelectionDialog"></div>
    <div id="editInvoiceItemDialog"></div>
-   <div id="editProductsDialog"></div>
+   <div id="editProductRangeDialog"></div>
    <div id="newProductDialog"></div>
 
    <div id="tabs">

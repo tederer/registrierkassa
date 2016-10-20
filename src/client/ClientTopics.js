@@ -51,10 +51,10 @@ cash.client.topics.SHOW_CREATE_PRODUCT_DIALOG_COMMAND = '/client/products/showCr
 cash.client.topics.SHOW_ITEM_SELECTION_DIALOG_COMMAND = '/client/products/showItemSelectionDialogCommand';
 
 /**
- * This command gets sent when the user wants to edit an product.
+ * This command gets sent when the user wants to edit the product range.
  * The data of this command is an empty object.
  */
-cash.client.topics.SHOW_EDIT_PRODUCTS_DIALOG_COMMAND = '/client/products/showEditProductsDialogCommand';
+cash.client.topics.SHOW_EDIT_PRODUCT_RANGE_DIALOG_COMMAND = '/client/products/showEditProductRangeDialogCommand';
 
 /**
  * This command gets sent when a product needs to be updated.

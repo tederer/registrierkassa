@@ -15,7 +15,7 @@ cash.ui.AdministrationPage = function AdministrationPage(containerId, bus) {
       this.initialize = function initialize() {
          initializeContainerContent();
          $(containerId + '> #editProductsButton').on('click', function() {
-            bus.publish(cash.client.topics.SHOW_EDIT_PRODUCTS_DIALOG_COMMAND, {});
+            bus.sendCommand(cash.client.topics.SHOW_EDIT_PRODUCT_RANGE_DIALOG_COMMAND, {});
          });
       };
 };

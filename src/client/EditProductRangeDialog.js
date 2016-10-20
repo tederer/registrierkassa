@@ -3,9 +3,9 @@
 assertNamespace('cash.ui');
 
 /**
- * constructor for a EditProductsDialog that is invisible after its creation.
+ * constructor for a EditProductRangeDialog that is invisible after its creation.
  */
-cash.ui.EditProductsDialog = function EditProductsDialog(containerId, bus) {
+cash.ui.EditProductRangeDialog = function EditProductRangeDialog(containerId, bus) {
       var table;
             
       var initializeTable = function initializeTable(selector) {
@@ -84,8 +84,8 @@ cash.ui.EditProductsDialog = function EditProductsDialog(containerId, bus) {
       
       this.completeInitialization = function completeInitialization() {
          bus.subscribeToPublication(cash.topics.PRODUCTS, onProductsReceived.bind(this));
-         bus.subscribeToPublication(cash.client.topics.SHOW_EDIT_PRODUCTS_DIALOG_COMMAND, onShowEditProductDialogReceived.bind(this));
+         bus.subscribeToCommand(cash.client.topics.SHOW_EDIT_PRODUCT_RANGE_DIALOG_COMMAND, onShowEditProductDialogReceived.bind(this));
       };
 };
 
-cash.ui.EditProductsDialog.prototype = new cash.ui.ModalDialog();
+cash.ui.EditProductRangeDialog.prototype = new cash.ui.ModalDialog();
