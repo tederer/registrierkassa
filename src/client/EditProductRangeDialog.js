@@ -63,7 +63,7 @@ cash.ui.EditProductRangeDialog = function EditProductRangeDialog(containerId, bu
       };
       
       this.getDialogTitle = function getDialogTitle() {
-         return 'Produkte bearbeiten ...';
+         return 'Sortiment bearbeiten ...';
       };
       
       this.getContainerId = function getContainerId() {

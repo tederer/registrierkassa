@@ -7,6 +7,7 @@
    <link rel="stylesheet" type="text/css" href="css/cash.css">
    <link rel="stylesheet" type="text/css" href="css/cash.ui.itemSelectionDialog.css">
    <link rel="stylesheet" type="text/css" href="css/cash.ui.editInvoiceItemDialog.css">
+   <link rel="stylesheet" type="text/css" href="css/cash.ui.editProductDialog.css">
    <link rel="stylesheet" type="text/css" href="css/cash.ui.editProductRangeDialog.css">
    <link rel="stylesheet" type="text/css" href="css/cash.ui.createProductDialog.css">
 
@@ -24,6 +25,7 @@
    <script type="text/javascript" src="javascripts/client/ModalDialog.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/ItemSelectionDialog.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/EditInvoiceItemDialog.js" charset="UTF-8"></script>
+   <script type="text/javascript" src="javascripts/client/EditProductDialog.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/EditProductRangeDialog.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/CreateProductDialog.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/InvoiceTable.js" charset="UTF-8"></script>
@@ -42,6 +44,7 @@
       var editInvoiceItemDialog = new cash.ui.EditInvoiceItemDialog('#cash > #editInvoiceItemDialog', bus);
       var editProductRangeDialog = new cash.ui.EditProductRangeDialog('#cash > #editProductRangeDialog', bus);
       var createProductDialog = new cash.ui.CreateProductDialog('#cash > #newProductDialog', bus);
+      var editProductDialog = new cash.ui.EditProductDialog('#cash > #editProductDialog', bus);
       var invoiceTable = new cash.ui.InvoiceTable('#cash > #content > #invoice > #items', bus);
       var invoiceSidebar = new cash.ui.InvoiceSidebar('#cash > #content > #invoice > #sidebar', bus);
       var totalPanel = new cash.ui.TotalPanel('#cash > #content > #invoice > #total', bus);
@@ -54,6 +57,7 @@
          itemSelectionDialog.initialize();
          editInvoiceItemDialog.initialize();
          editProductRangeDialog.initialize();
+         editProductDialog.initialize();
          createProductDialog.initialize();
          invoiceTable.initialize();
          invoiceSidebar.initialize();
@@ -68,6 +72,7 @@
    <div id="itemSelectionDialog"></div>
    <div id="editInvoiceItemDialog"></div>
    <div id="editProductRangeDialog"></div>
+   <div id="editProductDialog"></div>
    <div id="newProductDialog"></div>
 
    <div id="tabs">
