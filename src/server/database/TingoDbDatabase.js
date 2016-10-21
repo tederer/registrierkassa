@@ -3,6 +3,8 @@
 require('./Database.js');
 require('../../NamespaceUtils.js');
 
+var Promise = require('promise');
+
 var TingoDatabase = require('tingodb')().Db;
 
 assertNamespace('cash.server.database');
@@ -11,28 +13,66 @@ cash.server.database.TingoDbDatabase = function TingoDbDatabase(databaseFolder) 
    
    var database = new TingoDatabase(databaseFolder, {});
    
-   this.insert = function insert(collectionName, document, callback) {
-      var collection = database.collection(collectionName);
-      collection.insert(document, callback);
+   var getCollection = function getCollection(collectionName) {
+      return new Promise(function(fulfill, reject) {
+         fulfill(database.collection(collectionName));
+      });
    };
    
-   this.remove = function remove(collectionName, documentId, callback) {
-      var collection = database.collection(collectionName);
-      collection.remove({_id: documentId}, callback);      
+   var insertDocument = function insertDocument(document) {
+      return function(collection) {
+         return new Promise(function(fulfill, reject) {
+            collection.insert(document, function(err, result) {
+               if (err) {
+                  reject(err);
+               } else {
+                  fulfill(result);
+               }
+            });
+         });
+      };
    };
    
-   this.getAllDocumentsInCollection = function getAllDocumentsInCollection(collectionName, callback) {
-      var collection = database.collection(collectionName);
+   var removeDocument = function removeDocument(documentId) {
+      return function(collection) {
+         return new Promise(function(fulfill, reject) {
+            collection.remove({_id: documentId}, function(err, result) {
+               if (err) {
+                  reject(err);
+               } else {
+                  fulfill(result);
+               }
+            });
+         });
+      };
+   };
+   
+   var findAll = function findAll(collection) {
       var cursor = collection.find();
-      cursor.toArray(function(err, data) {
-         if (!err) {
-            callback(err, data.map(function(document) {
-               return {id: document._id, name: document.name, price: document.price};
-            }));
-         } else {
-            callback(err, data);
-         }
-      });    
+
+      return new Promise(function(fulfill, reject) {
+         cursor.toArray(function(err, data) {
+            if (err) {
+               reject(err);
+            } else {
+               fulfill(data.map(function(document) {
+                  return {id: document._id, name: document.name, price: document.price};
+               }));
+            }
+         }); 
+      });
+   };
+   
+   this.insert = function insert(collectionName, document) {
+      return getCollection(collectionName).then(insertDocument(document));
+   };
+   
+   this.remove = function remove(collectionName, documentId) {
+      return getCollection(collectionName).then(removeDocument(documentId));
+   };
+   
+   this.getAllDocumentsInCollection = function getAllDocumentsInCollection(collectionName) {
+      return getCollection(collectionName).then(findAll);  
    };
 };
 

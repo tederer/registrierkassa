@@ -9,32 +9,20 @@ assertNamespace('cash.server.model');
 cash.server.model.Products = function Products(bus, database) {
    var PRODUCTS_COLLECTION_NAME = 'products';
    
-   var productsCallback = function productsCallback(err, result) {
-      if (!err) {
-         bus.publish(cash.topics.PRODUCTS, result);
-      }
-   };
-   
-   var insertCallback = function insertCallback(err, result) { 
-      if (!err) {
-         database.getAllDocumentsInCollection(PRODUCTS_COLLECTION_NAME, productsCallback);
-      }
-   };
-   
-   var deleteCallback = function deleteCallback(err, result) {
-      if (!err) {
-         database.getAllDocumentsInCollection(PRODUCTS_COLLECTION_NAME, productsCallback);
-      }
+   var publishProductRange = function publishProductRange() {
+      database.getAllDocumentsInCollection(PRODUCTS_COLLECTION_NAME).then(function(productRange) {
+         bus.publish(cash.topics.PRODUCTS, productRange);
+      });
    };
    
    bus.subscribeToCommand(cash.topics.CREATE_PRODUCT_COMMAND, function(data) {
-       database.insert(PRODUCTS_COLLECTION_NAME, data, insertCallback);
+       database.insert(PRODUCTS_COLLECTION_NAME, data).then(publishProductRange);
    });
    
    bus.subscribeToCommand(cash.topics.DELETE_PRODUCT_COMMAND, function(data) {
-      database.remove(PRODUCTS_COLLECTION_NAME, data.id, deleteCallback);
+      database.remove(PRODUCTS_COLLECTION_NAME, data.id).then(publishProductRange);
    });
    
-   database.getAllDocumentsInCollection(PRODUCTS_COLLECTION_NAME, productsCallback);
+   publishProductRange();
 };
  

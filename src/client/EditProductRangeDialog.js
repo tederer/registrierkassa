@@ -54,7 +54,6 @@ cash.ui.EditProductRangeDialog = function EditProductRangeDialog(containerId, bu
          $(editButtonSelector).on('click', function() {
             var row = table.row( $(this).parents('tr'));
             bus.sendCommand(cash.client.topics.EDIT_PRODUCT_COMMAND, {id: row.data().id, name: row.data().name, price: row.data().price});
-            console.log('edit button clicked for ' + JSON.stringify({id: row.data().id, name: row.data().name, price: row.data().price}));
          });
       };
       
