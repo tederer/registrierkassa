@@ -1,6 +1,6 @@
 /* global global, common, cash, Map, setTimeout */
 
-require(global.PROJECT_SOURCE_ROOT_PATH + '/server/model/Products.js');
+require(global.PROJECT_SOURCE_ROOT_PATH + '/server/model/ProductRange.js');
 require(global.PROJECT_SOURCE_ROOT_PATH + '/SharedTopics.js');
 require(global.PROJECT_SOURCE_ROOT_PATH + '/common/infrastructure/bus/Bus.js');
 require('timers');
@@ -9,7 +9,7 @@ var Promise = require('promise');
 
 var bus;
 var database;
-var products;
+var productRange;
 var capturedInsertation;
 var capturedRemoval;
 var capturedPublishedProducts;
@@ -82,7 +82,7 @@ var TestingDatabase = function TestingDatabase() {
                doneFunction();
             }
          } else {
-            fulfill(collectionName === 'products' ? productsInDatabase : []);
+            fulfill(collectionName === 'productRange' ? productsInDatabase : []);
             if (doneAfterGetAllDocuments) {
                doneFunction();
             }
@@ -107,7 +107,7 @@ var setup = function setup() {
    numberOfProductsPublications = 0;
    bus = new common.infrastructure.bus.Bus();
    database = new TestingDatabase();
-   products = new cash.server.model.Products(bus, database);
+   productRange = new cash.server.model.ProductRange(bus, database);
    bus.subscribeToPublication(cash.topics.PRODUCTRANGE, function(data) {
       numberOfProductsPublications++;
       capturedPublishedProducts = data;
@@ -150,7 +150,7 @@ var whenTheCommand = function whenTheCommand(commandTopic) {
 };
 
 var whenANewProductsInstanceGetsCreated = function whenANewProductsInstanceGetsCreated() {
-   products = new cash.server.model.Products(bus, database);   
+   productRange = new cash.server.model.ProductRange(bus, database);   
 };
 
 var expecting = function expecting(expectFunction, done) {
@@ -166,12 +166,12 @@ var expecting = function expecting(expectFunction, done) {
    };
 };
 
-describe('Products', function() {
+describe('ProductRange', function() {
 	
    beforeEach(setup);
    
    it('creating an instance of a products is an instance/object', function() {
-      expect(valueIsAnObject(products)).to.be.eql(true);
+      expect(valueIsAnObject(productRange)).to.be.eql(true);
    });
    
    it('products publishes the products after its creation', function(done) {
@@ -194,7 +194,7 @@ describe('Products', function() {
       var data = {name: 'donald', price: 12.4};
       
       expecting(function() {
-         expect(capturedInsertation.collectionName).to.be.eql('products');
+         expect(capturedInsertation.collectionName).to.be.eql('productRange');
          expect(capturedInsertation.document).to.be.eql(data);
       }, done);
       
@@ -311,7 +311,7 @@ describe('Products', function() {
       doneAfterRemove = true;
       
       expecting(function() {
-         expect(capturedRemoval.collectionName).to.be.eql('products');
+         expect(capturedRemoval.collectionName).to.be.eql('productRange');
          expect(capturedRemoval.documentId).to.be.eql('myId');
       }, done);
       

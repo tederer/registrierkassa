@@ -3,7 +3,7 @@ require('../SharedTopics.js');
 require('../common/infrastructure/bus/Bus.js');
 require('../common/infrastructure/busbridge/ServerSocketIoBusBridge.js');
 require('../server/database/TingoDbDatabase.js');
-require('../server/model/Products.js');
+require('../server/model/ProductRange.js');
 
 var FileSystem = require('../utils/FileSystem.js');
 var fileSystem = new FileSystem();
@@ -88,7 +88,7 @@ var Constructor = function Constructor() {
 	
       var bus = new common.infrastructure.bus.Bus();
       var database = new cash.server.database.TingoDbDatabase(DATABASE_ROOT_FOLDER);
-      var products = new cash.server.model.Products(bus, database);
+      var productRange = new cash.server.model.ProductRange(bus, database);
       
       bus.subscribeToPublication(common.infrastructure.busbridge.CONNECTION_STATE_TOPIC, function(data) {
          console.log(common.infrastructure.busbridge.CONNECTION_STATE_TOPIC + ' = ' + data);
