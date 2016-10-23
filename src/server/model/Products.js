@@ -16,7 +16,9 @@ cash.server.model.Products = function Products(bus, database) {
    };
    
    bus.subscribeToCommand(cash.topics.CREATE_PRODUCT_COMMAND, function(data) {
-       database.insert(PRODUCTS_COLLECTION_NAME, data).then(publishProductRange);
+      if (data.name !== undefined && data.name !== '' && data.price !== undefined && data.price !== '' && !isNaN(parseFloat(data.price))) {
+         database.insert(PRODUCTS_COLLECTION_NAME, data).then(publishProductRange);
+      }
    });
    
    bus.subscribeToCommand(cash.topics.DELETE_PRODUCT_COMMAND, function(data) {
