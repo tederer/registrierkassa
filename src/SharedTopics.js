@@ -17,7 +17,7 @@ assertNamespace('cash.topics');
  * example of such a product: {"id":1,"name":"in vitro flask","price":10}
 
  */
-cash.topics.PRODUCTS = '/products';
+cash.topics.PRODUCTRANGE = '/productrange';
 
 
 //                COMMANDS
@@ -32,7 +32,7 @@ cash.topics.PRODUCTS = '/products';
  *
  * example data: { name: 'fertilizer 4-5-6', price: 5}
  */ 
-cash.topics.CREATE_PRODUCT_COMMAND = '/products/createProductCommand';
+cash.topics.CREATE_PRODUCT_COMMAND = '/productrange/createProductCommand';
 
 /**
  * A client send this command to inform the server that the user wants to
@@ -43,4 +43,4 @@ cash.topics.CREATE_PRODUCT_COMMAND = '/products/createProductCommand';
  *
  * example of such a product: {"id": "1e33"}
  */ 
-cash.topics.DELETE_PRODUCT_COMMAND = '/products/deleteProductCommand';
+cash.topics.DELETE_PRODUCT_COMMAND = '/productrange/deleteProductCommand';

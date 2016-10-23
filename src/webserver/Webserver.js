@@ -98,7 +98,7 @@ var Constructor = function Constructor() {
          console.log('message = ' + data);
       });
       
-      var topicsToTransmit = [cash.topics.PRODUCTS];
+      var topicsToTransmit = [cash.topics.PRODUCTRANGE];
       var busBridge = new common.infrastructure.busbridge.ServerSocketIoBusBridge(bus, topicsToTransmit, io);
       
       //setInterval( function() {bus.publish('counter', counter++);}, 1000 );

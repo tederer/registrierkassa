@@ -11,7 +11,7 @@ cash.server.model.Products = function Products(bus, database) {
    
    var publishProductRange = function publishProductRange() {
       database.getAllDocumentsInCollection(PRODUCTS_COLLECTION_NAME).then(function(productRange) {
-         bus.publish(cash.topics.PRODUCTS, productRange);
+         bus.publish(cash.topics.PRODUCTRANGE, productRange);
       });
    };
    

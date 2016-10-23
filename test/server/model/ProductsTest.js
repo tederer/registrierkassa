@@ -108,7 +108,7 @@ var setup = function setup() {
    bus = new common.infrastructure.bus.Bus();
    database = new TestingDatabase();
    products = new cash.server.model.Products(bus, database);
-   bus.subscribeToPublication(cash.topics.PRODUCTS, function(data) {
+   bus.subscribeToPublication(cash.topics.PRODUCTRANGE, function(data) {
       numberOfProductsPublications++;
       capturedPublishedProducts = data;
       if (doneAfterPublicationReceived) {

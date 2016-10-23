@@ -82,7 +82,7 @@ cash.ui.EditProductRangeDialog = function EditProductRangeDialog(containerId, bu
       };
       
       this.completeInitialization = function completeInitialization() {
-         bus.subscribeToPublication(cash.topics.PRODUCTS, onProductsReceived.bind(this));
+         bus.subscribeToPublication(cash.topics.PRODUCTRANGE, onProductsReceived.bind(this));
          bus.subscribeToCommand(cash.client.topics.SHOW_EDIT_PRODUCT_RANGE_DIALOG_COMMAND, onShowEditProductDialogReceived.bind(this));
       };
 };
