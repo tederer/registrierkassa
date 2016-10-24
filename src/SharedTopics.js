@@ -36,6 +36,19 @@ cash.topics.CREATE_PRODUCT_COMMAND = '/productrange/createProductCommand';
 
 /**
  * A client send this command to inform the server that the user wants to
+ * update an existing product. 
+ * The data of this command is an object containg the values (keys):
+ *
+ * - id        : number    the unique identifier of the product to update
+ * - name      : string    the name describing the product
+ * - price     : number    the price of this product
+ *
+ * example data: { "id":1, name: 'fertilizer 4-5-6', price: 5}
+ */ 
+cash.topics.UPDATE_PRODUCT_COMMAND = '/productrange/updateProductCommand';
+
+/**
+ * A client send this command to inform the server that the user wants to
  * delete an existing product. 
  * The data of this command is an object containg the values (keys):
  *

@@ -19,8 +19,7 @@ cash.ui.EditProductDialog = function EditProductDialog(containerId, bus) {
       };
       
       this.onOkClicked = function onOkClicked() {
-         //bus.sendCommand(cash.client.topics.UPDATE_INVOICE_ITEM_COMMAND, {id: id, name: nameInput.val(), price: parseFloat(priceInput.val())});
-         console.log('ok clicked with values ' + JSON.stringify({id: id, name: nameInput.val(), price: parseFloat(priceInput.val())}));
+         bus.sendCommand(cash.topics.UPDATE_PRODUCT_COMMAND, {id: id, name: nameInput.val(), price: priceInput.val()});
       };
       
       this.getDialogTitle = function getDialogTitle() {

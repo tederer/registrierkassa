@@ -33,6 +33,20 @@ cash.server.database.TingoDbDatabase = function TingoDbDatabase(databaseFolder) 
       };
    };
    
+   var updateDocument = function updateDocument(documentId, document) {
+      return function(collection) {
+         return new Promise(function(fulfill, reject) {
+            collection.update({_id: documentId}, document, function(err, result) {
+               if (err) {
+                  reject(err);
+               } else {
+                  fulfill(result);
+               }
+            });
+         });
+      };
+   };
+   
    var removeDocument = function removeDocument(documentId) {
       return function(collection) {
          return new Promise(function(fulfill, reject) {
@@ -65,6 +79,10 @@ cash.server.database.TingoDbDatabase = function TingoDbDatabase(databaseFolder) 
    
    this.insert = function insert(collectionName, document) {
       return getCollection(collectionName).then(insertDocument(document));
+   };
+   
+   this.update = function update(collectionName, documentId, document) {
+      return getCollection(collectionName).then(updateDocument(documentId, document));
    };
    
    this.remove = function remove(collectionName, documentId) {

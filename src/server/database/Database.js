@@ -14,6 +14,9 @@ cash.server.database.Database = function Database() {
    // inserts a document into the collection identified by its name and returns a Promise
    this.insert = function insert(collectionName, document) {};
    
+   // updates a document in the collection identified by its name and returns a Promise
+   this.update = function update(collectionName, documentId, document) {};
+   
    // removes a document with the id from the collection identified by its name and returns a Promise
    this.remove = function remove(collectionName, documentId) {};
    

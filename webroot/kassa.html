@@ -38,7 +38,8 @@
    <script src="/socket.io/socket.io.js" charset="UTF-8"></script>
    <script>
       var bus = new common.infrastructure.bus.Bus();
-      var busBridge = new common.infrastructure.busbridge.ClientSocketIoBusBridge(bus, [cash.topics.CREATE_PRODUCT_COMMAND, cash.topics.DELETE_PRODUCT_COMMAND], io);
+      var topicsToTransmit = [cash.topics.CREATE_PRODUCT_COMMAND, cash.topics.UPDATE_PRODUCT_COMMAND, cash.topics.DELETE_PRODUCT_COMMAND];
+      var busBridge = new common.infrastructure.busbridge.ClientSocketIoBusBridge(bus, topicsToTransmit, io);
       
       var itemSelectionDialog = new cash.ui.ItemSelectionDialog('#cash > #itemSelectionDialog', bus);
       var editInvoiceItemDialog = new cash.ui.EditInvoiceItemDialog('#cash > #editInvoiceItemDialog', bus);

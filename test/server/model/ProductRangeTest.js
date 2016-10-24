@@ -12,13 +12,16 @@ var database;
 var productRange;
 var capturedInsertation;
 var capturedRemoval;
+var capturedUpdate;
 var capturedPublishedProducts;
 var insertationWasSuccessful;
+var updateWasSuccessful;
 var deletionWasSuccessful;
 var productsInDatabase;
 var numberOfProductsPublications;
 var doneFunction;
 var doneAfterInsert;
+var doneAfterUpdate;
 var doneAfterRemove;
 var doneAfterGetAllDocuments;
 var doneAfterPublicationReceived;
@@ -47,6 +50,27 @@ var TestingDatabase = function TestingDatabase() {
                reject('insertation failed');
             }
             if (doneAfterInsert) {
+               doneFunction();
+            }
+         }
+      });
+   };
+   
+   this.update = function update(collectionName, documentId, document) {
+      capturedUpdate = {collectionName: collectionName, documentId: documentId, document: document};
+      return new Promise(function(fulfill, reject) {
+         if (updateWasSuccessful === undefined) {
+            reject('updateWasSuccessful is undefined');
+            if (doneAfterUpdate) {
+               doneFunction();
+            }
+         } else {
+            if(updateWasSuccessful === true) {
+               fulfill({});
+            } else {
+               reject('update failed');
+            }
+            if (doneAfterUpdate) {
                doneFunction();
             }
          }
@@ -95,11 +119,14 @@ var setup = function setup() {
    doneFunction = function() {};
    capturedInsertation = undefined;
    capturedRemoval = undefined;
+   capturedUpdate = undefined;
    capturedPublishedProducts = undefined;
    insertationWasSuccessful = undefined;
+   updateWasSuccessful = undefined;
    deletionWasSuccessful = undefined;
    productsInDatabase = undefined;
    doneAfterInsert = false;
+   doneAfterUpdate = false;
    doneAfterRemove = false;
    doneAfterGetAllDocuments = false;
    doneAfterPublicationReceived = false;
@@ -127,6 +154,14 @@ var givenTheDatabaseSuccessfullyHandlesTheInsertation = function givenTheDatabas
 
 var givenTheDatabaseDoesNotHandleTheInsertationSuccessfully = function givenTheDatabaseDoesNotHandleTheInsertationSuccessfully() {
    insertationWasSuccessful = false;
+};
+
+var givenTheDatabaseSuccessfullyHandlesTheUpdate = function givenTheDatabaseSuccessfullyHandlesTheUpdate() {
+   updateWasSuccessful = true;
+};
+
+var givenTheDatabaseDoesNotHandleTheUpdateSuccessfully = function givenTheDatabaseDoesNotHandleTheUpdateSuccessfully() {
+   updateWasSuccessful = false;
 };
 
 var givenTheDatabaseSuccessfullyHandlesTheDeletion = function givenTheDatabaseSuccessfullyHandlesTheDeletion() {
@@ -190,6 +225,7 @@ describe('ProductRange', function() {
    
    it('a CREATE_PRODUCT_COMMAND triggers products to add the received data to the database', function(done) {
       doneAfterInsert = true;
+      insertationWasSuccessful = true;
       
       var data = {name: 'donald', price: 12.4};
       
@@ -272,7 +308,6 @@ describe('ProductRange', function() {
       expecting(function() {
          expect(capturedPublishedProducts).to.be.eql([productA, productB, productC]);
       }, done);
-      
       givenTheDatabaseSuccessfullyHandlesTheInsertation();
       givenTheDatabaseContainsTheProducts([productA, productB, productC]);
       whenTheCommand(cash.topics.CREATE_PRODUCT_COMMAND).withData(data).getsSent();
@@ -307,8 +342,132 @@ describe('ProductRange', function() {
       setTimeout(doneFunction, 10);
    });
    
+   // ##############################################################################################################
+   
+   it('an UPDATE_PRODUCT_COMMAND triggers products to update the received data in the database', function(done) {
+      var data = {id: 1807, name: 'daisy', price: 27};
+      updateWasSuccessful = true;
+      doneAfterUpdate = true;
+      
+      expecting(function() {
+         expect(capturedUpdate.collectionName).to.be.eql('productRange');
+         expect(capturedUpdate.documentId).to.be.eql(1807);
+         expect(capturedUpdate.document).to.be.eql({name: 'daisy', price: 27});
+      }, done);
+      
+      whenTheCommand(cash.topics.UPDATE_PRODUCT_COMMAND).withData(data).getsSent();
+   });
+   
+   it('an UPDATE_PRODUCT_COMMAND with an empty name does not trigger products to update the document', function(done) {
+      var data = {name: '', price: 12.4};
+      
+      expecting(function() {
+         expect(capturedUpdate).to.be.eql(undefined);
+      }, done);
+      
+      whenTheCommand(cash.topics.UPDATE_PRODUCT_COMMAND).withData(data).getsSent();
+      
+      setTimeout(doneFunction, 10);
+   });
+   
+   it('an UPDATE_PRODUCT_COMMAND with an undefined name does not trigger products to update the document', function(done) {
+      var data = {name: undefined, price: 12.4};
+      
+      expecting(function() {
+         expect(capturedUpdate).to.be.eql(undefined);
+      }, done);
+      
+      whenTheCommand(cash.topics.UPDATE_PRODUCT_COMMAND).withData(data).getsSent();
+      
+      setTimeout(doneFunction, 10);
+   });
+   
+   it('an UPDATE_PRODUCT_COMMAND with an empty price does not trigger products to update the document', function(done) {
+      var data = {name: 'burger', price: ''};
+      
+      expecting(function() {
+         expect(capturedUpdate).to.be.eql(undefined);
+      }, done);
+      
+      whenTheCommand(cash.topics.UPDATE_PRODUCT_COMMAND).withData(data).getsSent();
+      
+      setTimeout(doneFunction, 10);
+   });
+   
+   it('an UPDATE_PRODUCT_COMMAND with an undefined price does not trigger products to update the document', function(done) {
+      var data = {name: 'burger', price: undefined};
+      
+      expecting(function() {
+         expect(capturedUpdate).to.be.eql(undefined);
+      }, done);
+      
+      whenTheCommand(cash.topics.UPDATE_PRODUCT_COMMAND).withData(data).getsSent();
+      
+      setTimeout(doneFunction, 10);
+   });
+   
+   it('an UPDATE_PRODUCT_COMMAND with a not parsable price does not trigger products to update the document', function(done) {
+      var data = {name: 'burger', price: 'donald'};
+      
+      expecting(function() {
+         expect(capturedUpdate).to.be.eql(undefined);
+      }, done);
+      
+      whenTheCommand(cash.topics.UPDATE_PRODUCT_COMMAND).withData(data).getsSent();
+      
+      setTimeout(doneFunction, 10);
+   });
+   
+   it('products publishes the products when UPDATE_PRODUCT_COMMAND was executed successfully', function(done) {
+      doneAfterPublicationReceived = true;
+      
+      var data = {name: 'daisy', price: 29.9};
+      var productA = {id:1, name:'prod1', price: 20};
+      var productB = {id:2, name:'prod2', price: 10};
+      var productC = {id:3, name:'prod3', price: 15};
+      
+      expecting(function() {
+         expect(capturedPublishedProducts).to.be.eql([productA, productB, productC]);
+      }, done);
+      givenTheDatabaseSuccessfullyHandlesTheUpdate();
+      givenTheDatabaseContainsTheProducts([productA, productB, productC]);
+      whenTheCommand(cash.topics.UPDATE_PRODUCT_COMMAND).withData(data).getsSent();
+   });
+   
+   it('products does not publish the products when UPDATE_PRODUCT_COMMAND was not executed successfully', function(done) {
+      var data = {name: 'daisy', price: 29.9};
+      var productA = {id:1, name:'prod1', price: 20};
+      
+      expecting(function() {
+         expect(numberOfProductsPublications).to.be.eql(0);
+      }, done);
+      
+      givenTheDatabaseDoesNotHandleTheUpdateSuccessfully();
+      givenTheDatabaseContainsTheProducts([productA]);
+      whenTheCommand(cash.topics.UPDATE_PRODUCT_COMMAND).withData(data).getsSent();
+      
+      setTimeout(doneFunction, 10);
+   });
+   
+   it('products does not publish the products when UPDATE_PRODUCT_COMMAND was executed successfully and products query fails', function(done) {
+      var data = {name: 'daisy', price: 29.9};
+      var productA = {id:1, name:'prod1', price: 20};
+      
+      expecting(function() {
+         expect(numberOfProductsPublications).to.be.eql(0);
+      }, done);
+      
+      givenTheDatabaseSuccessfullyHandlesTheUpdate();
+      whenTheCommand(cash.topics.UPDATE_PRODUCT_COMMAND).withData(data).getsSent();
+      
+      setTimeout(doneFunction, 10);
+   });
+   
+   // ##############################################################################################################
+   
    it('a DELETE_PRODUCT_COMMAND triggers products to remove the received data from the database', function(done) {
       doneAfterRemove = true;
+      deletionWasSuccessful = true;
       
       expecting(function() {
          expect(capturedRemoval.collectionName).to.be.eql('productRange');
