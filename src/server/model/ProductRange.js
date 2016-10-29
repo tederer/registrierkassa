@@ -6,11 +6,11 @@ require('../../SharedTopics.js');
 assertNamespace('cash.server.model');
 
 
-cash.server.model.ProductRange = function ProductRange(bus, database, loggingEnabled) {
+cash.server.model.ProductRange = function ProductRange(bus, database, loggingDisabled) {
    var PRODUCT_RANGE_COLLECTION_NAME = 'productRange';
    
    var writeErrorToConsole = function writeErrorToConsole(error) {
-      if (loggingEnabled) {
+      if (!loggingDisabled) {
          console.log(error);
       }
    };
