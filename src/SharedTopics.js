@@ -57,3 +57,37 @@ cash.topics.UPDATE_PRODUCT_COMMAND = '/productrange/updateProductCommand';
  * example of such a product: {"id": "1e33"}
  */ 
 cash.topics.DELETE_PRODUCT_COMMAND = '/productrange/deleteProductCommand';
+
+/**
+ * A client send this command to inform the server that the user wants to
+ * create a new invoice. 
+ * The data of this command is an object containg the values (keys):
+ *
+ * - id        : number    a unique identifier
+ * - items     : array     an array of items in the invoice
+ *
+ * example data: { "id": "13", "items": [{name: 'fertilizer 4-5-6', price: 5}, {name: 'in vitro plant', price: 10}]}
+ */ 
+cash.topics.CREATE_INVOICE_COMMAND = '/cash/createInvoiceCommand';
+
+/**
+ * The server sends this command to inform the client that the invoice was
+ * sccessfully added.
+ * The data of this command is an object containg the values (keys):
+ *
+ * - id        : number    the unique identifier of the added invoice
+ *
+ * example data: { "id": "13"}
+ */ 
+cash.topics.ACKNOWLEDGE_INVOICE_COMMAND = '/cash/acknowledgeInvoiceCommand';
+
+/**
+ * The server sends this command to inform the client that the invoice was
+ * not added.
+ * The data of this command is an object containg the values (keys):
+ *
+ * - id        : number    the unique identifier of the invoice
+ * - error     : string    error message
+ * example data: { "id": "13", "error": "invalid item"}
+ */ 
+cash.topics.REJECT_INVOICE_COMMAND = '/cash/rejectInvoiceCommand';
