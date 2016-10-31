@@ -15,14 +15,14 @@ var doneAfterInsert;
 var doneFunction;
 var doneAfterAcknowledgmentReceived;
 var doneAfterRejectReceived;
-var capturedInsertation;
+var capturedInsertations;
 var capturedAcknowledgments;
 var capturedRejections;
 
 var TestingDatabase = function TestingDatabase() {
    
    this.insert = function insert(collectionName, document) {
-      capturedInsertation = {collectionName: collectionName, document: document};
+      capturedInsertations[capturedInsertations.length] = {collectionName: collectionName, document: document};
       
       return new Promise(function(fulfill, reject) {
          if (insertationWasSuccessful === undefined) {
@@ -67,7 +67,7 @@ function valueIsAnObject(val) {
    return ( (typeof val === 'function') || (typeof val === 'object') );
 }
 
-var whenTheCommand = function whenTheCommand(commandTopic) {
+var getWithData = function getWithData(commandTopic) {
    return {
       withData: function withData(data) {
          return {
@@ -77,6 +77,14 @@ var whenTheCommand = function whenTheCommand(commandTopic) {
          };
       }
    };
+};
+
+var givenTheCommand = function givenTheCommand(commandTopic) {
+   return getWithData(commandTopic);
+};
+
+var whenTheCommand = function whenTheCommand(commandTopic) {
+   return getWithData(commandTopic);
 };
 
 var expecting = function expecting(expectFunction, done) {
@@ -94,7 +102,7 @@ var expecting = function expecting(expectFunction, done) {
 
 var setup = function setup() {
    insertationWasSuccessful = undefined;
-   capturedInsertation = undefined;
+   capturedInsertations = [];
    capturedAcknowledgments = [];
    capturedRejections = [];
    doneAfterInsert = false;
@@ -137,8 +145,9 @@ describe('Cash', function() {
       var data = {id: 1, items: [{name:'pot', price: 2}]};
       
       expecting(function() {
-         expect(capturedInsertation.collectionName).to.be.eql('cash');
-         expect(capturedInsertation.document).to.be.eql([{name:'pot', price: 2}]);
+         expect(capturedInsertations.length).to.be.eql(1);
+         expect(capturedInsertations[0].collectionName).to.be.eql('cash');
+         expect(capturedInsertations[0].document).to.be.eql([{name:'pot', price: 2}]);
       }, done);
 
       whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
@@ -149,7 +158,7 @@ describe('Cash', function() {
       var data = {items: [{name:'pot', price: 2}]};
       
       expecting(function() {
-         expect(capturedInsertation).to.be.eql(undefined);
+         expect(capturedInsertations.length).to.be.eql(0);
       }, done);
 
       whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
@@ -162,7 +171,7 @@ describe('Cash', function() {
       var data = {id: 556};
       
       expecting(function() {
-         expect(capturedInsertation).to.be.eql(undefined);
+         expect(capturedInsertations.length).to.be.eql(0);
       }, done);
 
       whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
@@ -175,7 +184,7 @@ describe('Cash', function() {
       var data = {id: 556, items: undefined};
       
       expecting(function() {
-         expect(capturedInsertation).to.be.eql(undefined);
+         expect(capturedInsertations.length).to.be.eql(0);
       }, done);
 
       whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
@@ -188,7 +197,7 @@ describe('Cash', function() {
       var data = {id: '', items: [{name:'pot', price: 2}]};
       
       expecting(function() {
-         expect(capturedInsertation).to.be.eql(undefined);
+         expect(capturedInsertations.length).to.be.eql(0);
       }, done);
 
       whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
@@ -201,7 +210,7 @@ describe('Cash', function() {
       var data = {id: 1, items: [{name:'pot', price: 2}, {name:'', price: 10}]};
       
       expecting(function() {
-         expect(capturedInsertation).to.be.eql(undefined);
+         expect(capturedInsertations.length).to.be.eql(0);
       }, done);
 
       whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
@@ -214,7 +223,7 @@ describe('Cash', function() {
       var data = {id: 1, items: [{name:'pot', price: 2}, {name:undefined, price: 10}]};
       
       expecting(function() {
-         expect(capturedInsertation).to.be.eql(undefined);
+         expect(capturedInsertations.length).to.be.eql(0);
       }, done);
 
       whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
@@ -227,7 +236,7 @@ describe('Cash', function() {
       var data = {id: 1, items: [{name:'pot', price: ''}, {name:'dog', price: 10}]};
       
       expecting(function() {
-         expect(capturedInsertation).to.be.eql(undefined);
+         expect(capturedInsertations.length).to.be.eql(0);
       }, done);
 
       whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
@@ -240,7 +249,7 @@ describe('Cash', function() {
       var data = {id: 1, items: [{name:'pot', price: 22}, {name:'dog', price: undefined}]};
       
       expecting(function() {
-         expect(capturedInsertation).to.be.eql(undefined);
+         expect(capturedInsertations.length).to.be.eql(0);
       }, done);
 
       whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
@@ -253,7 +262,7 @@ describe('Cash', function() {
       var data = {id: 1, items: [{name:'pot', price: 22}, {name:'dog', price: 'cheep'}]};
       
       expecting(function() {
-         expect(capturedInsertation).to.be.eql(undefined);
+         expect(capturedInsertations.length).to.be.eql(0);
       }, done);
 
       whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
@@ -288,5 +297,36 @@ describe('Cash', function() {
       }, done);
 
       whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
+   });   
+   
+   it('a repeatedly send valid invoice does not get inserted into the cash collection', function(done) {
+      insertationWasSuccessful = true;
+      
+      var data = {id: 43, items: [{name:'pot', price: 2}]};
+      
+      expecting(function() {
+         expect(capturedInsertations.length).to.be.eql(1);
+      }, done);
+
+      givenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
+      
+      setTimeout(doneFunction, 10);
+   });   
+   
+   it('two valid invoice with different IDs get inserted into the cash collection', function(done) {
+      insertationWasSuccessful = true;
+      
+      var invoice1 = {id: 43, items: [{name:'pot', price: 2}]};
+      var invoice2 = {id: 44, items: [{name:'bag', price: 1}]};
+      
+      expecting(function() {
+         expect(capturedInsertations.length).to.be.eql(2);
+      }, done);
+
+      givenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice2).getsSent();
+      
+      setTimeout(doneFunction, 10);
    });   
 });  
