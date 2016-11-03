@@ -18,6 +18,7 @@ var doneAfterRejectReceived;
 var capturedInsertations;
 var capturedAcknowledgments;
 var capturedRejections;
+var timeInMillis;
 
 var TestingDatabase = function TestingDatabase() {
    
@@ -83,6 +84,10 @@ var givenTheCommand = function givenTheCommand(commandTopic) {
    return getWithData(commandTopic);
 };
 
+var givenMillisPass = function givenMillisPass(millis) {
+      timeInMillis += millis;
+};
+
 var whenTheCommand = function whenTheCommand(commandTopic) {
    return getWithData(commandTopic);
 };
@@ -109,10 +114,12 @@ var setup = function setup() {
    doneAfterAcknowledgmentReceived = false;
    doneAfterRejectReceived = false;
    doneFunction = function() {};
+   timeInMillis = 0;
    
    bus = new common.infrastructure.bus.Bus();
    database = new TestingDatabase();
-   cashInstance = new cash.server.Cash(bus, database, true);
+   var optionals = { loggingDisabled: true, timeFunction: function() { return timeInMillis;}};
+   cashInstance = new cash.server.Cash(bus, database, optionals);
    
    bus.subscribeToCommand(cash.topics.ACKNOWLEDGE_INVOICE_COMMAND, function(data) {
       capturedAcknowledgments[capturedAcknowledgments.length] = data;
@@ -326,6 +333,22 @@ describe('Cash', function() {
 
       givenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
       whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice2).getsSent();
+      
+      setTimeout(doneFunction, 10);
+   });   
+   
+   it('a valid invoice sent again after an hour gets inserted into the cash collection', function(done) {
+      insertationWasSuccessful = true;
+      
+      var invoice = {id: 43, items: [{name:'pot', price: 2}]};
+      
+      expecting(function() {
+         expect(capturedInsertations.length).to.be.eql(2);
+      }, done);
+
+      givenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice).getsSent();
+      givenMillisPass(60 * 60 * 1000 + 1);
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice).getsSent();
       
       setTimeout(doneFunction, 10);
    });   
