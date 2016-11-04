@@ -154,7 +154,7 @@ describe('Cash', function() {
       expecting(function() {
          expect(capturedInsertations.length).to.be.eql(1);
          expect(capturedInsertations[0].collectionName).to.be.eql('cash');
-         expect(capturedInsertations[0].document).to.be.eql([{name:'pot', price: 2}]);
+         expect(capturedInsertations[0].document.items).to.be.eql([{name:'pot', price: 2}]);
       }, done);
 
       whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
@@ -347,9 +347,30 @@ describe('Cash', function() {
       }, done);
 
       givenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice).getsSent();
-      givenMillisPass(60 * 60 * 1000 + 1);
+      givenMillisPass(60 * 60 * 1000);
       whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice).getsSent();
       
       setTimeout(doneFunction, 10);
    });   
+   
+   it('only expired IDs get removed', function(done) {
+      insertationWasSuccessful = true;
+      
+      var invoice1 = {id: 11, items: [{name:'pot', price: 2}]};
+      var invoice2 = {id: 22, items: [{name:'plant', price: 12}]};
+      
+      expecting(function() {
+         expect(capturedInsertations.length).to.be.eql(3);
+      }, done);
+
+      givenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
+      givenMillisPass(30 * 60 * 1000);
+      givenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice2).getsSent();
+      givenMillisPass(30 * 60 * 1000);
+      givenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
+      
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice2).getsSent();
+      
+      setTimeout(doneFunction, 10);
+   });
 });  

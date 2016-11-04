@@ -24,36 +24,32 @@ cash.server.Cash = function Cash(bus, database, optionals) {
       }
    };
    
-   var removeExpiredIds = function removeExpiredIds(nowInMillis) {
+   var removeExpiredInvoiceIds = function removeExpiredInvoiceIds(nowInMillis) {
       var firstNotOutdatedEntryIndex = -1;
       
       for (var index = 0; index < processedInvoiceIds.length; index++) {
          var ageOfIdInMillis = nowInMillis - processedInvoiceIds[index].timestamp;
+         
          if (ageOfIdInMillis < ID_TIME_TO_LIVE_IN_MILLIS) {
             firstNotOutdatedEntryIndex = index;
             break;
          }
       }
-      
-      if (firstNotOutdatedEntryIndex >= 0) {
-            processedInvoiceIds.slice(firstNotOutdatedEntryIndex);
-      } else {
-         processedInvoiceIds = [];
-      }
+      processedInvoiceIds = (firstNotOutdatedEntryIndex >= 0) ? processedInvoiceIds.slice(firstNotOutdatedEntryIndex): [];
    };
    
-   var createDocument = function createDocument(data) {
+   var createInvoice = function createInvoice(data) {
       return new Promise(function(fulfill, reject) {
       
-         var document = [];
-         var invalidItems = [];
          var nowInMillis = getTimeInMillis();
-      
+         var invalidItems = [];
+         var document = {timestamp: nowInMillis, items: []};
+         
          if (data.id === undefined || data.id === '') {
             reject('invalid or not available ID');
          }
          
-         removeExpiredIds(nowInMillis);
+         removeExpiredInvoiceIds(nowInMillis);
       
          if (processedInvoiceIds.findIndex(function(currentId) { return currentId.id === data.id; }) >= 0) {
             reject('invoice id ' + data.id + ' already processed');
@@ -67,7 +63,7 @@ cash.server.Cash = function Cash(bus, database, optionals) {
          
          data.items.forEach(function(item) {
             if (item.name !== undefined && item.name !== '' && item.price !== undefined && item.price !== '' && !isNaN(parseFloat(item.price))) {
-               document[document.length] = {name: item.name, price: parseFloat(item.price)};
+               document.items[document.items.length] = {name: item.name, price: parseFloat(item.price)};
             } else {
                invalidItems[invalidItems.length] = item;
             }
@@ -91,7 +87,7 @@ cash.server.Cash = function Cash(bus, database, optionals) {
    };
    
    bus.subscribeToCommand(cash.topics.CREATE_INVOICE_COMMAND, function(data) {
-      createDocument(data)
+      createInvoice(data)
          .then(database.insert.bind(null, CASH_COLLECTION_NAME))
          .then(acknowledgeInvoice.bind(null, data.id), rejectInvoice.bind(null, data.id));
    });
