@@ -28,7 +28,7 @@ cash.topics.PRODUCTRANGE = '/productrange';
  * - timestamp : number    the number of milliseconds since epoch
  * - items     : array     an array of items in the invoice
  *
- * example data: { "id": "13", "timestamp": , "items": [{name: 'fertilizer 4-5-6', price: 5}, {name: 'in vitro plant', price: 10}]}
+ * example data: { "id": "13", "timestamp": 1478258179434, "items": [{name: 'fertilizer 4-5-6', price: 5}, {name: 'in vitro plant', price: 10}]}
  */
 cash.topics.TODAYS_INVOICES = '/cash/todaysInvoices';
 
