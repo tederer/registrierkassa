@@ -1,6 +1,7 @@
 /* global global, common, cash, Map, setTimeout */
 
 require(global.PROJECT_SOURCE_ROOT_PATH + '/SharedTopics.js');
+require(global.PROJECT_SOURCE_ROOT_PATH + '/server/ServerTopics.js');
 require(global.PROJECT_SOURCE_ROOT_PATH + '/common/infrastructure/bus/Bus.js');
 require(global.PROJECT_SOURCE_ROOT_PATH + '/server/Cash.js');
 require('timers');
@@ -15,10 +16,13 @@ var doneAfterInsert;
 var doneFunction;
 var doneAfterAcknowledgmentReceived;
 var doneAfterRejectReceived;
+var doneAfterNewInvoiceAddedCommandReceived;
 var capturedInsertations;
 var capturedAcknowledgments;
 var capturedRejections;
+var capturedCollectionNames;
 var timeInMillis;
+var newInvoiceAddedCommandInvocations;
 
 var TestingDatabase = function TestingDatabase() {
    
@@ -110,17 +114,22 @@ var setup = function setup() {
    capturedInsertations = [];
    capturedAcknowledgments = [];
    capturedRejections = [];
+   capturedCollectionNames = [];
    doneAfterInsert = false;
    doneAfterAcknowledgmentReceived = false;
    doneAfterRejectReceived = false;
+   doneAfterNewInvoiceAddedCommandReceived = false;
    doneFunction = function() {};
    timeInMillis = 0;
+   newInvoiceAddedCommandInvocations = 0;
    
    bus = new common.infrastructure.bus.Bus();
    database = new TestingDatabase();
-   var optionals = { loggingDisabled: true, timeFunction: function() { return timeInMillis;}};
-   cashInstance = new cash.server.Cash(bus, database, optionals);
-   
+
+   bus.subscribeToPublication(cash.server.topics.CASH_COLLECTION_NAME, function(data) {
+      capturedCollectionNames[capturedCollectionNames.length] = data;
+   });
+
    bus.subscribeToCommand(cash.topics.ACKNOWLEDGE_INVOICE_COMMAND, function(data) {
       capturedAcknowledgments[capturedAcknowledgments.length] = data;
       if (doneAfterAcknowledgmentReceived) {
@@ -134,6 +143,16 @@ var setup = function setup() {
          doneFunction();
       }
    });
+   
+   bus.subscribeToCommand(cash.server.topics.NEW_INVOICE_ADDED_COMMAND, function(data) {
+      newInvoiceAddedCommandInvocations++;
+      if (doneAfterNewInvoiceAddedCommandReceived) {
+         doneFunction();
+      }
+   });
+   
+   var optionals = { loggingDisabled: true, timeFunction: function() { return timeInMillis;}};
+   cashInstance = new cash.server.Cash(bus, database, optionals);
 };
 
 
@@ -149,7 +168,7 @@ describe('Cash', function() {
       insertationWasSuccessful = true;
       doneAfterInsert = true;
       
-      var data = {id: 1, items: [{name:'pot', price: 2}]};
+      var invoice1 = {id: 1, items: [{name:'pot', price: 2}]};
       
       expecting(function() {
          expect(capturedInsertations.length).to.be.eql(1);
@@ -157,122 +176,132 @@ describe('Cash', function() {
          expect(capturedInsertations[0].document.items).to.be.eql([{name:'pot', price: 2}]);
       }, done);
 
-      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
    });   
-   
+      
+   it('a new invoice pulbishes then name of the database collection', function(done) {
+      
+      expecting(function() {
+         expect(capturedCollectionNames.length).to.be.eql(1);
+         expect(capturedCollectionNames[0]).to.be.eql('cash');
+      }, done);
+      
+      setTimeout(doneFunction, 10);
+   });   
+      
    it('no invoice gets inserted when the CREATE_INVOICE_COMMAND does not contain an id', function(done) {
       
-      var data = {items: [{name:'pot', price: 2}]};
+      var invoice1 = {items: [{name:'pot', price: 2}]};
       
       expecting(function() {
          expect(capturedInsertations.length).to.be.eql(0);
       }, done);
 
-      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
       
       setTimeout(doneFunction, 10);
    });
    
    it('no invoice gets inserted when the CREATE_INVOICE_COMMAND does not contain items', function(done) {
       
-      var data = {id: 556};
+      var invoice1 = {id: 556};
       
       expecting(function() {
          expect(capturedInsertations.length).to.be.eql(0);
       }, done);
 
-      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
       
       setTimeout(doneFunction, 10);
    });
    
    it('no invoice gets inserted when the CREATE_INVOICE_COMMAND contain items that is undefined', function(done) {
       
-      var data = {id: 556, items: undefined};
+      var invoice1 = {id: 556, items: undefined};
       
       expecting(function() {
          expect(capturedInsertations.length).to.be.eql(0);
       }, done);
 
-      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
       
       setTimeout(doneFunction, 10);
    });
    
    it('no invoice gets inserted when the CREATE_INVOICE_COMMAND contains an empty id', function(done) {
       
-      var data = {id: '', items: [{name:'pot', price: 2}]};
+      var invoice1 = {id: '', items: [{name:'pot', price: 2}]};
       
       expecting(function() {
          expect(capturedInsertations.length).to.be.eql(0);
       }, done);
 
-      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
       
       setTimeout(doneFunction, 10);
    });
    
    it('no invoice gets inserted when the CREATE_INVOICE_COMMAND contains an item with an empty name', function(done) {
       
-      var data = {id: 1, items: [{name:'pot', price: 2}, {name:'', price: 10}]};
+      var invoice1 = {id: 1, items: [{name:'pot', price: 2}, {name:'', price: 10}]};
       
       expecting(function() {
          expect(capturedInsertations.length).to.be.eql(0);
       }, done);
 
-      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
       
       setTimeout(doneFunction, 10);
    });
    
    it('no invoice gets inserted when the CREATE_INVOICE_COMMAND contains an item with an undefined name', function(done) {
       
-      var data = {id: 1, items: [{name:'pot', price: 2}, {name:undefined, price: 10}]};
+      var invoice1 = {id: 1, items: [{name:'pot', price: 2}, {name:undefined, price: 10}]};
       
       expecting(function() {
          expect(capturedInsertations.length).to.be.eql(0);
       }, done);
 
-      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
       
       setTimeout(doneFunction, 10);
    });
    
    it('no invoice gets inserted when the CREATE_INVOICE_COMMAND contains an item with an empty price', function(done) {
       
-      var data = {id: 1, items: [{name:'pot', price: ''}, {name:'dog', price: 10}]};
+      var invoice1 = {id: 1, items: [{name:'pot', price: ''}, {name:'dog', price: 10}]};
       
       expecting(function() {
          expect(capturedInsertations.length).to.be.eql(0);
       }, done);
 
-      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
       
       setTimeout(doneFunction, 10);
    });
    
    it('no invoice gets inserted when the CREATE_INVOICE_COMMAND contains an item with an undefined price', function(done) {
       
-      var data = {id: 1, items: [{name:'pot', price: 22}, {name:'dog', price: undefined}]};
+      var invoice1 = {id: 1, items: [{name:'pot', price: 22}, {name:'dog', price: undefined}]};
       
       expecting(function() {
          expect(capturedInsertations.length).to.be.eql(0);
       }, done);
 
-      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
       
       setTimeout(doneFunction, 10);
    });
    
    it('no invoice gets inserted when the CREATE_INVOICE_COMMAND contains an item with a not parsable price', function(done) {
       
-      var data = {id: 1, items: [{name:'pot', price: 22}, {name:'dog', price: 'cheep'}]};
+      var invoice1 = {id: 1, items: [{name:'pot', price: 22}, {name:'dog', price: 'cheep'}]};
       
       expecting(function() {
          expect(capturedInsertations.length).to.be.eql(0);
       }, done);
 
-      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
       
       setTimeout(doneFunction, 10);
    });
@@ -281,21 +310,21 @@ describe('Cash', function() {
       insertationWasSuccessful = true;
       doneAfterAcknowledgmentReceived = true;
       
-      var data = {id: 1234, items: [{name:'pot', price: 2}]};
+      var invoice1 = {id: 1234, items: [{name:'pot', price: 2}]};
       
       expecting(function() {
          expect(capturedAcknowledgments.length).to.be.eql(1);
          expect(capturedAcknowledgments[0].id).to.be.eql(1234);
       }, done);
 
-      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
    });   
    
    it('an invalid invoice gets rejected with an REJECT_INVOICE_COMMAND', function(done) {
       insertationWasSuccessful = true;
       doneAfterRejectReceived = true;
       
-      var data = {id: 43};
+      var invoice1 = {id: 43};
       
       expecting(function() {
          expect(capturedRejections.length).to.be.eql(1);
@@ -303,25 +332,25 @@ describe('Cash', function() {
          expect(capturedRejections[0].error).to.be.eql('no items are available');
       }, done);
 
-      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
    });   
    
    it('a repeatedly send valid invoice does not get inserted into the cash collection', function(done) {
       insertationWasSuccessful = true;
       
-      var data = {id: 43, items: [{name:'pot', price: 2}]};
+      var invoice1 = {id: 43, items: [{name:'pot', price: 2}]};
       
       expecting(function() {
          expect(capturedInsertations.length).to.be.eql(1);
       }, done);
 
-      givenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
-      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(data).getsSent();
+      givenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
       
       setTimeout(doneFunction, 10);
    });   
    
-   it('two valid invoice with different IDs get inserted into the cash collection', function(done) {
+   it('two valid invoices with different IDs get inserted into the cash collection', function(done) {
       insertationWasSuccessful = true;
       
       var invoice1 = {id: 43, items: [{name:'pot', price: 2}]};
@@ -373,4 +402,32 @@ describe('Cash', function() {
       
       setTimeout(doneFunction, 10);
    });
+   
+   it('after inserting a new invoice a NEW_INVOICE_ADDED_COMMAND gets sent', function(done) {
+      insertationWasSuccessful = true;
+      doneAfterNewInvoiceAddedCommandReceived = true;
+      
+      var invoice1 = {id: 1, items: [{name:'pot', price: 2}]};
+      
+      expecting(function() {
+         expect(newInvoiceAddedCommandInvocations).to.be.eql(1);
+      }, done);
+
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
+   });
+
+   it('a repeatedly send valid invoice triggers Cash to send only one NEW_INVOICE_ADDED_COMMAND.', function(done) {
+      insertationWasSuccessful = true;
+      
+      var invoice1 = {id: 43, items: [{name:'pot', price: 2}]};
+      
+      expecting(function() {
+         expect(newInvoiceAddedCommandInvocations).to.be.eql(1);
+      }, done);
+
+      givenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
+      
+      setTimeout(doneFunction, 10);
+   }); 
 });  

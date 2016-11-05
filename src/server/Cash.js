@@ -86,10 +86,17 @@ cash.server.Cash = function Cash(bus, database, optionals) {
       bus.sendCommand(cash.topics.REJECT_INVOICE_COMMAND, {id: invoiceId, error: errorMessage});
    };
    
+   var sendNewInvoiceAddedCommand = function sendNewInvoiceAddedCommand() {
+      bus.sendCommand(cash.server.topics.NEW_INVOICE_ADDED_COMMAND, {});
+   };
+   
+   bus.publish(cash.server.topics.CASH_COLLECTION_NAME, CASH_COLLECTION_NAME);
+   
    bus.subscribeToCommand(cash.topics.CREATE_INVOICE_COMMAND, function(data) {
       createInvoice(data)
          .then(database.insert.bind(null, CASH_COLLECTION_NAME))
-         .then(acknowledgeInvoice.bind(null, data.id), rejectInvoice.bind(null, data.id));
+         .then(acknowledgeInvoice.bind(null, data.id))
+         .then(sendNewInvoiceAddedCommand, rejectInvoice.bind(null, data.id));
    });
 };
  
