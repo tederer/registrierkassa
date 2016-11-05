@@ -164,7 +164,7 @@ describe('Cash', function() {
       expect(valueIsAnObject(cashInstance)).to.be.eql(true);
    });
    
-   it('a new invoice gets inserted into the cash collection on a CREATE_INVOICE_COMMAND', function(done) {
+   it('a new invoice gets inserted into the cash collection on a CREATE_INVOICE_COMMAND (A)', function(done) {
       insertationWasSuccessful = true;
       doneAfterInsert = true;
       
@@ -173,9 +173,27 @@ describe('Cash', function() {
       expecting(function() {
          expect(capturedInsertations.length).to.be.eql(1);
          expect(capturedInsertations[0].collectionName).to.be.eql('cash');
+         expect(capturedInsertations[0].document.timestamp).to.be.eql(0);
          expect(capturedInsertations[0].document.items).to.be.eql([{name:'pot', price: 2}]);
       }, done);
 
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
+   });   
+      
+   it('a new invoice gets inserted into the cash collection on a CREATE_INVOICE_COMMAND (B)', function(done) {
+      insertationWasSuccessful = true;
+      doneAfterInsert = true;
+      
+      var invoice1 = {id: 342, items: [{name:'in vitro flask', price: 12}]};
+      
+      expecting(function() {
+         expect(capturedInsertations.length).to.be.eql(1);
+         expect(capturedInsertations[0].collectionName).to.be.eql('cash');
+         expect(capturedInsertations[0].document.timestamp).to.be.eql(1200);
+         expect(capturedInsertations[0].document.items).to.be.eql([{name:'in vitro flask', price: 12}]);
+      }, done);
+
+      givenMillisPass(1200);
       whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
    });   
       
