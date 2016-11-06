@@ -3,14 +3,14 @@
 assertNamespace('cash.ui');
 
 /**
- * constructor for a TotalPanel.
+ * constructor for a InvoiceFooter.
  */
-cash.ui.TotalPanel = function TotalPanel(containerId, bus) {
+cash.ui.InvoiceFooter = function InvoiceFooter(containerId, bus) {
       var totalPriceId = containerId + ' #totalPrice';
       var totalPrice = 0;
       
       var updateTotalPrice = function updateTotalPrice() {
-         $(totalPriceId).html(totalPrice.toFixed(2));
+         $(totalPriceId).html(totalPrice.toFixed(2) + ' €');
       };
       
       var onItemsInInvoiceChanged = function onItemsInInvoiceChanged(commandData) {
@@ -23,7 +23,9 @@ cash.ui.TotalPanel = function TotalPanel(containerId, bus) {
       };
       
       var initializeContainerContent = function initializeContainerContent() {
-         var containerContent = '<table><tr><td>Summe:</td><td id="totalPrice"></td></tr></table>';
+         var containerContent =  '<table><tr><td>Summe:</td><td id="totalPrice"></td></tr></table>' + 
+                                 '<br>' + 
+                                 '<button type="button" id="createInvoiceButton">Rechnung erstellen</button>';
 
          $(containerId).html(containerContent);
          updateTotalPrice();
@@ -32,7 +34,10 @@ cash.ui.TotalPanel = function TotalPanel(containerId, bus) {
       this.initialize = function initialize() {
          initializeContainerContent();
          bus.subscribeToPublication(cash.client.topics.INVOICE_ITEMS, onItemsInInvoiceChanged);
+         $(containerId + '> #createInvoiceButton').on('click', function() {
+            bus.sendCommand(cash.client.topics.CREATE_INVOICE_COMMAND, {});
+         });
       };
 };
 
-cash.ui.TotalPanel.prototype = new cash.ui.UiComponent();
+cash.ui.InvoiceFooter.prototype = new cash.ui.UiComponent();

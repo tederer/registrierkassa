@@ -68,17 +68,23 @@ cash.client.topics.SHOW_EDIT_PRODUCT_RANGE_DIALOG_COMMAND = '/client/productrang
  */
 cash.client.topics.EDIT_PRODUCT_COMMAND = '/client/productrange/editProductCommand';
 
+/**
+ * This command gets sent when the user wants to create/store an invoice.
+ * The data of this command is an empty object.
+ */
+cash.client.topics.CREATE_INVOICE_COMMAND = '/client/invoice/createInvoiceCommand';
+
 
 //                PUBLICATIONS
 
 /**
  * The client publishes on this topic an array of all items in the invoice. 
- * Each product is an object containing the values (keys):
+ * Each item is an object containing the values (keys):
  *
- * - name      : string    the name describing the product
- * - price     : number    the price of this product
+ * - name      : string    the name describing the item
+ * - price     : number    the price of this item
  *
- * example of such a product: {"name":"in vitro flask","price":10}
+ * example of such an item: {"name":"in vitro flask","price":10}
 
  */
 cash.client.topics.INVOICE_ITEMS = '/client/invoice/items';

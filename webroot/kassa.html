@@ -30,15 +30,19 @@
    <script type="text/javascript" src="javascripts/client/CreateProductDialog.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/InvoiceTable.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/InvoiceSidebar.js" charset="UTF-8"></script>
+   <script type="text/javascript" src="javascripts/client/InvoiceCreator.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/AdministrationPage.js" charset="UTF-8"></script>
-   <script type="text/javascript" src="javascripts/client/TotalPanel.js" charset="UTF-8"></script>
+   <script type="text/javascript" src="javascripts/client/InvoiceFooter.js" charset="UTF-8"></script>
    <script type="text/javascript" src="lib/jquery-3.1.0.js" charset="UTF-8"></script>
    <script type="text/javascript" src="lib/jquery.dataTables-1.10.12.min.js" charset="UTF-8"></script>
    <script type="text/javascript" src="lib/dataTables.select-1.2.0.min.js" charset="UTF-8"></script>
    <script src="/socket.io/socket.io.js" charset="UTF-8"></script>
    <script>
       var bus = new common.infrastructure.bus.Bus();
-      var topicsToTransmit = [cash.topics.CREATE_PRODUCT_COMMAND, cash.topics.UPDATE_PRODUCT_COMMAND, cash.topics.DELETE_PRODUCT_COMMAND];
+      var topicsToTransmit = [cash.topics.CREATE_PRODUCT_COMMAND, 
+                              cash.topics.UPDATE_PRODUCT_COMMAND, 
+                              cash.topics.DELETE_PRODUCT_COMMAND, 
+                              cash.topics.CREATE_INVOICE_COMMAND];
       var busBridge = new common.infrastructure.busbridge.ClientSocketIoBusBridge(bus, topicsToTransmit, io);
       
       var itemSelectionDialog = new cash.ui.ItemSelectionDialog('#cash > #itemSelectionDialog', bus);
@@ -48,7 +52,8 @@
       var editProductDialog = new cash.ui.EditProductDialog('#cash > #editProductDialog', bus);
       var invoiceTable = new cash.ui.InvoiceTable('#cash > #content > #invoice > #items', bus);
       var invoiceSidebar = new cash.ui.InvoiceSidebar('#cash > #content > #invoice > #sidebar', bus);
-      var totalPanel = new cash.ui.TotalPanel('#cash > #content > #invoice > #total', bus);
+      var invoiceFooter = new cash.ui.InvoiceFooter('#cash > #content > #invoice > #total', bus);
+      var invoiceCreator = new cash.InvoiceCreator(bus);
       var administrationPage = new cash.ui.AdministrationPage('#cash > #content > #administration', bus);
       
       $(document).ready(function() {
@@ -62,7 +67,8 @@
          createProductDialog.initialize();
          invoiceTable.initialize();
          invoiceSidebar.initialize();
-         totalPanel.initialize();
+         invoiceFooter.initialize();
+         invoiceCreator.initialize();
          administrationPage.initialize();
       });
    </script>
