@@ -70,7 +70,8 @@ cash.server.database.TingoDbDatabase = function TingoDbDatabase(databaseFolder) 
                reject(err);
             } else {
                fulfill(data.map(function(document) {
-                  return {id: document._id, name: document.name, price: document.price};
+                  document.id = document._id;
+                  return document;
                }));
             }
          }); 

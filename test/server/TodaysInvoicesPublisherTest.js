@@ -144,11 +144,11 @@ describe('TodaysInvoidesPublisher', function() {
       doneAfterInvoicesReceived = true;
       getAllDocumentsInCollectionWasSuccessful = true;
       
-      documentsInCollection = [{id: 43, items: [{name:'pot', price: 2}]}];
+      documentsInCollection = [{id: 43, timestamp:1234, items: [{name:'pot', price: 2}]}];
       
       expecting(function() {
          expect(capturedInvoices.length).to.be.eql(1);
-         expect(capturedInvoices[0]).to.be.eql([{id: 43, items: [{name:'pot', price: 2}]}]);
+         expect(capturedInvoices[0]).to.be.eql([{id: 43, timestamp:1234, items: [{name:'pot', price: 2}]}]);
       }, done);
 
       whenThePublication(cash.server.topics.CASH_COLLECTION_NAME).withData('CollectionB').getsSent();
@@ -157,7 +157,7 @@ describe('TodaysInvoidesPublisher', function() {
    it('the invoices get published when a new invoice was added', function(done) {
       getAllDocumentsInCollectionWasSuccessful = true;
       
-      documentsInCollection = [{id: 4, items: [{name:'plant', price: 22}]}];
+      documentsInCollection = [{id: 4, timestamp: 6766, items: [{name:'plant', price: 22}]}];
       
       expecting(function() {
          expect(capturedInvoices.length).to.be.eql(2);
@@ -168,4 +168,19 @@ describe('TodaysInvoidesPublisher', function() {
       
       setTimeout(doneFunction, 10);
    });
+   
+   /*it('the published invoices are sorted descending by their timestimes', function(done) {
+      getAllDocumentsInCollectionWasSuccessful = true;
+      
+      documentsInCollection = [{id: 4, timestamp: 3333, items: [{name:'plant', price: 22}]}];
+      
+      expecting(function() {
+         expect(capturedInvoices.length).to.be.eql(2);
+      }, done);
+
+      givenThePublication(cash.server.topics.CASH_COLLECTION_NAME).withData('donaldsInvoices').getsSent();
+      whenTheCommand(cash.server.topics.NEW_INVOICE_ADDED_COMMAND).withData({}).getsSent();
+      
+      setTimeout(doneFunction, 10);
+   });*/
 });  

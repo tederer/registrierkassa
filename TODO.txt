@@ -1,4 +1,3 @@
-* Umsatzliste anzeigen (default heutiger Tag)
-* Tagesumsatz anzeigen
-
-* Produktliste bearbeiten: es fehlt das bearbeiten bereits vorhandener eintraege
+* TingoDB gibt "_id" zurück beim getAll.... !!!
+* TodaysInvoicesPublisherTest.js test 'the published invoices are sorted descending by their timestimes' gehört vollendet
+* database-Ordner ist nicht eingecheckt bzw. wird nicht von grunt erzeugt

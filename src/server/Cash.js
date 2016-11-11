@@ -72,7 +72,7 @@ cash.server.Cash = function Cash(bus, database, optionals) {
          if (invalidItems.length > 0) {
             reject('invalid item(s): ' + JSON.stringify(invalidItems));
          }
-         
+
          fulfill(document);
       });
    };

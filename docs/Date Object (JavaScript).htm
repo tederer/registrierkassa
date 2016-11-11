@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="WT.seg_1" content="en-us"><link rel="canonical" href="https://msdn.microsoft.com/en-us/library/cd9w2te4%28v=vs.100%29.aspx">
+    <title>Date Object (JavaScript)</title>
+
+
+
+
+
+
+
+<meta name="DCS.dcsuri" content="/en-us/library/cd9w2te4(d=default,l=en-us,v=vs.94).aspx">
+
+<meta name="NormalizedUrl" content="https://msdn.microsoft.com/en-us/library/cd9w2te4(d=default,l=en-us,v=vs.94).aspx">
+
+<meta name="ms.normalizedurl" content="https://msdn.microsoft.com/en-us/library/cd9w2te4(d=default,l=en-us,v=vs.94).aspx">
+
+<meta name="ms.prod" content="windows-client-threshold">
+
+<meta name="ms.devlang" content="javascript">
+
+<meta name="ms.topic" content="language-reference">
+
+<meta name="AmbientContext" content="{&quot;layout.limit_max_width&quot;:false,&quot;AmbientContextId&quot;:&quot;40957089-9152-4C7B-96C3-EBC2D9F829EA&quot;,&quot;display.use_large_font&quot;:false,&quot;insight.perf_timing&quot;:true,&quot;AmbientContextDownstream&quot;:{&quot;LogTrace&quot;:false},&quot;display.high_contrast&quot;:false,&quot;insight.use_wedcs_vnext&quot;:true}">
+
+<meta name="VotingContextUrl" content="https://msdn.microsoft.com/en-us/library/cd9w2te4(d=default,l=en-us,v=vs.94).aspx">
+
+<meta name="MN" content="FB361399-12:30:32 PM">
+
+<meta name="Search.ShortId" content="cd9w2te4">
+
+<meta name="ms.shortidmsdn" content="cd9w2te4">
+
+<meta name="ms.locale" content="en-us">
+
+<meta name="ms.prodver" content="VS.94">
+
+<meta name="ms.contentlang" content="EN">
+
+<meta name="ms.lang" content="EN">
+
+<meta name="ms.loc" content="US">
+
+<meta name="ms.sitever" content="2016.11.01.2">
+
+<meta name="ms.assetid" content="ce2202bb-7ec9-4f5a-bf48-3a04feff283e">
+
+<meta name="ms.auth" content="0">
+
+<meta name="ms.technology" content="devlang-javascript">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+        
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="Date%20Object%20%28JavaScript%29-Dateien/ai.js" async=""></script><script type="text/javascript" data-do-not-move="true">
+        //<![CDATA[
+        var AmbientContext = null;
+
+        (function(){
+            var root = (function(){return this;}).call(null);
+
+            var GetCookie = function(name){
+                var cookies = root.document.cookie ? root.document.cookie.split('; ') : [];
+                for (var i = 0; i < cookies.length; i++) {
+                    var pos = cookies[i].indexOf('=');
+                    if (name === root.decodeURIComponent(cookies[i].slice(0, pos)))
+                    {
+                        var cookie = cookies[i].slice(pos + 1).replace(/\+/g, ' ');
+                        cookie = root.decodeURIComponent(cookie);
+                        return cookie;
+                    }
+                }
+            };
+
+            var JsonDeserialize = function(content) {
+                return root.JSON && root.JSON.parse ? root.JSON.parse(content) : (new Function('return (' + content + ')'))();
+            };
+
+            try {
+                AmbientContext = GetCookie('AmbientContext');
+                AmbientContext = AmbientContext && JsonDeserialize(AmbientContext);
+            } catch(ex) {
+            } finally {
+                AmbientContext = AmbientContext || null;
+            }
+        })();
+        //]]>
+    </script>
+
+    <script type="text/javascript" src="Date%20Object%20%28JavaScript%29-Dateien/jquery-1.js" data-do-not-move="true" data-provides="jQuery"></script>
+    
+<link rel="stylesheet" type="text/css" href="Date%20Object%20%28JavaScript%29-Dateien/Combined.css"><script class="mtps-injected">try {
+/**/
+(window.MTPS || (window.MTPS = {})).cdnDomains || (window.MTPS.cdnDomains = { 
+	"image": "https://i-msdn.sec.s-msft.com", 
+	"js": "https://i2-msdn.sec.s-msft.com", 
+	"css": "https://i-msdn.sec.s-msft.com", 
+	"ttf": "https://i-msdn.sec.s-msft.com"
+});
+/**/
+} finally { MTPS._injectNextScript_0 && MTPS._injectNextScript_0(); }</script><script class="mtps-injected">try {
+//
+
+        window.appInsightsId = '5eb1b2eb-c47a-497a-a7ac-a1c230b2882f';
+        //
+} finally { MTPS._injectNextScript_1 && MTPS._injectNextScript_1(); }</script><script class="mtps-injected" src="Date%20Object%20%28JavaScript%29-Dateien/Combined.js"></script><link href="Date%20Object%20%28JavaScript%29-Dateien/PrintView.css" rel="stylesheet" type="text/css" media="print"><meta name="ms.layout_limit_max_width" content="false"><meta name="ms.AmbientContextId" content="40957089-9152-4C7B-96C3-EBC2D9F829EA"><meta name="ms.display_use_large_font" content="false"><meta name="ms.insight_perf_timing" content="true"><meta name="ms.AmbientContextDownstream" content="%7B%7D"><meta name="ms.display_high_contrast" content="false"><meta name="ms.insight_use_wedcs_vnext" content="true"><meta name="ms.perf.timing" content=",,4,4,4,10,2198,2205,2203,2382,2382,2387,,,"><script type="text/javascript" src="Date%20Object%20%28JavaScript%29-Dateien/ms.js"></script><script type="text/javascript" src="Date%20Object%20%28JavaScript%29-Dateien/jsll-3.js"></script><script class="mtps-injected" src="Date%20Object%20%28JavaScript%29-Dateien/SearchBox.js"></script><script class="mtps-injected" src="Date%20Object%20%28JavaScript%29-Dateien/JumpRedirect.js"></script><script class="mtps-injected">try {
+MTPS = window.MTPS || {}; MTPS.LocalizedStrings = window.MTPS.LocalizedStrings || {}; MTPS.LocalizedStrings.ExpandButtonTooltip = 'Expand'; MTPS.LocalizedStrings.CollapseButtonTooltip = 'Collapse'; MTPS.LocalizedStrings.EnhancedExpandTooltip = 'Click to expand. Double-click to expand all.'; MTPS.LocalizedStrings.EnhancedCollapseTooltip = 'Click to collapse. Double-click to collapse all.'; MTPS.LocalizedStrings.ExpandAllButtonTooltip = 'Expand All'; MTPS.LocalizedStrings.CollapseAllButtonTooltip = 'Collapse All';
+} finally { MTPS._injectNextScript_5 && MTPS._injectNextScript_5(); }</script><script class="mtps-injected" src="Date%20Object%20%28JavaScript%29-Dateien/Combined_002.js"></script><script src="Date%20Object%20%28JavaScript%29-Dateien/broker.js"></script><script class="mtps-injected">try {
+$(document).ready(function() {
+        try {
+            var token = $("#globalRequestVerification input[name='__RequestVerificationToken']").clone();
+            $("#siteFeedbackForm").append(token);
+        } catch(err) {
+            
+        }
+    });
+} finally { MTPS._injectNextScript_7 && MTPS._injectNextScript_7(); }</script></head>
+<body class="library FF">
+    <div id="page">
+
+        
+
+        
+    
+
+    
+    <link type="text/css" rel="stylesheet">
+    
+        
+        
+    <input id="isHeaderBleeding" value="true" type="hidden">
+    <div id="ux-header" dir="ltr" class="ltr msdn" ms.pgarea="header" data-device-type="desktop">
+        
+
+      <header ms.pgarea="header">
+        <span id="singleCol"></span>
+        <span id="doubleCol"></span>
+        <span id="isMobile"></span>
+        <div>
+          <div class="row topRow" role="banner">
+            <div class="top">
+              <div class="left">
+                <a class="msdnLogoImg" href="https://msdn.microsoft.com/en-us" title="MSDN home" ms.cmpgrp="mslogo">
+                  <div class="clip70x15">
+                    <img alt="Microsoft Logo" id="msft-logo" class="msft-logo" src="Date%20Object%20%28JavaScript%29-Dateien/HeaderFooterSprite.png">
+                  </div>
+                </a>
+                <div class="GrayPipeDiv clip1x18">
+                  <img alt="Gray Pipe" class="GrayPipe" src="Date%20Object%20%28JavaScript%29-Dateien/HeaderFooterSprite.png">
+                </div>
+                  <a class="DevCenterFullNameNonMegaBlade" href="https://msdn.microsoft.com/en-us">Developer Network</a>
+                <a class="DevCenterFullName" href="https://msdn.microsoft.com/en-us">Developer Network</a>
+                <a class="DevCenterShortName" href="https://msdn.microsoft.com/en-us">Developer</a>
+              </div>
+              <div class="right" ms.cmpgrp="aux nav">
+                <div id="signIn" tabindex="0" aria-label="Profile button">
+
+  <div class="profileImage"></div>
+
+
+
+<a class="scarabLink" href="https://login.live.com/login.srf?wa=wsignin1.0&amp;rpsnv=13&amp;ct=1478809832&amp;rver=6.7.6640.0&amp;wp=mcmbi&amp;wlcxt=msdn%24msdn%24msdn&amp;wreply=https%3a%2f%2fmsdn.microsoft.com%2fen-us%2flibrary%2fcd9w2te4%2528v%3dvs.94%2529.aspx&amp;lc=1033&amp;id=254354&amp;mkt=en-us">Sign in</a></div>
+
+
+
+
+                <div class="auxNav">
+                  <div>
+                    <div data-fragmentname="Subscriptions" id="Fragment_Subscriptions" xmlns="http://www.w3.org/1999/xhtml">
+  <a href="https://msdn.microsoft.com/subscriptions/manage/hh442900" id="Subscriptions_2153_1" xmlns="http://www.w3.org/1999/xhtml">MSDN subscriptions</a>
+</div>
+                    <div data-fragmentname="GetTools" id="Fragment_GetTools" xmlns="http://www.w3.org/1999/xhtml">
+  <a href="http://go.microsoft.com/fwlink/?LinkId=309297&amp;clcid=0x409&amp;slcid=0x409&amp;campaign=o%7Emsft%7Emsdn%7Egettools-header%7Edn308572" id="GetTools_2153_3" xmlns="http://www.w3.org/1999/xhtml">Get tools</a>
+</div>
+                  </div>
+                        <div>
+                            
+                        </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row middleRow">
+            <div class="expandTop" style="display: none;">
+              <div class="left"></div>
+              <div class="right"></div>
+            </div>
+          </div>
+        </div>
+        <div id="buttomRowWrapper" class="bg_default">
+          <div class="row buttomRow bg_default">
+            <div class="bottom">
+              <div class="left" role="navigation" aria-label="header toc" ms.cmpgrp="main nav">
+                <a id="grip" class="menu-icon" href="javascript:void(0)" role="button" aria-label="navigation menu"></a>
+                
+                <div id="drawer">
+                  <div class="toc">
+                    
+        <nav>
+            <ul class="navL1" ms.cmpgrp="main nav">
+                        <li class="inactive toggle">
+                                <a href="javascript:void(0)" role="button" aria-expanded="false">Downloads</a>
+                                <ul class="navL2" style="display: none;">
+                                        <li class="inactive">
+
+                                                <a href="https://www.visualstudio.com/downloads/download-visual-studio-vs" role="link" title="Visual Studio">Visual Studio</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://msdn.microsoft.com/subscriptions" role="link" title="MSDN subscription access">MSDN subscription access</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://msdn.microsoft.com/microsoft-sdks-msdn" role="link" title="SDKs">SDKs</a>
+                                        </li>
+                                        <li class="inactive toggle">
+
+                                                <a href="javascript:void(0)" title="Trial software" role="button" aria-expanded="false">Trial software</a>
+                                                <ul class="navL3" style="display: none;">
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/evalcenter" title="Free downloads" role="link">Free downloads</a>
+                                                        </li>
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/officeevaluationresources" title="Office resources" role="link">Office resources</a>
+                                                        </li>
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/sharepoint2013resources" title="SharePoint Server 2013 resources" role="link">SharePoint Server 2013 resources</a>
+                                                        </li>
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/sqlserver2014expressresources" title="SQL Server 2014 Express resources" role="link">SQL Server 2014 Express resources</a>
+                                                        </li>
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/windowsserver2012r2resources" title="Windows Server 2012 resources" role="link">Windows Server 2012 resources</a>
+                                                        </li>
+                                                </ul>
+                                        </li>
+                                </ul>
+                        </li>
+                        <li class="inactive toggle">
+                                <a href="javascript:void(0)" role="button" aria-expanded="false">Programs</a>
+                                <ul class="navL2" style="display: none;">
+                                        <li class="inactive toggle">
+
+                                                <a href="javascript:void(0)" title="Subscriptions" role="button" aria-expanded="false">Subscriptions</a>
+                                                <ul class="navL3" style="display: none;">
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/msdn-subscriptions-overview" title="Overview" role="link">Overview</a>
+                                                        </li>
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/msdn-subscriptions-administration" title="Administrators" role="link">Administrators</a>
+                                                        </li>
+                                                </ul>
+                                        </li>
+                                        <li class="inactive toggle">
+
+                                                <a href="javascript:void(0)" title="Students" role="button" aria-expanded="false">Students</a>
+                                                <ul class="navL3" style="display: none;">
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/imagine/imagine-home" title="Microsoft Imagine" role="link">Microsoft Imagine</a>
+                                                        </li>
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/microsoftstudentpartners" title="Microsoft Student Partners" role="link">Microsoft Student Partners</a>
+                                                        </li>
+                                                </ul>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://msdn.microsoft.com/applicationbuilder" role="link" title="ISV">ISV</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://www.microsoft.com/bizspark" role="link" title="Startups">Startups</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://rewards.msdn.microsoft.com/" role="link" title="TechRewards">TechRewards</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="http://events.msdn.microsoft.com/" role="link" title="Events">Events</a>
+                                        </li>
+                                </ul>
+                        </li>
+                        <li class="inactive toggle">
+                                <a href="javascript:void(0)" role="button" aria-expanded="false">Community</a>
+                                <ul class="navL2" style="display: none;">
+                                        <li class="inactive">
+
+                                                <a href="https://msdn.microsoft.com/magazine/dd767791" role="link" title="Magazine">Magazine</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://social.msdn.microsoft.com/forums/" role="link" title="Forums">Forums</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://blogs.msdn.microsoft.com/" role="link" title="Blogs">Blogs</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="http://channel9.msdn.com/" role="link" title="Channel 9">Channel 9</a>
+                                        </li>
+                                </ul>
+                        </li>
+                        <li class="inactive current toggle">
+                                <a href="javascript:void(0)" role="button" aria-expanded="false">Documentation</a>
+                                <ul class="navL2" style="display: none;">
+                                        <li class="inactive current">
+
+                                                <a href="https://msdn.microsoft.com/library" role="link" title="APIs and reference">APIs and reference</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://msdn.microsoft.com/developer-centers-msdn" role="link" title="Dev centers">Dev centers</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://code.msdn.microsoft.com/" role="link" title="Samples">Samples</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://msdn.microsoft.com/retiredcontent" role="link" title="Retired content">Retired content</a>
+                                        </li>
+                                </ul>
+                        </li>
+            </ul>
+        </nav>
+
+                  </div>
+                </div>
+              </div>
+              <div class="right" ms.title="search" role="search">
+                <div data-fragmentname="SearchBox" id="Fragment_SearchBox" xmlns="http://www.w3.org/1999/xhtml">
+  <div class="SearchBox">
+    <form id="HeaderSearchForm" name="HeaderSearchForm" method="get">
+      <button id="FakeHeaderSearchButton" value="Search" type="submit" class="header-search-button" role="button" aria-label="search finder" ms.interactiontype="2" ms.title="search" ms.pgarea="header" ms.searchtype="icon">
+        <div id="search-finder-div" class="clip16x20">
+          <img alt="search finder" id="search-finder" class="search-finder" src="Date%20Object%20%28JavaScript%29-Dateien/HeaderFooterSprite.png">
+        </div>
+      </button>
+      <button id="HeaderSearchButton" style="display:none" data-searchtype="icon" data-pgarea="header" title="Search MSDN" ms.interactiontype="2" ms.title="search" ms.pgarea="header" ms.searchtype="icon"></button>
+      <div id="searchSplitter"></div>
+      <div id="searchCloseIconDiv" class="clip16x20" tabindex="0">
+        <img alt="search clear" id="searchCloseIcon" class="search-clear-x" src="Date%20Object%20%28JavaScript%29-Dateien/HeaderFooterSprite.png">
+      </div>
+      <div id="searchTextContainer" style="width: 0px; display: none;">
+        <input id="HeaderSearchTextBox" name="query" aria-label="search edit textbox" maxlength="200" onfocus="Epx.Controls.SearchBox.watermarkFocus(event, this.title)" onblur="Epx.Controls.SearchBox.watermarkBlur(event, this.title)" autocomplete="off" data-searchtype="searchbox" data-pgarea="header" ms.interactiontype="2" ms.title="search" ms.pgarea="header" ms.searchtype="enter-key" type="text">
+      <div id="SearchFlyoutContainer" style="display: none; text-align: left; border: 1px solid buttonshadow; position: absolute; z-index: 1000; padding: 2px; background-color: rgb(255, 255, 255); color: rgb(255, 255, 255); font-family: MS Shell Dlg \32 ; font-size: 16px;"><div id="SuggestionContainer"><ul style="list-style: outside none none; padding: 4px 2px 0px 1px; cursor: pointer; margin: 1px; white-space: nowrap;" data-pgarea="header" data-searchtype="search dropdown" ms.interactiontype="2" ms.title="search" ms.pgarea="header" ms.searchtype="suggested keyword"></ul></div></div></div>
+    </form>
+    
+    
+  </div>
+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </header>
+
+    <div id="overlayMaskHeader"></div></div>
+
+    
+    
+    
+    <div id="jumpInfo" style="display: none">We’re sorry. The content you requested has been removed. You’ll be auto redirected in 1 second.</div>
+
+
+
+
+
+<link type="text/css" rel="stylesheet">
+<link type="text/css" rel="stylesheet">
+
+
+    <div id="breadcrumbs" ms.pgarea="body" ms.cmpgrp="breadcrumbs">
+        <div id="breadcrumbDesktop" class="breadCrumb">
+                        <span class="breadcrumbEllipsis"><a href="https://msdn.microsoft.com/en-us/library/aa902517.aspx" title="JavaScript"></a></span>
+                        <span><a href="https://msdn.microsoft.com/en-us/library/d1et7k7c%28v=vs.94%29.aspx" title="JavaScript Language Reference"><span>JavaScript Language Reference</span></a></span>
+                        <span><a href="https://msdn.microsoft.com/en-us/library/yek4tbz0%28v=vs.94%29.aspx" title="JavaScript Reference"><span>JavaScript Reference</span></a></span>
+                        <span class="breadcrumbDropSmall">
+                            <a id="breadcrumbDropDownButton" href="#" targethref="https://msdn.microsoft.com/en-us/library/yek4tbz0(v=vs.94).aspx" title="JavaScript Objects" role="button" aria-expanded="false"><span>JavaScript Objects</span></a>
+                        </span>
+        </div>
+        <div id="breadcrumbDropDownMenu" style="display: none;"></div>
+
+        <div id="breadcrumbTablet" class="breadCrumb">
+                        <span class="breadcrumbEllipsis"><a href="https://msdn.microsoft.com/en-us/library/yek4tbz0%28v=vs.94%29.aspx" title="JavaScript Reference"></a></span>
+                    <span><a href="https://msdn.microsoft.com/en-us/library/htbw4ywd%28v=vs.94%29.aspx" title="JavaScript Objects"><span>JavaScript Objects</span></a></span>
+                <span class="breadcrumbDropSmall"><a id="tocDropDownButton" href="#" title="Date Object" role="button" aria-expanded="false"><span>Date Object</span></a></span>
+        <div id="navigationButtons">
+            <a id="isd_print" href="https://msdn.microsoft.com/en-us/library/cd9w2te4%28d=printer,v=vs.94%29.aspx" rel="nofollow"><ins class="print"></ins>Print </a>
+            <a id="isd_printABook" href="https://msdn.microsoft.com/en-us/library/export/help/?returnurl=%2fen-us%2flibrary%2fcd9w2te4%28v%3dvs.94%29.aspx">
+                <ins class="export"></ins>Export (<span class="count">0</span>)
+            </a>
+        </div></div>
+        <div id="tocDropDownMenu" style="display: none;"></div>
+        <div id="breadcrumbMobile" class="breadCrumb">
+                <span class="breadcrumbEllipsis"><a href="https://msdn.microsoft.com/en-us/library/htbw4ywd%28v=vs.94%29.aspx" title="JavaScript Objects"></a></span>
+            <span class="breadcrumbDropSmall"><a id="tocPopupButton" href="#" title="Date Object" role="button" aria-expanded="false"><span>Date Object</span></a></span>
+        <div id="navigationButtons">
+            <a id="isd_print" href="https://msdn.microsoft.com/en-us/library/cd9w2te4%28d=printer,v=vs.94%29.aspx" rel="nofollow"><ins class="print"></ins>Print </a>
+            <a id="isd_printABook" href="https://msdn.microsoft.com/en-us/library/export/help/?returnurl=%2fen-us%2flibrary%2fcd9w2te4%28v%3dvs.94%29.aspx">
+                <ins class="export"></ins>Export (<span class="count">0</span>)
+            </a>
+        </div></div>
+    </div>
+    <div id="tocPopupMenu" style="display: none;">
+        <div id="tocPopMenuClose" class="tocCloseLarge" role="button" aria-label="Close Popup Menu" tabindex="0"></div>
+        <div id="tocTitle">Date Object</div>        
+    </div>
+
+    
+
+
+        <div id="body" ms.pgarea="body" class="">
+            <span id="tabletView_large"></span>
+            <span id="tabletView_small"></span>
+            <span id="mobileView"></span>
+            
+
+
+
+
+
+
+
+
+
+    <div id="leftNav" ms.cmpgrp="left toc" role="navigation" aria-label="left toc" style="height: auto;">
+
+    
+
+
+<div id="tocnav" class="ArchiveV2">
+    <div class="tocunselected">
+        <div id="tocExpandArea" style="display: block;">
+            <span class="toc_empty"></span>
+            <span id="tocExpandButton"><a href="#"></a></span>
+        </div>
+        <div id="tocExpand"><div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/7sw4ddf8%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ActiveXObject Object">ActiveXObject Object</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/k4h76zbx%28v=vs.94%29.aspx" id="hh832067_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Array Object">Array Object</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/br212474%28v=vs.94%29.aspx" id="hh832082_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ArrayBuffer Object">ArrayBuffer Object</a>                </div></div>
+    <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/87dw3w1k%28v=vs.94%29.aspx" id="hh832058_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="arguments Object">arguments Object</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/t7bkhaz6%28v=vs.94%29.aspx" id="dn263056_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Boolean Object">Boolean Object</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/br212463%28v=vs.94%29.aspx" id="hh832063_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="DataView Object">DataView Object</a>                </div></div>
+    <div class="tocselected"><div class="toclevel current" data-toclevel="1" data-childrenloaded="true">
+<a class="toc_expanded" href="javascript:void(0)" role="button" aria-label="Collapse the table of content" aria-expanded="true"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/cd9w2te4%28v=vs.94%29.aspx" id="hh832064_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Date Object">Date Object</a>                </div><div class="tocPadding"><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/jj155284%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="constructor Property (Date)">constructor Property (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/jj155281%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="prototype Property (Date)">prototype Property (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/ff679974%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Date.now Function">Date.now Function</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/k4w173wk%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Date.parse Function">Date.parse Function</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/wz6stk2z%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Date.UTC Function">Date.UTC Function</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/217fw5tk%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getDate Method (Date)">getDate Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/5wtd2bt8%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getDay Method (Date)">getDay Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/29y2w2x3%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getFullYear Method (Date)">getFullYear Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/815z9tc9%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getHours Method (Date)">getHours Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/52s3k2tf%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getMilliseconds Method (Date)">getMilliseconds Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/t919zcb7%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getMinutes Method (Date)">getMinutes Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/z284z68x%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getMonth Method (Date)">getMonth Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/ct79zx09%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getSeconds Method (Date)">getSeconds Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/7hcawkw2%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getTime Method (Date)">getTime Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/014ykh71%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getTimezoneOffset Method (Date)">getTimezoneOffset Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/z8d0k600%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getUTCDate Method (Date)">getUTCDate Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/aexkzf1c%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getUTCDay Method (Date)">getUTCDay Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/47f8w843%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getUTCFullYear Method (Date)">getUTCFullYear Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/s12ec8ba%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getUTCHours Method (Date)">getUTCHours Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/tkx22wzs%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getUTCMilliseconds Method (Date)">getUTCMilliseconds Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/7xt0y1cc%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getUTCMinutes Method (Date)">getUTCMinutes Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/hkd7k0a3%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getUTCMonth Method (Date)">getUTCMonth Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/4y0y6x01%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getUTCSeconds Method (Date)">getUTCSeconds Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/4d4x3w61%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getVarDate Method (Date)">getVarDate Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/x0a9sc10%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="getYear Method (Date)">getYear Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/txfkf2t2%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="setDate Method (Date)">setDate Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/y367b7x8%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="setFullYear Method (Date)">setFullYear Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/f4a5xhxy%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="setHours Method (Date)">setHours Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/a92fx7ha%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="setMilliseconds Method (Date)">setMilliseconds Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/3sbd2ey3%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="setMinutes Method (Date)">setMinutes Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/tst8h9zw%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="setMonth Method (Date)">setMonth Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/df6eb6zf%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="setSeconds Method (Date)">setSeconds Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/767045xx%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="setTime Method (Date)">setTime Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/xy2a08e6%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="setUTCDate Method (Date)">setUTCDate Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/c9sd3ksb%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="setUTCFullYear Method (Date)">setUTCFullYear Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/cwybddk2%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="setUTCHours Method (Date)">setUTCHours Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/ytffzy7a%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="setUTCMilliseconds Method (Date)">setUTCMilliseconds Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/esssx44h%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="setUTCMinutes Method (Date)">setUTCMinutes Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/d82ks7xe%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="setUTCMonth Method (Date)">setUTCMonth Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/k0aw4t5d%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="setUTCSeconds Method (Date)">setUTCSeconds Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/0f0shhbs%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="setYear Method (Date)">setYear Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/3k6ahb3a%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="toDateString Method (Date)">toDateString Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/a34ehb82%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="toGMTString Method (Date)">toGMTString Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/ff925953%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="toISOString Method (Date)">toISOString Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/cc907896%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="toJSON Method (Date)">toJSON Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/kecw102f%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="toLocaleDateString Method (Date)">toLocaleDateString Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/dn407520%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="toLocaleString (Date)">toLocaleString (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/474de325%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="toLocaleTimeString Method (Date)">toLocaleTimeString Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/y3xxxf8e%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="toTimeString Method (Date)">toTimeString Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/7ew14035%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="toUTCString Method (Date)">toUTCString Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/jj155294%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="toString Method (Date)">toString Method (Date)</a>                </div><div class="toclevel " data-toclevel="2">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/jj155184%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="valueOf Method (Date)">valueOf Method (Date)</a>                </div></div></div>
+    <div class="tocunselected">
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/bs12a9wf%28v=vs.94%29.aspx" id="hh832074_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Debug Object">Debug Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/6ch9zb09%28v=vs.94%29.aspx" id="hh832054_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Enumerator Object">Enumerator Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/dww52sbt%28v=vs.94%29.aspx" id="hh832051_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Error Object">Error Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/br212916%28v=vs.94%29.aspx" id="hh832070_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Float32Array Object">Float32Array Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/br212931%28v=vs.94%29.aspx" id="hh832072_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Float64Array Object">Float64Array Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/x844tc74%28v=vs.94%29.aspx" id="hh832081_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Function Object">Function Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/52f50e9t%28v=vs.94%29.aspx" id="hh832057_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Global Object">Global Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/br212462%28v=vs.94%29.aspx" id="hh832078_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Int8Array Object">Int8Array Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/br212480%28v=vs.94%29.aspx" id="hh832076_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Int16Array Object">Int16Array Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/br212468%28v=vs.94%29.aspx" id="hh832047_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Int32Array Object">Int32Array Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/dn342821%28v=vs.94%29.aspx" id="dn342820_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Intl.Collator Object">Intl.Collator Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/dn342822%28v=vs.94%29.aspx" id="dn342816_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Intl.DateTimeFormat Object">Intl.DateTimeFormat Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/dn342819%28v=vs.94%29.aspx" id="dn342817_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Intl.NumberFormat Object">Intl.NumberFormat Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/cc836458%28v=vs.94%29.aspx" id="hh832048_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="JSON Object">JSON Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/dn263029%28v=vs.94%29.aspx" id="dn280899_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Map Object">Map Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/b272f386%28v=vs.94%29.aspx" id="hh832052_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Math Object">Math Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/dwab3ed2%28v=vs.94%29.aspx" id="hh832059_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Number Object">Number Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/kb6te8d3%28v=vs.94%29.aspx" id="hh832056_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Object Object">Object Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/dn802826%28v=vs.94%29.aspx" id="dn802834_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Promise Object">Promise Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/dn911714%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Proxy Object">Proxy Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/mt146826%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Reflect Object">Reflect Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/9dthzd08%28v=vs.94%29.aspx" id="hh832071_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="RegExp Object">RegExp Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/h6e2eb7w%28v=vs.94%29.aspx" id="hh832066_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Regular Expression Object">Regular Expression Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/dn251547%28v=vs.94%29.aspx" id="dn251544_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Set Object">Set Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/ecczf11c%28v=vs.94%29.aspx" id="hh832079_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="String Object">String Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/dn919632%28v=vs.94%29.aspx" id="dn911715_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Symbol Object">Symbol Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/br212477%28v=vs.94%29.aspx" id="hh832077_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Uint8Array Object">Uint8Array Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/dn641188%28v=vs.94%29.aspx" id="dn641190_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Uint8ClampedArray Object">Uint8ClampedArray Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/br212484%28v=vs.94%29.aspx" id="hh832073_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Uint16Array Object">Uint16Array Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/br230737%28v=vs.94%29.aspx" id="hh832065_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Uint32Array Object">Uint32Array Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/y39d47w8%28v=vs.94%29.aspx" id="hh832049_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="VBArray Object">VBArray Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/dn251546%28v=vs.94%29.aspx" id="dn280896_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="WeakMap Object">WeakMap Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/dn911720%28v=vs.94%29.aspx" id="dn911721_VS.94_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="WeakSet Object">WeakSet Object</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/hh699852%28v=vs.94%29.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="WinRTError Object">WinRTError Object</a>                </div>
+    </div>
+    <a id="tocMenuToggler" href="javascript:void(0)" role="button">
+        <span id="tocMenuTogglerIcon" class="tocMenuCollapse" role="button" aria-expanded="true" aria-label="Table of contents menu"></span>
+        <div id="tocMenuTogglerLabel">TOC</div>
+    </a>
+</div>            <div style="display:none">
+                <div id="CollapseLocalizeString">Collapse the table of content</div>
+                <div id="ExpandLocalizeString">Expand the table of content</div>
+            </div>
+        <div>
+            <a id="isd_archiveControlResponsive" style="display:none;" href="javascript:void(0)" role="button" aria-label="Hide Archived Versions" data-include-archive="Show Archived Versions" data-exclude-archive="Hide Archived Versions">
+            </a>
+            <div id="isd_archiveInstrument" style="display:none">This documentation is archived and is not being maintained.</div>
+        </div>
+    </div>
+     <div id="content" class="content" ms.cmpgrp="content body" role="main">
+
+
+
+
+
+
+
+
+    <div id="archiveDisclaimerText" style="display:none">This documentation is archived and is not being maintained.</div>
+
+
+
+<div xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="topic">
+    <h1 class="title">Date Object (JavaScript)</h1>
+    <div id="mainSection">
+      <div id="mainBody">&nbsp;<div class="introduction"><p>Enables basic storage and retrieval of dates and times.</p></div><div><h2 class="LW_CollapsibleArea_TitleDiv"><div><a class="LW_CollapsibleArea_TitleAhref" title="" role="heading"><span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span><span class="LW_CollapsibleArea_Title">Syntax</span></a><div id="Anchor_0" class="LW_CollapsibleArea_Anchor_Div active"><a href="https://msdn.microsoft.com/en-us/library/cd9w2te4%28v=vs.94%29.aspx#Anchor_0" class="LW_CollapsibleArea_Anchor_Img" title="Right-click to copy and share the link for this section"></a></div><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr"></div></div></h2><div class="sectionblock">
+<div id="code-snippet-1" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copy to clipboard." href="javascript:if%20(window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_13b20904-f58b-43df-8dcf-8abca665fb4f');" ms.cmptyp="CodeSnippet">Copy</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_13b20904-f58b-43df-8dcf-8abca665fb4f" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>
+      dateObj = new Date()
+dateObj = new Date(dateVal)
+dateObj = new Date(year, month, date[, hours[, minutes[, seconds[,ms]]]]) 
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+</div></div><div><h2 class="LW_CollapsibleArea_TitleDiv"><div><a class="LW_CollapsibleArea_TitleAhref" title="" role="heading"><span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span><span class="LW_CollapsibleArea_Title">Parameters</span></a><div id="Anchor_1" class="LW_CollapsibleArea_Anchor_Div"><a href="https://msdn.microsoft.com/en-us/library/cd9w2te4%28v=vs.94%29.aspx#Anchor_1" class="LW_CollapsibleArea_Anchor_Img" title="Right-click to copy and share the link for this section"></a></div><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr"></div></div></h2><div class="sectionblock"><div class="section"><dl class="definitionTable"><dt><em>dateObj</em></dt><dd><p>Required. The variable name to which the <strong>Date</strong> object is assigned.</p></dd><dt><em>dateVal</em></dt><dd><p>Required. If a numeric value, <em>dateVal</em>
+ represents the number of milliseconds in Universal Coordinated Time 
+between the specified date and midnight January 1, 1970. If a string, <em>dateVal</em> is parsed according to the rules in <a href="https://msdn.microsoft.com/en-us/library/ff743760%28v=vs.94%29.aspx">Date and Time Strings (JavaScript)</a>. The <em>dateVal</em> argument can also be a VT_DATE value as returned from some ActiveX objects.</p></dd><dt><em>year</em></dt><dd><p>Required. The full year, for example, 1976 (and not 76).</p></dd><dt><em>month</em></dt><dd><p>Required. The month as an integer between 0 and 11 (January to December).</p></dd><dt><em>date</em></dt><dd><p>Required. The date as an integer between 1 and 31.</p></dd><dt><em>hours</em></dt><dd><p>Optional. Must be supplied if <em>minutes</em> is supplied. An integer from 0 to 23 (midnight to 11pm) that specifies the hour.</p></dd><dt>minutes</dt><dd><p>Optional. Must be supplied if <em>seconds</em> is supplied. An integer from 0 to 59 that specifies the minutes.</p></dd><dt><em>seconds</em></dt><dd><p>Optional. Must be supplied if <em>milliseconds</em> is supplied. An integer from 0 to 59 that specifies the seconds.</p></dd><dt><em>ms</em></dt><dd><p>Optional. An integer from 0 to 999 that specifies the milliseconds.</p></dd></dl></div></div></div><div><h2 class="LW_CollapsibleArea_TitleDiv"><div><a class="LW_CollapsibleArea_TitleAhref" title="" role="heading"><span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span><span class="LW_CollapsibleArea_Title">Remarks</span></a><div id="Anchor_2" class="LW_CollapsibleArea_Anchor_Div"><a href="https://msdn.microsoft.com/en-us/library/cd9w2te4%28v=vs.94%29.aspx#Anchor_2" class="LW_CollapsibleArea_Anchor_Img" title="Right-click to copy and share the link for this section"></a></div><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr"></div></div></h2><div class="sectionblock"><div class="section"><p>A <strong>Date</strong>
+ object contains a number representing a particular instant in time to 
+within a millisecond. If the value of an argument is greater than its 
+range or is a negative number, other stored values are modified 
+accordingly. For example, if you specify 150 seconds, JavaScript 
+redefines that number as two minutes and 30 seconds. </p><p>If the number is <strong>NaN</strong>, the object does not represent a specific instant of time. If you pass no parameters to the <strong>Date</strong> object, it is initialized to the current time (UTC). A value must be given to the object before you can use it. </p><p>The range of dates that can be represented in a <strong>Date</strong> object is approximately 285,616 years on either side of January 1, 1970. </p><p>See <a href="https://msdn.microsoft.com/en-us/library/ee532932%28v=vs.94%29.aspx">Calculating Dates and Times (JavaScript)</a> for more information about how to use the <strong>Date</strong> object and related methods.</p></div></div></div><div class="section"><h2 class="heading" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xlink="http://www.w3.org/1999/xlink">Example</h2><div class="description"><div class="section"><p>The following example illustrates the use of the <strong>Date</strong> object.</p></div></div>
+<div id="code-snippet-2" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        <div class="codeSnippetContainerTabSingle" dir="ltr"><a>JavaScript</a></div>
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copy to clipboard." href="javascript:if%20(window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_7c027dcf-51f3-4e1d-8290-636081684f53');" ms.cmptyp="CodeSnippet">Copy</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_7c027dcf-51f3-4e1d-8290-636081684f53" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre><span style="color:Blue;">var</span> dateString = <span style="color:#A31515;">"Today's date is: "</span>;
+
+<span style="color:Blue;">var</span> newDate = <span style="color:Blue;">new</span> Date();
+
+<span style="color:Green;">// Get the month, day, and year.</span>
+dateString += (newDate.getMonth() + 1) + <span style="color:#A31515;">"/"</span>;
+dateString += newDate.getDate() + <span style="color:#A31515;">"/"</span>;
+dateString += newDate.getFullYear();
+
+document.write(dateString);
+
+<span style="color:Green;">// Output: Today's date is: &lt;date&gt;</span>
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+</div><div class="section"><h2 class="heading" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xlink="http://www.w3.org/1999/xlink">Requirements</h2><div class="section"><p>The <strong>Date object</strong>
+ was introduced in Internet Explorer before Internet Explorer 6. Some 
+members in the following lists were introduced in later versions. For 
+more information, see <a href="https://msdn.microsoft.com/en-us/library/s4esdbwz%28v=vs.94%29.aspx">JavaScript Version Information</a> or the documentation for the individual members.</p></div></div><div><h2 class="LW_CollapsibleArea_TitleDiv"><div><a class="LW_CollapsibleArea_TitleAhref" title="" role="heading"><span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span><span class="LW_CollapsibleArea_Title">Properties</span></a><div id="Anchor_3" class="LW_CollapsibleArea_Anchor_Div"><a href="https://msdn.microsoft.com/en-us/library/cd9w2te4%28v=vs.94%29.aspx#Anchor_3" class="LW_CollapsibleArea_Anchor_Img" title="Right-click to copy and share the link for this section"></a></div><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr"></div></div></h2><div class="sectionblock"><div class="section"><p>The following table lists properties of the <strong>Date Object</strong>.</p><div class="contentTableWrapper"><table responsive="true" summary="table"><tbody><tr responsive="true"><th scope="col"><p>Property</p></th><th scope="col"><p>Description</p></th></tr><tr><td data-th="Property"><p><a href="https://msdn.microsoft.com/en-us/library/jj155284%28v=vs.94%29.aspx">constructor Property</a></p></td><td data-th="Description"><p>Specifies the function that creates an object.</p></td></tr><tr><td data-th="Property"><p><a href="https://msdn.microsoft.com/en-us/library/jj155281%28v=vs.94%29.aspx">prototype Property</a></p></td><td data-th="Description"><p>Returns a reference to the prototype for a class of objects.</p></td></tr></tbody></table></div></div></div></div><div><h2 class="LW_CollapsibleArea_TitleDiv"><div><a class="LW_CollapsibleArea_TitleAhref" title="" role="heading"><span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span><span class="LW_CollapsibleArea_Title">Functions</span></a><div id="Anchor_4" class="LW_CollapsibleArea_Anchor_Div"><a href="https://msdn.microsoft.com/en-us/library/cd9w2te4%28v=vs.94%29.aspx#Anchor_4" class="LW_CollapsibleArea_Anchor_Img" title="Right-click to copy and share the link for this section"></a></div><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr"></div></div></h2><div class="sectionblock"><div class="section"><p>The following table lists functions of the <strong>Date Object</strong>.</p><div class="contentTableWrapper"><table responsive="true" summary="table"><tbody><tr responsive="true"><th scope="col"><p>Functions</p></th><th scope="col"><p>Description</p></th></tr><tr><td data-th="Functions"><p><a href="https://msdn.microsoft.com/en-us/library/ff679974%28v=vs.94%29.aspx">Date.now Function</a></p></td><td data-th="Description"><p>Returns the number of milliseconds between January 1, 1970, and the current date and time.</p></td></tr><tr><td data-th="Functions"><p><a href="https://msdn.microsoft.com/en-us/library/k4w173wk%28v=vs.94%29.aspx">Date.parse Function</a></p></td><td data-th="Description"><p>Parses a string containing a date, and returns the number of milliseconds between that date and midnight, January 1, 1970.</p></td></tr><tr><td data-th="Functions"><p><a href="https://msdn.microsoft.com/en-us/library/wz6stk2z%28v=vs.94%29.aspx">Date.UTC Function</a></p></td><td data-th="Description"><p>Returns
+ the number of milliseconds between midnight, January 1, 1970 Universal 
+Coordinated Time (UTC) (or GMT) and the supplied date.</p></td></tr></tbody></table></div></div></div></div><a id="js56jsobjdatemeth"></a><div><h2 class="LW_CollapsibleArea_TitleDiv"><div><a class="LW_CollapsibleArea_TitleAhref" title="" role="heading"><span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span><span class="LW_CollapsibleArea_Title">Methods</span></a><div id="Anchor_5" class="LW_CollapsibleArea_Anchor_Div"><a href="https://msdn.microsoft.com/en-us/library/cd9w2te4%28v=vs.94%29.aspx#Anchor_5" class="LW_CollapsibleArea_Anchor_Img" title="Right-click to copy and share the link for this section"></a></div><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr"></div></div></h2><div class="sectionblock"><div class="section"><p>The following table lists methods of the <strong>Date Object</strong>.</p><div class="contentTableWrapper"><table responsive="true" summary="table"><tbody><tr responsive="true"><th scope="col"><p>Method</p></th><th scope="col"><p>Description</p></th></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/217fw5tk%28v=vs.94%29.aspx">getDate Method</a></p></td><td data-th="Description"><p>Returns the day-of-the-month value using local time.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/5wtd2bt8%28v=vs.94%29.aspx">getDay Method</a></p></td><td data-th="Description"><p>Returns the day-of-the-week value using local time.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/29y2w2x3%28v=vs.94%29.aspx">getFullYear Method</a></p></td><td data-th="Description"><p>Returns the year value using local time.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/815z9tc9%28v=vs.94%29.aspx">getHours Method</a></p></td><td data-th="Description"><p>Returns the hours value using local time.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/52s3k2tf%28v=vs.94%29.aspx">getMilliseconds Method</a></p></td><td data-th="Description"><p>Returns the milliseconds value using local time.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/t919zcb7%28v=vs.94%29.aspx">getMinutes Method</a></p></td><td data-th="Description"><p>Returns the minutes value using local time.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/z284z68x%28v=vs.94%29.aspx">getMonth Method</a></p></td><td data-th="Description"><p>Returns the month value using local time.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/ct79zx09%28v=vs.94%29.aspx">getSeconds Method</a></p></td><td data-th="Description"><p>Returns seconds value using local time.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/7hcawkw2%28v=vs.94%29.aspx">getTime Method</a></p></td><td data-th="Description"><p>Returns the time value in a <strong>Date</strong> Object as the number of milliseconds since midnight January 1, 1970.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/014ykh71%28v=vs.94%29.aspx">getTimezoneOffset Method</a></p></td><td data-th="Description"><p>Returns the difference in minutes between the time on the host computer and Universal Coordinated Time (UTC).</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/z8d0k600%28v=vs.94%29.aspx">getUTCDate Method</a></p></td><td data-th="Description"><p>Returns the day-of-the-month value using UTC.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/aexkzf1c%28v=vs.94%29.aspx">getUTCDay Method</a></p></td><td data-th="Description"><p>Returns the day-of-the-week value using UTC.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/47f8w843%28v=vs.94%29.aspx">getUTCFullYear Method</a></p></td><td data-th="Description"><p>Returns the year value using UTC.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/s12ec8ba%28v=vs.94%29.aspx">getUTCHours Method</a></p></td><td data-th="Description"><p>Returns the hours value using UTC.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/tkx22wzs%28v=vs.94%29.aspx">getUTCMilliseconds Method</a></p></td><td data-th="Description"><p>Returns the milliseconds value using UTC.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/7xt0y1cc%28v=vs.94%29.aspx">getUTCMinutes Method</a></p></td><td data-th="Description"><p>Returns the minutes value using UTC.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/hkd7k0a3%28v=vs.94%29.aspx">getUTCMonth Method</a></p></td><td data-th="Description"><p>Returns the month value using UTC.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/4y0y6x01%28v=vs.94%29.aspx">getUTCSeconds Method</a></p></td><td data-th="Description"><p>Returns the seconds value using UTC.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/4d4x3w61%28v=vs.94%29.aspx">getVarDate Method</a></p></td><td data-th="Description"><p>Returns the VT_DATE value in a <strong>Date</strong> object.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/x0a9sc10%28v=vs.94%29.aspx">getYear Method</a></p></td><td data-th="Description"><p>Returns the year value .</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/328kyd6z%28v=vs.94%29.aspx">hasOwnProperty Method</a></p></td><td data-th="Description"><p>Returns a Boolean value that indicates whether an object has a property with the specified name.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/bch72c9e%28v=vs.94%29.aspx">isPrototypeOf Method</a></p></td><td data-th="Description"><p>Returns a Boolean value that indicates whether an object exists in another object's prototype chain.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/adebfyya%28v=vs.94%29.aspx">propertyIsEnumerable Method</a></p></td><td data-th="Description"><p>Returns a Boolean value that indicates whether a specified property is part of an object and whether it is enumerable.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/txfkf2t2%28v=vs.94%29.aspx">setDate Method</a></p></td><td data-th="Description"><p>Sets the numeric day of the month using local time. </p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/y367b7x8%28v=vs.94%29.aspx">setFullYear Method</a></p></td><td data-th="Description"><p>Sets the year value using local time.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/f4a5xhxy%28v=vs.94%29.aspx">setHours Method</a></p></td><td data-th="Description"><p>Sets the hours value using local time.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/a92fx7ha%28v=vs.94%29.aspx">setMilliseconds Method</a></p></td><td data-th="Description"><p>Sets the milliseconds value using local time. </p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/3sbd2ey3%28v=vs.94%29.aspx">setMinutes Method</a></p></td><td data-th="Description"><p>Sets the minutes value using local time. </p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/tst8h9zw%28v=vs.94%29.aspx">setMonth Method</a></p></td><td data-th="Description"><p>Sets the month value using local time. </p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/df6eb6zf%28v=vs.94%29.aspx">setSeconds Method</a></p></td><td data-th="Description"><p>Sets the seconds value using local time. </p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/767045xx%28v=vs.94%29.aspx">setTime Method</a></p></td><td data-th="Description"><p>Sets the date and time value in the <strong>Date</strong> object.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/xy2a08e6%28v=vs.94%29.aspx">setUTCDate Method</a></p></td><td data-th="Description"><p>Sets the numeric day of the month using UTC.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/c9sd3ksb%28v=vs.94%29.aspx">setUTCFullYear Method</a></p></td><td data-th="Description"><p>Sets the year value using UTC.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/cwybddk2%28v=vs.94%29.aspx">setUTCHours Method</a></p></td><td data-th="Description"><p>Sets the hours value using UTC.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/ytffzy7a%28v=vs.94%29.aspx">setUTCMilliseconds Method</a></p></td><td data-th="Description"><p>Sets the milliseconds value using UTC.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/esssx44h%28v=vs.94%29.aspx">setUTCMinutes Method</a></p></td><td data-th="Description"><p>Sets the minutes value using UTC.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/d82ks7xe%28v=vs.94%29.aspx">setUTCMonth Method</a></p></td><td data-th="Description"><p>Sets the month value using UTC.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/k0aw4t5d%28v=vs.94%29.aspx">setUTCSeconds Method</a></p></td><td data-th="Description"><p>Sets the seconds value using UTC.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/0f0shhbs%28v=vs.94%29.aspx">setYear Method</a></p></td><td data-th="Description"><p>Sets the year value using local time. </p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/3k6ahb3a%28v=vs.94%29.aspx">toDateString Method</a></p></td><td data-th="Description"><p>Returns a date as a string value.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/a34ehb82%28v=vs.94%29.aspx">toGMTString Method</a></p></td><td data-th="Description"><p>Returns a date converted to a string using Greenwich Mean Time (GMT). </p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/ff925953%28v=vs.94%29.aspx">toISOString Method</a></p></td><td data-th="Description"><p>Returns a date as a string value in ISO format.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/cc907896%28v=vs.94%29.aspx">toJSON Method</a></p></td><td data-th="Description"><p>Used to transform data of an object type before the JSON serialization.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/kecw102f%28v=vs.94%29.aspx">toLocaleDateString Method</a></p></td><td data-th="Description"><p>Returns a date as a string value appropriate to the host environment's current locale.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/dn407520%28v=vs.94%29.aspx">toLocaleString Method</a></p></td><td data-th="Description"><p>Returns an object converted to a string using the current locale.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/474de325%28v=vs.94%29.aspx">toLocaleTimeString Method</a></p></td><td data-th="Description"><p>Returns a time as a string value appropriate to the host environment's current locale.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/jj155294%28v=vs.94%29.aspx">toString Method</a></p></td><td data-th="Description"><p>Returns a string representation of an object.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/y3xxxf8e%28v=vs.94%29.aspx">toTimeString Method</a></p></td><td data-th="Description"><p>Returns a time as a string value.</p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/7ew14035%28v=vs.94%29.aspx">toUTCString Method</a></p></td><td data-th="Description"><p>Returns a date converted to a string using UTC. </p></td></tr><tr><td data-th="Method"><p><a href="https://msdn.microsoft.com/en-us/library/jj155184%28v=vs.94%29.aspx">valueOf Method</a></p></td><td data-th="Description"><p>Returns the primitive value of the specified object.</p></td></tr></tbody></table></div></div></div></div><div><h2 class="LW_CollapsibleArea_TitleDiv"><div><a class="LW_CollapsibleArea_TitleAhref" title="" role="heading"><span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span><span class="LW_CollapsibleArea_Title">See Also</span></a><div id="Anchor_6" class="LW_CollapsibleArea_Anchor_Div"><a href="https://msdn.microsoft.com/en-us/library/cd9w2te4%28v=vs.94%29.aspx#Anchor_6" class="LW_CollapsibleArea_Anchor_Img" title="Right-click to copy and share the link for this section"></a></div><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr"></div></div></h2><div class="sectionblock"><p><a href="https://msdn.microsoft.com/en-us/library/ee532932%28v=vs.94%29.aspx">Calculating Dates and Times (JavaScript)</a><br><a href="https://msdn.microsoft.com/en-us/library/ff743760%28v=vs.94%29.aspx">Date and Time Strings (JavaScript)</a><br></p></div></div></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="libraryMemberFilter">
+    <div class="filterContainer">
+        <span>Show:</span>
+        <label>
+            <input class="libraryFilterInherited" checked="checked" value="Inherit" type="checkbox">Inherited
+        </label>
+        <label>
+            <input class="libraryFilterProtected" checked="checked" value="Protected" type="checkbox">Protected
+        </label>
+    </div>
+</div>
+    
+<input id="libraryMemberFilterEmptyWarning" value="There are no members available with your current filter settings." type="hidden">
+
+
+
+    </div>
+<div id="rightNavigationMenu" ms.cmpgrp="right nav">
+    <div id="mobileButtons">
+        
+    </div>
+    <div id="navMain">
+        <div id="closeNavigation">
+            <a class="tocCloseSmall" id="closeButton"></a>
+        </div>
+        <div id="navigationButtons">
+            <a id="isd_print" href="https://msdn.microsoft.com/en-us/library/cd9w2te4%28d=printer,v=vs.94%29.aspx" rel="nofollow"><ins class="print"></ins>Print </a>
+            <a id="isd_printABook2" href="https://msdn.microsoft.com/en-us/library/export/help/?returnurl=%2fen-us%2flibrary%2fcd9w2te4%28v%3dvs.94%29.aspx">
+                <ins class="export"></ins>Export (<span class="count">0</span>)
+            </a>
+            <a id="isdShare" href="#" role="button" aria-expanded="false">
+                <ins class="share"></ins>Share
+            </a>
+            <div id="socials" style="display: none">
+                <a class="isdFacebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmsdn.microsoft.com%2Fen-us%2Flibrary%2Fcd9w2te4%28v%3Dvs.100%29.aspx" aria-label="Share on Facebook">
+                    <ins class="facebook"></ins>
+                </a>
+                <a class="isdTwitter" href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fmsdn.microsoft.com%2Fen-us%2Flibrary%2Fcd9w2te4%28v%3Dvs.100%29.aspx&amp;text=Date%20Object%20%28JavaScript%29&amp;tw_p=tweetbutton&amp;url=https%3A%2F%2Fmsdn.microsoft.com%2Fen-us%2Flibrary%2Fcd9w2te4%28v%3Dvs.100%29.aspx" aria-label="Share on Twitter">
+                    <ins class="twitter"></ins>
+                </a>
+                <a class="isdGooglePlus" href="https://plus.google.com/share?url=https%3A%2F%2Fmsdn.microsoft.com%2Fen-us%2Flibrary%2Fcd9w2te4%28v%3Dvs.100%29.aspx" aria-label="Share on Google+">
+                    <ins class="googlePlus"></ins>
+                </a>
+            </div>
+        </div>
+        <div id="indoc_toc" style="" ms.cmpgrp="indoc toc">
+            <div id="indoc_title">IN THIS ARTICLE</div>
+            <ul id="indoc_toclist"><li data-index="0" class="active"><a href="#Syntax">Syntax</a></li><li data-index="1"><a href="#Parameters">Parameters</a></li><li data-index="2"><a href="#Remarks">Remarks</a></li><li data-index="3"><a href="#Properties">Properties</a></li><li data-index="4"><a href="#Functions">Functions</a></li><li data-index="5"><a href="#Methods">Methods</a></li><li data-index="6"><a href="#See%20Also">See Also</a></li></ul>
+        </div>
+    </div>
+</div>
+<div id="rightNavigationMenuThumbnail" class="rightNavigationMenuThumbnail">
+</div>
+
+
+
+
+
+        </div>
+        <div class="clear"></div>
+
+        
+
+<input name="__RequestVerificationToken" value="aDrBqSlOtzadhjiz4hljbIGgIMPVuwm8A6lUnd5qxcUgezo4FzHiavjYAHqdS2zCoy0SdP3hR1VFj6N3vMQ5RGMw5Ww1" type="hidden">
+<input id="ratingValueSubmitUrl" value="https://msdn.microsoft.com/en-us/library/feedback/rate/cd9w2te4(v=vs.94).aspx" type="hidden">
+<input id="ratingAdditionalSubmitUrl" value="https://msdn.microsoft.com/en-us/library/feedback/additional/cd9w2te4(v=vs.94).aspx" type="hidden">
+<input id="isTopicRated" value="false" type="hidden">
+
+
+
+
+    <div id="lib-footer">
+        
+
+    
+    <link type="text/css" rel="stylesheet">
+    
+        
+    <div id="ux-footer" class="" style="" dir="ltr" ms.pgarea="footer">
+
+
+    <div id="standardRatingBefore" class="clear stdr-container-before"></div>
+    <div id="standardRating" class="stdr-container" ms.pgarea="body" style="width: 1586px; margin-left: 0px; display: block;">
+        <div class="stdr-close" style="display: none;"></div>
+        <div class="stdr-vote stdr-content">
+            <div class="stdr-content">
+                <span class="stdr-votetitle">Is this page helpful?</span>
+                <button class="stdr-yes" aria-label="Yes, this page was helpful">Yes</button>
+                <button class="stdr-no" aria-label="No, this page was not helpful">No</button>
+                <input id="s_ratingValue" value="" type="hidden">
+            </div>
+        </div>
+        <div class="stdr-feedback" style="display: none">
+            <div class="stdr-form">
+                <div class="stdr-fieldtitle">Additional feedback?</div>
+                <textarea class="stdr-detail" rows="6" maxlength="1500"></textarea>
+                <div>
+                    <span class="stdr-count"><span class="stdr-charcnt">1500</span> characters remaining</span>
+                    <div class="stdr-buttons">
+                        <button class="stdr-provide" aria-label="Submit my additional feedback">Submit</button>
+                        <button class="stdr-skip" aria-label="Skip additional feedback">Skip this</button>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="stdr-thanks" style="display: none">
+            <div class="stdr-content">
+                <span class="stdr-thankyou">Thank you!</span>
+                <span class="stdr-appreciate">We appreciate your feedback.</span>
+            </div>
+        </div>
+
+        
+        <div id="contentFeedbackQAContainer" style="display: none;"></div>
+    </div>
+    <div id="standardRatingPlaceholder" style="display: none"></div>
+    
+
+        <footer class="top" role="navigation" aria-label="footer">
+            <div data-fragmentname="LeftLinks" id="Fragment_LeftLinks" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <h4 class="linkListTitle">Dev centers</h4>
+    <ul class="links">
+      <li>
+        <a href="https://dev.windows.com/" id="LeftLinks_2148_1" class="windowsBlue" xmlns="http://www.w3.org/1999/xhtml">Windows</a>
+      </li>
+      <li>
+        <a href="http://dev.office.com/" id="LeftLinks_2148_3" class="office" xmlns="http://www.w3.org/1999/xhtml">Office</a>
+      </li>
+      <li>
+        <a href="https://msdn.microsoft.com/vstudio" id="LeftLinks_2148_4" class="visualStudio" xmlns="http://www.w3.org/1999/xhtml">Visual Studio</a>
+      </li>
+      <li>
+        <a href="http://azure.microsoft.com/en-us/documentation/" target="_blank" id="LeftLinks_2148_12" xmlns="http://www.w3.org/1999/xhtml">Microsoft Azure</a>
+      </li>
+      <li>
+        <a href="https://msdn.microsoft.com/developer-centers-msdn" id="LeftLinks_2148_5" xmlns="http://www.w3.org/1999/xhtml">More...</a>
+      </li>
+    </ul>
+  </div>
+</div>
+            <div id="rightLinks">
+                <div data-fragmentname="CenterLinks1" id="Fragment_CenterLinks1" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <h4 class="linkListTitle">Learning resources</h4>
+    <ul class="links">
+      <li>
+        <a href="http://www.microsoftvirtualacademy.com/" id="CenterLinks1_2151_4" xmlns="http://www.w3.org/1999/xhtml">Microsoft Virtual Academy</a>
+      </li>
+      <li>
+        <a href="http://channel9.msdn.com/" id="CenterLinks1_2151_5" xmlns="http://www.w3.org/1999/xhtml">Channel 9</a>
+      </li>
+      <li>
+        <a href="https://msdn.microsoft.com/magazine/" id="CenterLinks1_2151_7" xmlns="http://www.w3.org/1999/xhtml">MSDN Magazine</a>
+      </li>
+    </ul>
+  </div>
+</div>
+                <div data-fragmentname="CenterLinks2" id="Fragment_CenterLinks2" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <h4 class="linkListTitle">Community</h4>
+    <ul class="links">
+      <li>
+        <a href="https://social.msdn.microsoft.com/forums/en-us/home" id="CenterLinks2_2151_8" xmlns="http://www.w3.org/1999/xhtml">Forums</a>
+      </li>
+      <li>
+        <a href="http://blogs.msdn.com/b/developer-tools/" id="CenterLinks2_2151_9" xmlns="http://www.w3.org/1999/xhtml">Blogs</a>
+      </li>
+      <li>
+        <a href="http://www.codeplex.com/" id="CenterLinks2_2151_10" xmlns="http://www.w3.org/1999/xhtml">Codeplex</a>
+      </li>
+    </ul>
+  </div>
+</div>
+                <div data-fragmentname="CenterLinks3" id="Fragment_CenterLinks3" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <h4 class="linkListTitle">Support</h4>
+    <ul class="links">
+      <li>
+        <a href="https://msdn.microsoft.com/hh361695" id="CenterLinks3_2151_11" xmlns="http://www.w3.org/1999/xhtml">Self support</a>
+      </li>
+    </ul>
+  </div>
+</div>
+                <div data-fragmentname="CenterLinks4" id="Fragment_CenterLinks4" xmlns="http://www.w3.org/1999/xhtml" class="nth-child-4n">
+  
+  <div class="linkList">
+    <h4 class="linkListTitle">Programs</h4>
+    <ul class="links">
+      <li>
+        <a href="https://www.microsoft.com/bizspark/" id="CenterLinks4_2151_13" xmlns="http://www.w3.org/1999/xhtml">BizSpark (for startups)</a>
+      </li>
+      <li>
+        <a href="https://imagine.microsoft.com/en-us" id="CenterLinks4_2151_22" xmlns="http://www.w3.org/1999/xhtml">Microsoft Imagine (for students)</a>
+      </li>
+    </ul>
+  </div>
+</div>
+            </div>
+        </footer>
+
+        <footer class="bottom" role="contentinfo">
+            <span class="localeContainer">
+                
+    <form class="selectLocale" id="selectLocaleForm" action="https://msdn.microsoft.com/en-us/selectlocale-dmc">
+        <input name="fromPage" value="https%3a%2f%2fmsdn.microsoft.com%2fen-us%2flibrary%2fcd9w2te4(v%3dvs.94).aspx" type="hidden">
+        <a href="#" onclick="$('#selectLocaleForm').submit();return false;" title="Change your language">United States (English)</a>
+    </form>
+
+
+            </span>
+
+            <div data-fragmentname="BottomLinks" id="Fragment_BottomLinks" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <ul class="links horizontal">
+      <li>
+        <a href="https://msdn.microsoft.com/newsletter.aspx" id="BottomLinks_2148_7" xmlns="http://www.w3.org/1999/xhtml">Newsletter</a>
+      </li>
+      <li>
+        <a href="https://msdn.microsoft.com/dn529288" id="BottomLinks_2148_8" xmlns="http://www.w3.org/1999/xhtml">Privacy &amp; cookies</a>
+      </li>
+      <li>
+        <a href="https://msdn.microsoft.com/cc300389" id="BottomLinks_2148_9" xmlns="http://www.w3.org/1999/xhtml">Terms of use</a>
+      </li>
+      <li>
+        <a href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/" id="BottomLinks_2148_10" xmlns="http://www.w3.org/1999/xhtml">Trademarks</a>
+      </li>
+    </ul>
+  </div>
+</div>
+            <span class="logoLegal">
+                <span class="logoSpan clip67x13" role="img" tabindex="0" aria-label="microsoft logo">
+                    <img alt="logo" class="logo" src="Date%20Object%20%28JavaScript%29-Dateien/HeaderFooterSprite.png">
+                </span>
+                <span class="copyright">© 2016 Microsoft</span>
+            </span>
+        </footer>
+    </div>
+    
+
+    </div>
+
+
+        <div class="footerPrintView">
+            <div class="footerCopyrightPrintView">© 2016 Microsoft</div>
+        </div>
+
+        
+        
+
+        
+        
+        
+
+    <input id="tocPaddingPerLevel" value="17" type="hidden">
+
+
+
+        <input id="MtpsDevice" value="Default" type="hidden">
+
+
+<!--[CDATA[ Third party scripts and code linked to or referenced from this website are licensed to you by the parties that own such code, not by Microsoft.  See ASP.NET Ajax CDN Terms of Use – http://www.asp.net/ajaxlibrary/CDN.ashx. ]]-->
+
+        
+        
+        
+            
+        
+
+<!--[CDATA[ WebTrends view model not available or IncludeLegacyWebTrendsScriptInGlobal feature flag is off]]-->
+
+
+
+
+<div id="globalRequestVerification">
+    <input name="__RequestVerificationToken" value="TysW6v0EH1pmdZEXxosK3b4gXuyy5aBpRWVKoysTdVvlnlhcW3TVRdrA4TPf30O0t8xZ9g0ti1qK6V3Z1mMIWzX57VI1" type="hidden">
+</div>
+
+
+    </div>
+
+    
+    
+
+    
+
+    
+<script type="text/javascript" class="mtps-injected">
+/*<![CDATA[*/
+(function(window,document){"use strict";function preload(scripts){for(var result=[],script,e,i=0;i<scripts.length;i++)script=scripts[i],script.hasOwnProperty("url")&&(e=document.createElement("script"),e.src=script.url,script.throwaway=e),result.push(script);return result}function inject(scripts,index){var script,elem;if(index>=scripts.length){delete mtps.injectScripts;return}script=scripts[index];elem=document.createElement("script");elem.className="mtps-injected";elem.async=!1;var isLoaded=!1,timeoutId=0,injectNextFnName="",injectNext=elem.onerror=function(){isLoaded||(isLoaded=!0,inject(scripts,index+1),window.clearTimeout(timeoutId),elem.onload=elem.onerror=elem.onreadystatechange=null,injectNextFnName&&delete mtps[injectNextFnName],elem.removeEventListener&&elem.removeEventListener("load",injectNext,!1))};elem.addEventListener?elem.addEventListener("load",injectNext,!1):elem.readyState==="uninitialized"?elem.onreadystatechange=function(){(this.readyState==="loaded"||this.readyState==="complete")&&injectNext()}:elem.onload=injectNext;script.hasOwnProperty("url")?(timeoutId=window.setTimeout(injectNext,12e4),elem.src=script.url):(injectNextFnName="_injectNextScript_"+index,mtps[injectNextFnName]=injectNext,timeoutId=window.setTimeout(injectNext,2e3),elem.text="try {\n"+script.txt+"\n} finally { MTPS."+injectNextFnName+" && MTPS."+injectNextFnName+"(); }");parent.appendChild(elem)}var mtps=window.MTPS||(window.MTPS={}),parent=document.getElementsByTagName("head")[0];mtps.injectScripts=function(scripts){inject(preload(scripts),0)}})(window,document);
+MTPS.injectScripts([
+	{ txt: "/**/\r\n(window.MTPS || (window.MTPS = {})).cdnDomains || (window.MTPS.cdnDomains = { \r\n\t\"image\": \"https://i-msdn.sec.s-msft.com\", \r\n\t\"js\": \"https://i2-msdn.sec.s-msft.com\", \r\n\t\"css\": \"https://i-msdn.sec.s-msft.com\", \r\n\t\"ttf\": \"https://i-msdn.sec.s-msft.com\"\r\n});\r\n/**/" },
+	{ txt: "//\n\n        window.appInsightsId = \u00275eb1b2eb-c47a-497a-a7ac-a1c230b2882f\u0027;\n        //" },
+	{ url: "https://i2-msdn.sec.s-msft.com/Combined.js?resources=0:Utilities,1:Layout,2:Header,3:Breadcrumbs,4:LibraryRightNavigationMenu,4:PrintExportButton,5:StandardRating,2:Footer,0:Topic,3:ResponsiveSupport,0:AppInsightsPerf,3:ResponsiveToc,0:ABTestControl,4:WEDCS,3:CmpgrpForHeader,1:SearchBox;/Areas/Epx/Content/Scripts:0,/Areas/Epx/Themes/Base/Content:1,/Areas/Centers/Themes/StandardDevCenter/Content:2,/Areas/Library/Content:3,/Areas/Library/Themes/Base/Content:4,/Areas/Global/Content:5\u0026amp;hashKey=DEEB26CA1F0235FE031EB076B9EC462D\u0026amp;v=87F53ABB88B60DED8E432D24109092C6" },
+	{ url: "https://i1.services.social.microsoft.com/search/Widgets/SearchBox.jss?boxid=HeaderSearchTextBox\u0026btnid=HeaderSearchButton\u0026minimumTermLength=2\u0026pgArea=header\u0026brand=Msdn\u0026loc=en-us\u0026focusOnInit=false\u0026emptyWatermark=true\u0026searchButtonTooltip=Search MSDN" },
+	{ url: "https://i2-msdn.sec.s-msft.com/Areas/Epx/Themes/Base/Content/JumpRedirect.js" },
+	{ txt: "MTPS = window.MTPS || {}; MTPS.LocalizedStrings = window.MTPS.LocalizedStrings || {}; MTPS.LocalizedStrings.ExpandButtonTooltip = \u0027Expand\u0027; MTPS.LocalizedStrings.CollapseButtonTooltip = \u0027Collapse\u0027; MTPS.LocalizedStrings.EnhancedExpandTooltip = \u0027Click to expand. Double-click to expand all.\u0027; MTPS.LocalizedStrings.EnhancedCollapseTooltip = \u0027Click to collapse. Double-click to collapse all.\u0027; MTPS.LocalizedStrings.ExpandAllButtonTooltip = \u0027Expand All\u0027; MTPS.LocalizedStrings.CollapseAllButtonTooltip = \u0027Collapse All\u0027;" },
+	{ url: "https://i2-msdn.sec.s-msft.com/Combined.js?resources=0:LibraryMemberFilter,1:Toc_Fixed,1:CodeSnippet,1:TopicNotInScope,1:VersionSelector,1:SurveyBroker;/Areas/Library/Content:0,/Areas/Epx/Content/Scripts:1\u0026amp;hashKey=D8D1FFAA6CA68460B7EFA5923975CA44\u0026amp;v=87F53ABB88B60DED8E432D24109092C6" },
+	{ txt: "$(document).ready(function() {\n        try {\n            var token = $(\"#globalRequestVerification input[name=\u0027__RequestVerificationToken\u0027]\").clone();\n            $(\"#siteFeedbackForm\").append(token);\n        } catch(err) {\n            \n        }\n    });" }
+]);
+
+/*]]>*/
+</script>
+
+<div id="overlayMask"></div><script src="Date%20Object%20%28JavaScript%29-Dateien/broker-config.js"></script></body></html>
