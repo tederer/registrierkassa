@@ -19,10 +19,20 @@ cash.server.TodaysInvoicesPublisher = function TodaysInvoicesPublisher(bus, data
       }
    };
    
+   var descending = function descending(first, second) {
+      var result = 0;
+      
+      if (first.timestamp !== second.timestamp) {
+         result = (first.timestamp < second.timestamp) ? 1 : -1;
+      }
+
+      return result;
+   };
+   
    var publishInvoices = function publishInvoices(documents) {
       // documents is an array of {id:2, timestamp:1478883481579, items:[{name: 'Apfel', price: 2.5},{name: 'Parmesan', price: 23}]}
       return new Promise(function(fulfill, reject) {
-         bus.publish(cash.topics.TODAYS_INVOICES, documents);
+         bus.publish(cash.topics.TODAYS_INVOICES, documents.sort(descending));
          fulfill();
       });
    };

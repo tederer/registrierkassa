@@ -1,3 +1,1 @@
-* TingoDB gibt "_id" zurück beim getAll.... !!!
-* TodaysInvoicesPublisherTest.js test 'the published invoices are sorted descending by their timestimes' gehört vollendet
 * database-Ordner ist nicht eingecheckt bzw. wird nicht von grunt erzeugt

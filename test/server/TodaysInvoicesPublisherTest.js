@@ -17,6 +17,7 @@ var capturedCollectionNames;
 var capturedInvoices;
 var getAllDocumentsInCollectionWasSuccessful;
 var documentsInCollection;
+var numberOfExpectedPublicationsReached;
 
 var TestingDatabase = function TestingDatabase() {
    
@@ -81,6 +82,12 @@ var givenThePublication = function givenThePublication(publicationTopic) {
    return getWithData(publicationTopic, bus.publish);
 };
 
+var givenTheExpectedNumberOfPublicationsIs = function givenTheExpectedNumberOfPublicationIs(numberOfPublication) {
+   numberOfExpectedPublicationsReached = function() {
+      return capturedInvoices.length === numberOfPublication;
+   };
+};
+
 var whenTheCommand = function whenTheCommand(commandTopic) {
    return getWithData(commandTopic, bus.sendCommand);
 };
@@ -106,6 +113,7 @@ var setup = function setup() {
    
    doneFunction = function() {};
    doneAfterInvoicesReceived = false;
+   numberOfExpectedPublicationsReached = function() {return false;};
    capturedCollectionNames = [];
    capturedInvoices = [];
    getAllDocumentsInCollectionWasSuccessful = undefined;
@@ -116,7 +124,7 @@ var setup = function setup() {
 
    bus.subscribeToPublication(cash.topics.TODAYS_INVOICES, function(data) {
       capturedInvoices[capturedInvoices.length] = data;
-      if (doneAfterInvoicesReceived) {
+      if (doneAfterInvoicesReceived || numberOfExpectedPublicationsReached()) {
          doneFunction();
       }
    });
@@ -169,18 +177,24 @@ describe('TodaysInvoidesPublisher', function() {
       setTimeout(doneFunction, 10);
    });
    
-   /*it('the published invoices are sorted descending by their timestimes', function(done) {
+   it('the published invoices are sorted descending by their timestimes', function(done) {
       getAllDocumentsInCollectionWasSuccessful = true;
       
-      documentsInCollection = [{id: 4, timestamp: 3333, items: [{name:'plant', price: 22}]}];
+      documentsInCollection = [     {id:  4, timestamp: 3333, items: [{name:'plant', price: 22}]},
+                                    {id:  3, timestamp:  221, items: [{name:'pot', price: 10}]},
+                                    {id: 12, timestamp: 1107, items: [{name:'in vitro flask', price: 10}]}];
+      
+      var expectedPublishedData = [ {id:  4, timestamp: 3333, items: [{name:'plant', price: 22}]},
+                                    {id: 12, timestamp: 1107, items: [{name:'in vitro flask', price: 10}]},
+                                    {id:  3, timestamp:  221, items: [{name:'pot', price: 10}]}];
       
       expecting(function() {
          expect(capturedInvoices.length).to.be.eql(2);
+         expect(capturedInvoices[1]).to.be.eql(expectedPublishedData);
       }, done);
 
+      givenTheExpectedNumberOfPublicationsIs(2);
       givenThePublication(cash.server.topics.CASH_COLLECTION_NAME).withData('donaldsInvoices').getsSent();
       whenTheCommand(cash.server.topics.NEW_INVOICE_ADDED_COMMAND).withData({}).getsSent();
-      
-      setTimeout(doneFunction, 10);
-   });*/
+   });
 });  
