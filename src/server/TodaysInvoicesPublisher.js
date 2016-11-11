@@ -20,9 +20,8 @@ cash.server.TodaysInvoicesPublisher = function TodaysInvoicesPublisher(bus, data
    };
    
    var publishInvoices = function publishInvoices(documents) {
-      // documents is an array of {timestamp: millis, items: [{name:'pot', price: 2}]}
+      // documents is an array of {id:2, timestamp:1478883481579, items:[{name: 'Apfel', price: 2.5},{name: 'Parmesan', price: 23}]}
       return new Promise(function(fulfill, reject) {
-         console.log('publish: ' + JSON.stringify(documents));
          bus.publish(cash.topics.TODAYS_INVOICES, documents);
          fulfill();
       });
