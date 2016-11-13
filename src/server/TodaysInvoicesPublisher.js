@@ -11,6 +11,8 @@ assertNamespace('cash.server');
 cash.server.TodaysInvoicesPublisher = function TodaysInvoicesPublisher(bus, database, optionals) {
    
    var loggingDisabled = (optionals === undefined || optionals.loggingDisabled === undefined) ? false : optionals.loggingDisabled;
+   var getTimeInMillis = (optionals === undefined || optionals.timeFunction === undefined) ? Date.now : optionals.timeFunction;
+   
    var cashCollectionName;
    
    var writeErrorToConsole = function writeErrorToConsole(error) {
@@ -37,13 +39,23 @@ cash.server.TodaysInvoicesPublisher = function TodaysInvoicesPublisher(bus, data
       });
    };
    
+   var getTwoDigitLogNumber = function getTwoDigitLogNumber(number) {
+         return ((number < 10) ? '0' : '') + number;
+   };
+   
    bus.subscribeToPublication(cash.server.topics.CASH_COLLECTION_NAME, function(collectionName) {
       cashCollectionName = collectionName;
-      database.getAllDocumentsInCollection(cashCollectionName).then(publishInvoices, writeErrorToConsole);
+      database.getAllDocumentsInCollectionInTimespan(cashCollectionName, 0, 0).then(publishInvoices, writeErrorToConsole);
    });
    
    bus.subscribeToCommand(cash.server.topics.NEW_INVOICE_ADDED_COMMAND, function(data) {
-      database.getAllDocumentsInCollection(cashCollectionName).then(publishInvoices, writeErrorToConsole);
+      var now = new Date(getTimeInMillis());
+      var isoMinimumTimestamp = now.getFullYear() + '-' + getTwoDigitLogNumber((now.getMonth() + 1)) + '-' + getTwoDigitLogNumber(now.getDate()) + 'T00:00:00Z';
+      var nowMidnight = new Date(isoMinimumTimestamp);
+      var minimumTimestamp = nowMidnight.getTime();
+      var maximumTimestamp = minimumTimestamp + 24 * 60 * 60 * 1000 - 1;
+      
+      database.getAllDocumentsInCollectionInTimespan(cashCollectionName, minimumTimestamp, maximumTimestamp).then(publishInvoices, writeErrorToConsole);
    });
 };
  

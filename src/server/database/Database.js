@@ -22,5 +22,9 @@ cash.server.database.Database = function Database() {
    
    // returns a Promise that provided an array containing all documents in the collection identified by its name.
    this.getAllDocumentsInCollection = function getAllDocumentsInCollection(collectionName) {};
+   
+   // returns a Promise that provided an array containing all documents with 
+   // minimumTimestamp <= timestamp <= maximumTimestamp in the collection identified by its name.
+   this.getAllDocumentsInCollectionInTimespan = function getAllDocumentsInCollectionInTimespan(collectionName, minimumTimestamp, maximumTimestamp) {};
 };
  

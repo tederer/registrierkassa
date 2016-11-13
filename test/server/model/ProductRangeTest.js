@@ -113,6 +113,12 @@ var TestingDatabase = function TestingDatabase() {
          }
       });
    };
+   
+   this.getAllDocumentsInCollectionInTimespan = function getAllDocumentsInCollectionInTimespan(collectionName, minimumTimestamp, maximumTimestamp) {
+      return new Promise(function(fulfill, reject) {
+         reject('getAllDocumentsInCollectionInTimespan not implemented in TestingDatabase');
+      });
+   };
 };
 
 var setup = function setup() {

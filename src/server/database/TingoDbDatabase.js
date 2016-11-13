@@ -97,6 +97,8 @@ cash.server.database.TingoDbDatabase = function TingoDbDatabase(databaseFolder) 
    this.getAllDocumentsInCollection = function getAllDocumentsInCollection(collectionName) {
       return getCollection(collectionName).then(findAll);  
    };
+   
+   this.getAllDocumentsInCollectionInTimespan = function getAllDocumentsInCollectionInTimespan(collectionName, minimumTimestamp, maximumTimestamp) {};
 };
 
 cash.server.database.TingoDbDatabase.prototype = new cash.server.database.Database();

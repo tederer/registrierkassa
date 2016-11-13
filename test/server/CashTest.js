@@ -65,6 +65,13 @@ var TestingDatabase = function TestingDatabase() {
          reject('getAllDocumentsInCollection not implemented in TestingDatabase');
       });
    };
+   
+      
+   this.getAllDocumentsInCollectionInTimespan = function getAllDocumentsInCollectionInTimespan(collectionName, minimumTimestamp, maximumTimestamp) {
+      return new Promise(function(fulfill, reject) {
+         reject('getAllDocumentsInCollectionInTimespan not implemented in TestingDatabase');
+      });
+   };
 };
 
 function valueIsAnObject(val) {

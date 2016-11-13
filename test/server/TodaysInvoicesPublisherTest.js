@@ -13,11 +13,12 @@ var database;
 var publisherInstance;
 var doneFunction;
 var doneAfterInvoicesReceived;
-var capturedCollectionNames;
+var capturedRequests;
 var capturedInvoices;
-var getAllDocumentsInCollectionWasSuccessful;
+var getAllDocumentsInCollectionInTimespanWasSuccessful;
 var documentsInCollection;
 var numberOfExpectedPublicationsReached;
+var timeInMillis;
 
 var TestingDatabase = function TestingDatabase() {
    
@@ -30,27 +31,33 @@ var TestingDatabase = function TestingDatabase() {
    
    this.update = function update(collectionName, documentId, document) {
       return new Promise(function(fulfill, reject) {
-         reject('getAllDocumentsInCollection not implemented in TestingDatabase');
+         reject('update not implemented in TestingDatabase');
       });
    };
    
    this.remove = function remove(collectionName, documentId) {
       return new Promise(function(fulfill, reject) {
-         reject('getAllDocumentsInCollection not implemented in TestingDatabase');
+         reject('remove not implemented in TestingDatabase');
       });
    };
    
    this.getAllDocumentsInCollection = function getAllDocumentsInCollection(collectionName) {
-      capturedCollectionNames[capturedCollectionNames.length] = collectionName;
+      return new Promise(function(fulfill, reject) {
+         reject('getAllDocumentsInCollection not implemented in TestingDatabase');
+      });
+   };
+   
+   this.getAllDocumentsInCollectionInTimespan = function getAllDocumentsInCollectionInTimespan(collectionName, minimumTimestamp, maximumTimestamp) {
+      capturedRequests[capturedRequests.length] = {collectionName:collectionName, minimumTimestamp: minimumTimestamp, maximumTimestamp: maximumTimestamp};
       
       return new Promise(function(fulfill, reject) {
-         if (getAllDocumentsInCollectionWasSuccessful === undefined) {
-            reject('getAllDocumentsInCollection is undefined');
+         if (getAllDocumentsInCollectionInTimespanWasSuccessful === undefined) {
+            reject('getAllDocumentsInCollectionInTimespanWasSuccessful is undefined');
          } else {
-            if(getAllDocumentsInCollectionWasSuccessful === true) {
+            if(getAllDocumentsInCollectionInTimespanWasSuccessful === true) {
                fulfill(documentsInCollection);
             } else {
-               reject('getAllDocumentsInCollection failed');
+               reject('getAllDocumentsInCollectionInTimespanWasSuccessful failed');
             }
          }
       });
@@ -111,12 +118,13 @@ var expecting = function expecting(expectFunction, done) {
 
 var setup = function setup() {
    
+   timeInMillis = 0;
    doneFunction = function() {};
    doneAfterInvoicesReceived = false;
    numberOfExpectedPublicationsReached = function() {return false;};
-   capturedCollectionNames = [];
+   capturedRequests = [];
    capturedInvoices = [];
-   getAllDocumentsInCollectionWasSuccessful = undefined;
+   getAllDocumentsInCollectionInTimespanWasSuccessful = undefined;
    documentsInCollection = undefined;
    
    bus = new common.infrastructure.bus.Bus();
@@ -129,7 +137,7 @@ var setup = function setup() {
       }
    });
    
-   var optionals = { loggingDisabled: true};
+   var optionals = { loggingDisabled: true, timeFunction: function() { return timeInMillis;}};
    publisherInstance = new cash.server.TodaysInvoicesPublisher(bus, database, optionals);
 };
 
@@ -144,13 +152,13 @@ describe('TodaysInvoidesPublisher', function() {
    
    it('the database gets asked for all documents in the provided collection when the collection name publication is received', function() {
       whenThePublication(cash.server.topics.CASH_COLLECTION_NAME).withData('CollectionA').getsSent();
-      expect(capturedCollectionNames.length).to.be.eql(1);
-      expect(capturedCollectionNames[0]).to.be.eql('CollectionA');
+      expect(capturedRequests.length).to.be.eql(1);
+      expect(capturedRequests[0].collectionName).to.be.eql('CollectionA');
    });
    
    it('the invoices get published when the collection name publication is received', function(done) {
       doneAfterInvoicesReceived = true;
-      getAllDocumentsInCollectionWasSuccessful = true;
+      getAllDocumentsInCollectionInTimespanWasSuccessful = true;
       
       documentsInCollection = [{id: 43, timestamp:1234, items: [{name:'pot', price: 2}]}];
       
@@ -163,7 +171,7 @@ describe('TodaysInvoidesPublisher', function() {
    });
    
    it('the invoices get published when a new invoice was added', function(done) {
-      getAllDocumentsInCollectionWasSuccessful = true;
+      getAllDocumentsInCollectionInTimespanWasSuccessful = true;
       
       documentsInCollection = [{id: 4, timestamp: 6766, items: [{name:'plant', price: 22}]}];
       
@@ -178,7 +186,7 @@ describe('TodaysInvoidesPublisher', function() {
    });
    
    it('the published invoices are sorted descending by their timestimes', function(done) {
-      getAllDocumentsInCollectionWasSuccessful = true;
+      getAllDocumentsInCollectionInTimespanWasSuccessful = true;
       
       documentsInCollection = [     {id:  4, timestamp: 3333, items: [{name:'plant', price: 22}]},
                                     {id:  3, timestamp:  221, items: [{name:'pot', price: 10}]},
@@ -195,6 +203,26 @@ describe('TodaysInvoidesPublisher', function() {
 
       givenTheExpectedNumberOfPublicationsIs(2);
       givenThePublication(cash.server.topics.CASH_COLLECTION_NAME).withData('donaldsInvoices').getsSent();
+      whenTheCommand(cash.server.topics.NEW_INVOICE_ADDED_COMMAND).withData({}).getsSent();
+   });
+   
+   it('the published invoices were all created today', function(done) {
+      var aDayInMillis = 24 * 60 * 60 * 1000;
+      
+      getAllDocumentsInCollectionInTimespanWasSuccessful = true;
+      
+      documentsInCollection = [{id: 4, timestamp: aDayInMillis, items: [{name:'plant', price: 22}]}];
+      
+      expecting(function() {
+         expect(capturedRequests.length).to.be.eql(2);
+         expect(capturedRequests[1].collectionName).to.be.eql('daisysInvoices');
+         expect(capturedRequests[1].minimumTimestamp).to.be.eql(aDayInMillis);
+         expect(capturedRequests[1].maximumTimestamp).to.be.eql(2 * aDayInMillis - 1);
+      }, done);
+
+      timeInMillis = aDayInMillis + 500;
+      givenTheExpectedNumberOfPublicationsIs(2);
+      givenThePublication(cash.server.topics.CASH_COLLECTION_NAME).withData('daisysInvoices').getsSent();
       whenTheCommand(cash.server.topics.NEW_INVOICE_ADDED_COMMAND).withData({}).getsSent();
    });
 });  
