@@ -1,3 +1,2 @@
 * in TodaysInvoicesPublisher, wenn CASH_COLLECTION_NAME reinkommt, min und maxTimestamp setzen. Derzeit sind beide auf 0 gesetzt!
 * getAllDocumentsInCollectionInTimespan in TingoDbDatabase implementieren
-* database-Ordner ist nicht eingecheckt bzw. wird nicht von grunt erzeugt
