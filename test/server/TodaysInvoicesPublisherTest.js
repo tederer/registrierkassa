@@ -13,7 +13,8 @@ var database;
 var publisherInstance;
 var doneFunction;
 var doneAfterInvoicesReceived;
-var capturedRequests;
+var doneAfterGetAllDocumentsInCollectionInTimespan;
+var capturedDatabaseRequests;
 var capturedInvoices;
 var getAllDocumentsInCollectionInTimespanWasSuccessful;
 var documentsInCollection;
@@ -48,16 +49,22 @@ var TestingDatabase = function TestingDatabase() {
    };
    
    this.getAllDocumentsInCollectionInTimespan = function getAllDocumentsInCollectionInTimespan(collectionName, minimumTimestamp, maximumTimestamp) {
-      capturedRequests[capturedRequests.length] = {collectionName:collectionName, minimumTimestamp: minimumTimestamp, maximumTimestamp: maximumTimestamp};
+      capturedDatabaseRequests[capturedDatabaseRequests.length] = {collectionName:collectionName, minimumTimestamp: minimumTimestamp, maximumTimestamp: maximumTimestamp};
       
       return new Promise(function(fulfill, reject) {
          if (getAllDocumentsInCollectionInTimespanWasSuccessful === undefined) {
             reject('getAllDocumentsInCollectionInTimespanWasSuccessful is undefined');
+            if(doneAfterGetAllDocumentsInCollectionInTimespan) {
+               doneFunction();
+            }
          } else {
             if(getAllDocumentsInCollectionInTimespanWasSuccessful === true) {
                fulfill(documentsInCollection);
             } else {
                reject('getAllDocumentsInCollectionInTimespanWasSuccessful failed');
+            }
+            if(doneAfterGetAllDocumentsInCollectionInTimespan) {
+               doneFunction();
             }
          }
       });
@@ -121,8 +128,9 @@ var setup = function setup() {
    timeInMillis = 0;
    doneFunction = function() {};
    doneAfterInvoicesReceived = false;
+   doneAfterGetAllDocumentsInCollectionInTimespan = false;
    numberOfExpectedPublicationsReached = function() {return false;};
-   capturedRequests = [];
+   capturedDatabaseRequests = [];
    capturedInvoices = [];
    getAllDocumentsInCollectionInTimespanWasSuccessful = undefined;
    documentsInCollection = undefined;
@@ -152,10 +160,30 @@ describe('TodaysInvoidesPublisher', function() {
    
    it('the database gets asked for all documents in the provided collection when the collection name publication is received', function() {
       whenThePublication(cash.server.topics.CASH_COLLECTION_NAME).withData('CollectionA').getsSent();
-      expect(capturedRequests.length).to.be.eql(1);
-      expect(capturedRequests[0].collectionName).to.be.eql('CollectionA');
+      expect(capturedDatabaseRequests.length).to.be.eql(1);
+      expect(capturedDatabaseRequests[0].collectionName).to.be.eql('CollectionA');
    });
    
+      
+   it('the database gets asked for all documents of today in the provided collection when the collection name publication is received', function(done) {
+      var aDayInMillis = 24 * 60 * 60 * 1000;
+      
+      doneAfterGetAllDocumentsInCollectionInTimespan = true;
+      getAllDocumentsInCollectionInTimespanWasSuccessful = true;
+      
+      documentsInCollection = [{id: 4, timestamp: aDayInMillis, items: [{name:'plant', price: 22}]}];
+      
+      expecting(function() {
+         expect(capturedDatabaseRequests.length).to.be.eql(1);
+         expect(capturedDatabaseRequests[0].collectionName).to.be.eql('daisysInvoices');
+         expect(capturedDatabaseRequests[0].minimumTimestamp).to.be.eql(7 * aDayInMillis);
+         expect(capturedDatabaseRequests[0].maximumTimestamp).to.be.eql(8 * aDayInMillis - 1);
+      }, done);
+
+      timeInMillis = 7 * aDayInMillis + 1342;
+      whenThePublication(cash.server.topics.CASH_COLLECTION_NAME).withData('daisysInvoices').getsSent();
+   });
+
    it('the invoices get published when the collection name publication is received', function(done) {
       doneAfterInvoicesReceived = true;
       getAllDocumentsInCollectionInTimespanWasSuccessful = true;
@@ -214,15 +242,26 @@ describe('TodaysInvoidesPublisher', function() {
       documentsInCollection = [{id: 4, timestamp: aDayInMillis, items: [{name:'plant', price: 22}]}];
       
       expecting(function() {
-         expect(capturedRequests.length).to.be.eql(2);
-         expect(capturedRequests[1].collectionName).to.be.eql('daisysInvoices');
-         expect(capturedRequests[1].minimumTimestamp).to.be.eql(aDayInMillis);
-         expect(capturedRequests[1].maximumTimestamp).to.be.eql(2 * aDayInMillis - 1);
+         expect(capturedDatabaseRequests.length).to.be.eql(2);
+         expect(capturedDatabaseRequests[1].collectionName).to.be.eql('daisysInvoices');
+         expect(capturedDatabaseRequests[1].minimumTimestamp).to.be.eql(aDayInMillis);
+         expect(capturedDatabaseRequests[1].maximumTimestamp).to.be.eql(2 * aDayInMillis - 1);
       }, done);
 
       timeInMillis = aDayInMillis + 500;
       givenTheExpectedNumberOfPublicationsIs(2);
       givenThePublication(cash.server.topics.CASH_COLLECTION_NAME).withData('daisysInvoices').getsSent();
       whenTheCommand(cash.server.topics.NEW_INVOICE_ADDED_COMMAND).withData({}).getsSent();
+   });
+   
+   it('no invoices get published when the CASH_COLLECTION_NAME publication is missing and a NEW_INVOICE_ADDED_COMMAND command comes in', function(done) {
+      
+      expecting(function() {
+         expect(capturedDatabaseRequests.length).to.be.eql(0);
+      }, done);
+
+      whenTheCommand(cash.server.topics.NEW_INVOICE_ADDED_COMMAND).withData({}).getsSent();
+      
+      setTimeout(doneFunction, 10);
    });
 });  

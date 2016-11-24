@@ -31,7 +31,7 @@ cash.server.TodaysInvoicesPublisher = function TodaysInvoicesPublisher(bus, data
       return result;
    };
    
-   var publishInvoices = function publishInvoices(documents) {
+   var publish = function publish(documents) {
       // documents is an array of {id:2, timestamp:1478883481579, items:[{name: 'Apfel', price: 2.5},{name: 'Parmesan', price: 23}]}
       return new Promise(function(fulfill, reject) {
          bus.publish(cash.topics.TODAYS_INVOICES, documents.sort(descending));
@@ -39,23 +39,28 @@ cash.server.TodaysInvoicesPublisher = function TodaysInvoicesPublisher(bus, data
       });
    };
    
-   var getTwoDigitLogNumber = function getTwoDigitLogNumber(number) {
+   var getTwoDigitsLongNumber = function getTwoDigitsLongNumber(number) {
          return ((number < 10) ? '0' : '') + number;
    };
    
-   bus.subscribeToPublication(cash.server.topics.CASH_COLLECTION_NAME, function(collectionName) {
-      cashCollectionName = collectionName;
-      database.getAllDocumentsInCollectionInTimespan(cashCollectionName, 0, 0).then(publishInvoices, writeErrorToConsole);
-   });
-   
-   bus.subscribeToCommand(cash.server.topics.NEW_INVOICE_ADDED_COMMAND, function(data) {
+   var publishTodaysDocuments = function publishTodaysDocuments() {
       var now = new Date(getTimeInMillis());
-      var isoMinimumTimestamp = now.getFullYear() + '-' + getTwoDigitLogNumber((now.getMonth() + 1)) + '-' + getTwoDigitLogNumber(now.getDate()) + 'T00:00:00Z';
+      var isoMinimumTimestamp = now.getFullYear() + '-' + getTwoDigitsLongNumber((now.getMonth() + 1)) + '-' + getTwoDigitsLongNumber(now.getDate()) + 'T00:00:00Z';
       var nowMidnight = new Date(isoMinimumTimestamp);
       var minimumTimestamp = nowMidnight.getTime();
       var maximumTimestamp = minimumTimestamp + 24 * 60 * 60 * 1000 - 1;
       
-      database.getAllDocumentsInCollectionInTimespan(cashCollectionName, minimumTimestamp, maximumTimestamp).then(publishInvoices, writeErrorToConsole);
+      database.getAllDocumentsInCollectionInTimespan(cashCollectionName, minimumTimestamp, maximumTimestamp).then(publish, writeErrorToConsole);
+   };
+   
+   bus.subscribeToPublication(cash.server.topics.CASH_COLLECTION_NAME, function(collectionName) {
+      cashCollectionName = collectionName;
+      publishTodaysDocuments();
    });
+   
+   bus.subscribeToCommand(cash.server.topics.NEW_INVOICE_ADDED_COMMAND, function() {
+      if (cashCollectionName !== undefined) {
+         publishTodaysDocuments();
+   }});
 };
  
