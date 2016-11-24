@@ -43,6 +43,7 @@
                               cash.topics.UPDATE_PRODUCT_COMMAND, 
                               cash.topics.DELETE_PRODUCT_COMMAND, 
                               cash.topics.CREATE_INVOICE_COMMAND];
+
       var busBridge = new common.infrastructure.busbridge.ClientSocketIoBusBridge(bus, topicsToTransmit, io);
       
       var itemSelectionDialog = new cash.ui.ItemSelectionDialog('#cash > #itemSelectionDialog', bus);
