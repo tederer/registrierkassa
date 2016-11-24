@@ -1,2 +1,1 @@
-* in TodaysInvoicesPublisher, wenn CASH_COLLECTION_NAME reinkommt, min und maxTimestamp setzen. Derzeit sind beide auf 0 gesetzt!
 * getAllDocumentsInCollectionInTimespan in TingoDbDatabase implementieren

@@ -81,6 +81,6 @@ module.exports = function(grunt) {
    grunt.registerTask('createDatabaseFolder', function() {
       grunt.file.mkdir(global.DATABASE_ROOT_PATH);
    });
-   
+
    grunt.registerTask('default', ['clean', 'lint', 'test', 'compile', 'copy', 'createDatabaseFolder']);
  };
