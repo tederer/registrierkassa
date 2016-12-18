@@ -1,1 +1,1 @@
-* getAllDocumentsInCollectionInTimespan in TingoDbDatabase implementieren
+* es gibt einen CREATE_INVOICE_COMMAND sowie am client als auch server
