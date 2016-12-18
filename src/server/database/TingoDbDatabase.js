@@ -64,7 +64,7 @@ cash.server.database.TingoDbDatabase = function TingoDbDatabase(databaseFolder, 
       };
    };
    
-   var findAll = function findAll(collection) {
+   var find = function find(collection, documentFilter) {
       var cursor = collection.find();
 
       return new Promise(function(fulfill, reject) {
@@ -72,7 +72,7 @@ cash.server.database.TingoDbDatabase = function TingoDbDatabase(databaseFolder, 
             if (err) {
                reject(err);
             } else {
-               fulfill(data.map(function(document) {
+               fulfill(data.filter(documentFilter).map(function(document) {
                   var result = {};
                   Object.keys(document).filter(function(key) { return !key.startsWith('_');}).forEach(function(key) {
                      result[key] = document[key];
@@ -85,33 +85,16 @@ cash.server.database.TingoDbDatabase = function TingoDbDatabase(databaseFolder, 
       });
    };
    
+   var findAll = function findAll(collection) {
+      return find(collection, function(document) { return true; });
+   };
+   
    var findAllInTimespan = function findAllInTimespan(minimumTimestamp, maximumTimestamp, collection) {
-      var cursor = collection.find();
-      
-      var publicKeyFilter = function(key) { 
-         return !key.startsWith('_');
-      };
-      
-      var timespanFilter = function timespanFilter(document) {
+      var timespanFilter = function(document) {
          return document.creationTimestamp >= minimumTimestamp && document.creationTimestamp <= maximumTimestamp;
       };
       
-      return new Promise(function(fulfill, reject) {
-         cursor.toArray(function(err, data) {
-            if (err) {
-               reject(err);
-            } else {
-               fulfill(data.filter(timespanFilter).map(function(document) {
-                  var result = {};
-                  Object.keys(document).filter(publicKeyFilter).forEach(function(key) {
-                     result[key] = document[key];
-                  });
-                  result.id = document._id;
-                  return result;
-               }));
-            }
-         }); 
-      });
+      return find(collection, timespanFilter);
    };
    
    this.insert = function insert(collectionName, document) {
