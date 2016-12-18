@@ -84,6 +84,14 @@ cash.ui.InvoiceTable = function InvoiceTable(containerId, bus) {
          publishCurrentTableContent();
       };
       
+      var onRemoveAllInvoices = function onRemoveAllInvoices() {
+         runExecutableAndUpdateButtonActions(function() {
+            table.clear();
+            table.draw();
+         });
+         publishCurrentTableContent();
+      };
+      
       var initializeContainerContent = function initializeContainerContent() {
          var tableHtml = '<table id="table" width="90%" class="stripe hover cell-border"><thead><tr><th>Name</th><th>Preis</th><th></th><th></th></tr></thead></table>';
          container.html(tableHtml);
@@ -95,6 +103,7 @@ cash.ui.InvoiceTable = function InvoiceTable(containerId, bus) {
          initializeTable();
          bus.subscribeToCommand(cash.client.topics.ADD_ITEMS_TO_INVOICE_COMMAND, onAddItemsToInvoice);
          bus.subscribeToCommand(cash.client.topics.UPDATE_INVOICE_ITEM_COMMAND, onUpdateItem);
+         bus.subscribeToCommand(cash.client.topics.REMOVE_ALL_INVOICE_ITEMS_COMMAND, onRemoveAllInvoices);
       };
 };
 

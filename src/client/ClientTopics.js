@@ -39,6 +39,12 @@ cash.client.topics.EDIT_INVOICE_ITEM_COMMAND = '/client/invoice/editItemCommand'
 cash.client.topics.UPDATE_INVOICE_ITEM_COMMAND = '/client/invoice/updateItemCommand';
 
 /**
+ * This command gets sent when all items of the invoice needs to be removed.
+ * The data of this command is an empty object.
+ */
+cash.client.topics.REMOVE_ALL_INVOICE_ITEMS_COMMAND = '/client/invoice/removeAllItemsCommand';
+
+/**
  * This command gets sent when the user wants to add an item(product) to the invoice.
  * The data of this command is an empty object.
  */
