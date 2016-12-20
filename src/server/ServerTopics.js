@@ -4,13 +4,6 @@ require('../NamespaceUtils.js');
 
 assertNamespace('cash.server.topics');
 
-//                COMMANDS
-/**
- * Informs listeners that a new invoice was added. This command does not
- * contain any data.
- */
-cash.server.topics.NEW_INVOICE_ADDED_COMMAND = '/server/invoice/newInvoiceAddedCommand';
-
 //                PUBLICATIONS
 /**
  * The client publishes on this topic an array of all items in the invoice. 

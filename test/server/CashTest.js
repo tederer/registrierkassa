@@ -16,13 +16,11 @@ var doneAfterInsert;
 var doneFunction;
 var doneAfterAcknowledgmentReceived;
 var doneAfterRejectReceived;
-var doneAfterNewInvoiceAddedCommandReceived;
 var capturedInsertations;
 var capturedAcknowledgments;
 var capturedRejections;
 var capturedCollectionNames;
 var timeInMillis;
-var newInvoiceAddedCommandInvocations;
 
 var TestingDatabase = function TestingDatabase() {
    
@@ -125,10 +123,8 @@ var setup = function setup() {
    doneAfterInsert = false;
    doneAfterAcknowledgmentReceived = false;
    doneAfterRejectReceived = false;
-   doneAfterNewInvoiceAddedCommandReceived = false;
    doneFunction = function() {};
    timeInMillis = 0;
-   newInvoiceAddedCommandInvocations = 0;
    
    bus = new common.infrastructure.bus.Bus();
    database = new TestingDatabase();
@@ -147,13 +143,6 @@ var setup = function setup() {
    bus.subscribeToCommand(cash.topics.REJECT_INVOICE_COMMAND, function(data) {
       capturedRejections[capturedRejections.length] = data;
       if (doneAfterRejectReceived) {
-         doneFunction();
-      }
-   });
-   
-   bus.subscribeToCommand(cash.server.topics.NEW_INVOICE_ADDED_COMMAND, function(data) {
-      newInvoiceAddedCommandInvocations++;
-      if (doneAfterNewInvoiceAddedCommandReceived) {
          doneFunction();
       }
    });
@@ -204,7 +193,7 @@ describe('Cash', function() {
       whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
    });   
       
-   it('a new invoice pulbishes then name of the database collection', function(done) {
+   it('a new invoice pulbishes the name of the database collection', function(done) {
       
       expecting(function() {
          expect(capturedCollectionNames.length).to.be.eql(1);
@@ -344,7 +333,22 @@ describe('Cash', function() {
 
       whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
    });   
-   
+      
+   it('a repeatedly send valid invoice triggers Cash to send only one ACKNOWLEDGE_INVOICE_COMMAND.', function(done) {
+      insertationWasSuccessful = true;
+      
+      var invoice1 = {id: 43, items: [{name:'pot', price: 2}]};
+      
+      expecting(function() {
+         expect(capturedAcknowledgments.length).to.be.eql(1);
+      }, done);
+
+      givenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
+      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
+      
+      setTimeout(doneFunction, 10);
+   }); 
+
    it('an invalid invoice gets rejected with an REJECT_INVOICE_COMMAND', function(done) {
       insertationWasSuccessful = true;
       doneAfterRejectReceived = true;
@@ -427,32 +431,4 @@ describe('Cash', function() {
       
       setTimeout(doneFunction, 10);
    });
-   
-   it('after inserting a new invoice a NEW_INVOICE_ADDED_COMMAND gets sent', function(done) {
-      insertationWasSuccessful = true;
-      doneAfterNewInvoiceAddedCommandReceived = true;
-      
-      var invoice1 = {id: 1, items: [{name:'pot', price: 2}]};
-      
-      expecting(function() {
-         expect(newInvoiceAddedCommandInvocations).to.be.eql(1);
-      }, done);
-
-      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
-   });
-
-   it('a repeatedly send valid invoice triggers Cash to send only one NEW_INVOICE_ADDED_COMMAND.', function(done) {
-      insertationWasSuccessful = true;
-      
-      var invoice1 = {id: 43, items: [{name:'pot', price: 2}]};
-      
-      expecting(function() {
-         expect(newInvoiceAddedCommandInvocations).to.be.eql(1);
-      }, done);
-
-      givenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
-      whenTheCommand(cash.topics.CREATE_INVOICE_COMMAND).withData(invoice1).getsSent();
-      
-      setTimeout(doneFunction, 10);
-   }); 
 });  

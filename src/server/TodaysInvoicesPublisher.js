@@ -58,7 +58,7 @@ cash.server.TodaysInvoicesPublisher = function TodaysInvoicesPublisher(bus, data
       publishTodaysDocuments();
    });
    
-   bus.subscribeToCommand(cash.server.topics.NEW_INVOICE_ADDED_COMMAND, function() {
+   bus.subscribeToCommand(cash.topics.ACKNOWLEDGE_INVOICE_COMMAND, function() {
       if (cashCollectionName !== undefined) {
          publishTodaysDocuments();
    }});

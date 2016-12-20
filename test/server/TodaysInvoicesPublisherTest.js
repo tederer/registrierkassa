@@ -106,6 +106,10 @@ var whenTheCommand = function whenTheCommand(commandTopic) {
    return getWithData(commandTopic, bus.sendCommand);
 };
 
+var whenAnAcknowledgeInvoiceCommandGetsSent = function whenAnAcknowledgeInvoiceCommandGetsSent() {
+   whenTheCommand(cash.topics.ACKNOWLEDGE_INVOICE_COMMAND).withData({}).getsSent();
+};
+
 var whenThePublication = function whenThePublication(publicationTopic) {
    return getWithData(publicationTopic, bus.publish);
 };
@@ -208,7 +212,7 @@ describe('TodaysInvoidesPublisher', function() {
       }, done);
 
       givenThePublication(cash.server.topics.CASH_COLLECTION_NAME).withData('donaldsInvoices').getsSent();
-      whenTheCommand(cash.server.topics.NEW_INVOICE_ADDED_COMMAND).withData({}).getsSent();
+      whenAnAcknowledgeInvoiceCommandGetsSent();
       
       setTimeout(doneFunction, 10);
    });
@@ -231,7 +235,7 @@ describe('TodaysInvoidesPublisher', function() {
 
       givenTheExpectedNumberOfPublicationsIs(2);
       givenThePublication(cash.server.topics.CASH_COLLECTION_NAME).withData('donaldsInvoices').getsSent();
-      whenTheCommand(cash.server.topics.NEW_INVOICE_ADDED_COMMAND).withData({}).getsSent();
+      whenAnAcknowledgeInvoiceCommandGetsSent();
    });
    
    it('the published invoices were all created today', function(done) {
@@ -251,7 +255,7 @@ describe('TodaysInvoidesPublisher', function() {
       timeInMillis = aDayInMillis + 500;
       givenTheExpectedNumberOfPublicationsIs(2);
       givenThePublication(cash.server.topics.CASH_COLLECTION_NAME).withData('daisysInvoices').getsSent();
-      whenTheCommand(cash.server.topics.NEW_INVOICE_ADDED_COMMAND).withData({}).getsSent();
+      whenAnAcknowledgeInvoiceCommandGetsSent();
    });
    
    it('no invoices get published when the CASH_COLLECTION_NAME publication is missing and a NEW_INVOICE_ADDED_COMMAND command comes in', function(done) {
@@ -260,7 +264,7 @@ describe('TodaysInvoidesPublisher', function() {
          expect(capturedDatabaseRequests.length).to.be.eql(0);
       }, done);
 
-      whenTheCommand(cash.server.topics.NEW_INVOICE_ADDED_COMMAND).withData({}).getsSent();
+      whenAnAcknowledgeInvoiceCommandGetsSent();
       
       setTimeout(doneFunction, 10);
    });

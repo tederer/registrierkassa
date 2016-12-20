@@ -37,7 +37,7 @@ cash.ui.InvoiceFooter = function InvoiceFooter(containerId, bus) {
       this.initialize = function initialize() {
          initializeContainerContent();
          bus.subscribeToPublication(cash.client.topics.INVOICE_ITEMS, onItemsInInvoiceChanged);
-         $(containerId + '> #createInvoiceButton').on('click', function() {
+         $(containerId + ' #createInvoiceButton').on('click', function() {
             bus.sendCommand(cash.client.topics.CREATE_INVOICE_COMMAND, {});
          });
       };
