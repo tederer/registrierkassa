@@ -23,7 +23,7 @@ cash.ui.InvoiceFooter = function InvoiceFooter(containerId, bus) {
       };
       
       var initializeContainerContent = function initializeContainerContent() {
-         var containerContent =  '<table>' +
+         var containerContent =  '<table id="invoiceFooterTable">' +
                                     '<tr>' +
                                        '<td><button type="button" id="createInvoiceButton">Rechnung erstellen</button></td>' +
                                        '<td><table id="invoiceTotal"><tr><td>Summe:</td><td id="totalPrice"></td></tr></table></td>' +

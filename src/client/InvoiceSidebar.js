@@ -29,6 +29,16 @@ cash.ui.InvoiceSidebar = function InvoiceSidebar(containerId, bus) {
    };
        
    var onProductsReceived = function onProductsReceived(products) {
+      var sortedProducts = products.sort(function(first, second) {
+         var result = 0;
+         
+         if (first.name !== second.name) {
+            result = (first.name < second.name) ? -1 : 1;
+         }
+         
+         return result;
+      });
+      
       table.clear();
       products.forEach(function(product) {
          table.row.add(product);

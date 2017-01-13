@@ -103,7 +103,7 @@ var Constructor = function Constructor() {
          console.log('message = ' + data);
       });
       
-      var topicsToTransmit = [cash.topics.PRODUCTRANGE, cash.topics.TODAYS_INVOICES];
+      var topicsToTransmit = [cash.topics.PRODUCTRANGE, cash.topics.TODAYS_INVOICES, cash.topics.ACKNOWLEDGE_INVOICE_COMMAND];
       var busBridge = new common.infrastructure.busbridge.ServerSocketIoBusBridge(bus, topicsToTransmit, io);
       
       //setInterval( function() {bus.publish('counter', counter++);}, 1000 );

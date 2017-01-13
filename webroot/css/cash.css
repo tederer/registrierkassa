@@ -75,9 +75,9 @@ body {
    position : absolute;
    top : 0;
    left : 0;
-   bottom : 5em;
+   bottom : 2em;
    width: 60%;
-   background-color : #FFFF00;
+   background-color : #EEEEEE;
    overflow-y: auto;
 }
 
@@ -85,9 +85,16 @@ body {
    position : absolute;
    left : 0;
    bottom : 0;
-   height : 5em;
-   width: 100%;
-   background-color : #00FFFF;
+   height : 2em;
+   width: 60%;
+   background-color : #EEEEEE;
+}
+
+#cash > #content  > #invoice  > #total > #invoiceFooterTable {
+   position : absolute;
+   width : 100%;
+   text-align: center;
+   background-color : #DDDDDD;
 }
 
 #cash > #content  > #invoice  > #sidebar {
@@ -97,7 +104,7 @@ body {
    bottom : 0;
    width: 40%;
    border-radius : 0 0 0 0;
-   background-color : #0000FF;
+   background-color : #DDDDDD;
 }
 
 #cash > #content  > #administration {
@@ -107,7 +114,7 @@ body {
    bottom : 0.5em;
    right : 0.5em;
    border-radius : 0 0 0 0;
-   background-color : #FF0000;
+   background-color : #EEEEEE;
    visibility : hidden;
 }
 
