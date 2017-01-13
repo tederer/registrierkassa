@@ -63,6 +63,12 @@ cash.client.topics.SHOW_CREATE_PRODUCT_DIALOG_COMMAND = '/client/productrange/sh
 cash.client.topics.SHOW_EDIT_PRODUCT_RANGE_DIALOG_COMMAND = '/client/productrange/showEditProductRangeDialogCommand';
 
 /**
+ * This command gets sent when the user wants to show todays invoices.
+ * The data of this command is an empty object.
+ */
+cash.client.topics.SHOW_TODAYS_INVOICES_DIALOG_COMMAND = '/client/productrange/showTodaysInvoicesDialogCommand';
+
+/**
  * This command gets sent when the used wants to edit a product of the product range.
  * The data of this command is an object containing the values (keys):
  *

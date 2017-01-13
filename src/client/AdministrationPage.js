@@ -8,14 +8,19 @@ assertNamespace('cash.ui');
 cash.ui.AdministrationPage = function AdministrationPage(containerId, bus) {
       
       var initializeContainerContent = function initializeContainerContent() {
-         var sidebarHtml = '<button type="button" id="editProductRangeButton">Sortiment bearbeiten</button>';
+         var sidebarHtml = '<button type="button" id="editProductRangeButton">Sortiment bearbeiten</button><br><br>' + 
+                           '<button type="button" id="showTodaysInvoicesButton">heutige Umsätze anzeigen</button>';
          $(containerId).html(sidebarHtml);
       };
       
       this.initialize = function initialize() {
          initializeContainerContent();
+         
          $(containerId + '> #editProductRangeButton').on('click', function() {
             bus.sendCommand(cash.client.topics.SHOW_EDIT_PRODUCT_RANGE_DIALOG_COMMAND, {});
+         });
+         $(containerId + '> #showTodaysInvoicesButton').on('click', function() {
+            bus.sendCommand(cash.client.topics.SHOW_TODAYS_INVOICES_DIALOG_COMMAND, {});
          });
       };
 };

@@ -19,19 +19,27 @@ cash.ui.ModalDialog = function ModalDialog() {
       
       var initializeContainerContent = function initializeContainerContent(thisInstance) {
          var contentContainerId  = thisInstance.getContentContainerId();
-         var containerContent    = '<div id="content"><div id="header"></div><div id="body"></div><div id="sidebar"></div><div id="footer"></div></div>';
+         var containerContent    = '<div id="content"><div id="header"></div><div id="body"></div>' + 
+                                   (thisInstance.shouldSidebarBeVisible() ? '<div id="sidebar"></div>' : '') + 
+                                   '<div id="footer"></div></div>';
          var okButton            = '<button type="button" id="okButton">OK</button>';
          var cancelButton        = '<button type="button" id="cancelButton">Abbrechen</button>';
 
          $(thisInstance.getContainerId()).html(containerContent);
          $(contentContainerId + ' > #header').html(thisInstance.getDialogTitle());
-         $(contentContainerId + ' > #footer').html(okButton + cancelButton);
+         $(contentContainerId + ' > #footer').html(okButton + (thisInstance.shouldCancelButtonBeVisible() ? cancelButton : ''));
          
          thisInstance.initializeBodyContent(contentContainerId + ' > #body');
-         thisInstance.initializeSidebarContent(contentContainerId + ' > #sidebar');
+         
+         if (thisInstance.shouldSidebarBeVisible()) {
+            thisInstance.initializeSidebarContent(contentContainerId + ' > #sidebar');
+         }
          
          $(contentContainerId + ' > #footer > #okButton').on('click', processOkButtonClicked.bind(thisInstance));
-         $(contentContainerId + ' > #footer > #cancelButton').on('click', processCancelButtonClicked.bind(thisInstance));
+         
+         if (thisInstance.shouldCancelButtonBeVisible()) {
+            $(contentContainerId + ' > #footer > #cancelButton').on('click', processCancelButtonClicked.bind(thisInstance));
+         }
       };
       
       this.getContainerId = function getContainerId() {
@@ -60,6 +68,8 @@ cash.ui.ModalDialog = function ModalDialog() {
       this.onCancelClicked = function onCancelClicked() {};
       this.onOkClicked = function onOkClicked() {};
       this.onVisible = function onVisible() {};
+      this.shouldCancelButtonBeVisible = function shouldCancelButtonBeVisible() { return true; };
+      this.shouldSidebarBeVisible = function shouldSidebarBeVisible() { return true; };
       
       this.initialize = function initialize() { 
          this.setVisible(false);

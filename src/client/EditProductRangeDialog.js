@@ -69,6 +69,10 @@ cash.ui.EditProductRangeDialog = function EditProductRangeDialog(containerId, bu
          return containerId;
       };
       
+      this.shouldCancelButtonBeVisible = function shouldCancelButtonBeVisible() {
+         return false;
+      };
+      
       this.initializeBodyContent = function initializeBodyContent(selector) {
          var tableHtml = '<table id="table" width="90%" class="stripe hover cell-border"><thead><tr><th>Name</th><th>Preis</th><th></th><th></th></tr></thead></table>';
          $(selector).html(tableHtml);
