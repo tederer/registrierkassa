@@ -1,1 +1,2 @@
 * wie kann man die tabellen scrollen ohne dass die beschriftung mitscrolled ?
+* TodaysInvoicesPublisher soll bei Tageswechsel selbstständig die aktuellen Umsärze publizieren
