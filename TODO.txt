@@ -1,2 +1,4 @@
 * wie kann man die tabellen scrollen ohne dass die beschriftung mitscrolled ?
 * TodaysInvoicesPublisher soll bei Tageswechsel selbstständig die aktuellen Umsärze publizieren
+
+https://www.thesitewizard.com/css/switch-alternate-css-styles.shtml
