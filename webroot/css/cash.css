@@ -97,16 +97,6 @@ body {
    background-color : #DDDDDD;
 }
 
-#cash > #content  > #invoice  > #sidebar {
-   position : absolute;
-   top : 0;
-   right : 0;
-   bottom : 0;
-   width: 40%;
-   border-radius : 0 0 0 0;
-   background-color : #DDDDDD;
-}
-
 #cash > #content  > #administration {
    position : absolute;
    top : 0.5em;

@@ -27,6 +27,7 @@ cash.ui.InvoiceFooter = function InvoiceFooter(containerId, bus) {
                                     '<tr>' +
                                        '<td><button type="button" id="createInvoiceButton">Rechnung erstellen</button></td>' +
                                        '<td><table id="invoiceTotal"><tr><td>Summe:</td><td id="totalPrice"></td></tr></table></td>' +
+                                       '<td><button type="button" id="clearInvoiceButton">Rechnungsinhalt löschen</button></td>' +
                                     '</tr>' +
                                  '</table>';
 
@@ -39,6 +40,9 @@ cash.ui.InvoiceFooter = function InvoiceFooter(containerId, bus) {
          bus.subscribeToPublication(cash.client.topics.INVOICE_ITEMS, onItemsInInvoiceChanged);
          $(containerId + ' #createInvoiceButton').on('click', function() {
             bus.sendCommand(cash.client.topics.CREATE_INVOICE_COMMAND, {});
+         });
+         $(containerId + ' #clearInvoiceButton').on('click', function() {
+            bus.sendCommand(cash.client.topics.REMOVE_ALL_INVOICE_ITEMS_COMMAND, {});
          });
       };
 };

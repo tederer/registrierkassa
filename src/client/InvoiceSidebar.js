@@ -47,10 +47,8 @@ cash.ui.InvoiceSidebar = function InvoiceSidebar(containerId, bus) {
    };
       
    var initializeContainerContent = function initializeContainerContent() {
-      var tableHtml = '<table id="table" width="90%" class="stripe hover cell-border"><thead><tr><th>Name</th><th>Preis</th></tr></thead></table>';
-      var clearInvoiceButtonHtml = '<button type="button" id="clearInvoiceButton">Rechnungsinhalt löschen</button>';
-         
-      $(containerId).html('<h2>Produktauswahl</h1>' + tableHtml + '<br>' + clearInvoiceButtonHtml);
+      var tableHtml = '<table id="table" width="90%" class="stripe hover cell-border"></table>';
+      $(containerId).html('<div id="header"><h2>Produktauswahl</h1></div><div id="products">' + tableHtml + '</div>');
       
    };
    
@@ -59,10 +57,6 @@ cash.ui.InvoiceSidebar = function InvoiceSidebar(containerId, bus) {
          var data = table.row( this ).data();
          bus.sendCommand(cash.client.topics.ADD_ITEMS_TO_INVOICE_COMMAND, [{'name': data.name, 'price': data.price}]);
       } );
-      
-      $(thisInstance.getContainerId() + '> #clearInvoiceButton').on('click', function() {
-         bus.sendCommand(cash.client.topics.REMOVE_ALL_INVOICE_ITEMS_COMMAND, {});
-      });
    };
    
    this.getContainerId = function getContainerId() {
