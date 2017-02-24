@@ -11,6 +11,7 @@
    <link rel="stylesheet" type="text/css" href="themes/default/css/cash.ui.editProductRangeDialog.css">
    <link rel="stylesheet" type="text/css" href="themes/default/css/cash.ui.createProductDialog.css">
    <link rel="stylesheet" type="text/css" href="themes/default/css/cash.ui.showTodaysInvoicesDialog.css">
+   <link rel="stylesheet" type="text/css" href="themes/default/css/cash.ui.showCsvExportDataDialog.css">
    <link rel="stylesheet" type="text/css" href="themes/default/css/cash.ui.invoiceSidebar.css">
 
    <script type="text/javascript" src="javascripts/RequireMock.js" charset="UTF-8"></script>
@@ -31,6 +32,7 @@
    <script type="text/javascript" src="javascripts/client/EditProductRangeDialog.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/CreateProductDialog.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/ShowTodaysInvoicesDialog.js" charset="UTF-8"></script>
+   <script type="text/javascript" src="javascripts/client/ShowCsvExportDataDialog.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/InvoiceTable.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/InvoiceSidebar.js" charset="UTF-8"></script>
    <script type="text/javascript" src="javascripts/client/InvoiceCreator.js" charset="UTF-8"></script>
@@ -55,6 +57,7 @@
       var createProductDialog = new cash.ui.CreateProductDialog('#cash > #newProductDialog', bus);
       var editProductDialog = new cash.ui.EditProductDialog('#cash > #editProductDialog', bus);
       var showTodaysInvoicesDialog = new cash.ui.ShowTodaysInvoicesDialog('#cash > #showTodaysInvoicesDialog', bus);
+      var showCsvExportDataDialog = new cash.ui.ShowCsvExportDataDialog('#cash > #showCsvExportDataDialog', bus);
       var invoiceTable = new cash.ui.InvoiceTable('#cash > #content > #invoice > #items', bus);
       var invoiceSidebar = new cash.ui.InvoiceSidebar('#cash > #content > #invoice > #sidebar', bus);
       var invoiceFooter = new cash.ui.InvoiceFooter('#cash > #content > #invoice > #total', bus);
@@ -71,6 +74,7 @@
          editProductDialog.initialize();
          createProductDialog.initialize();
          showTodaysInvoicesDialog.initialize();
+         showCsvExportDataDialog.initialize();
          invoiceTable.initialize();
          invoiceSidebar.initialize();
          invoiceFooter.initialize();
@@ -88,6 +92,7 @@
    <div id="editProductDialog"></div>
    <div id="newProductDialog"></div>
    <div id="showTodaysInvoicesDialog"></div>
+   <div id="showCsvExportDataDialog"></div>
 
    <div id="tabs">
       <div id="invoice"/>Rechnung</div>

@@ -9,7 +9,8 @@ cash.ui.AdministrationPage = function AdministrationPage(containerId, bus) {
       
       var initializeContainerContent = function initializeContainerContent() {
          var sidebarHtml = '<button type="button" id="editProductRangeButton">Sortiment bearbeiten</button><br><br>' + 
-                           '<button type="button" id="showTodaysInvoicesButton">heutige Umsätze anzeigen</button>';
+                           '<button type="button" id="showTodaysInvoicesButton">heutige Umsätze anzeigen</button><br><br>' + 
+                           '<button type="button" id="showCsvExportDataButton">heutige Umsätze als CSV anzeigen</button>';
          $(containerId).html(sidebarHtml);
       };
       
@@ -21,6 +22,9 @@ cash.ui.AdministrationPage = function AdministrationPage(containerId, bus) {
          });
          $(containerId + '> #showTodaysInvoicesButton').on('click', function() {
             bus.sendCommand(cash.client.topics.SHOW_TODAYS_INVOICES_DIALOG_COMMAND, {});
+         });
+         $(containerId + '> #showCsvExportDataButton').on('click', function() {
+            bus.sendCommand(cash.client.topics.SHOW_CSV_EXPORT_DATA_DIALOG_COMMAND, {});
          });
       };
 };
