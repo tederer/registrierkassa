@@ -1,0 +1,462 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+<!-- Copyright 2008-2014 by Christopher Heng. All rights reserved. -->
+<!-- Source: https://www.thesitewizard.com/css/switch-alternate-css-styles.shtml -->
+
+<title>How to Allow Your Visitors to Switch Between Alternate CSS Styles / Themes (thesitewizard.com)</title>
+
+<meta name="description" content="This guide describes how you can add theme support to your website using a CSS feature known as alternate style sheets.">
+<meta name="robots" content="index,follow,noarchive">
+<meta http-equiv="imagetoolbar" content="no">
+<meta name="author" content="Christopher Heng">
+<meta name="copyright" content="Copyright © 2008-2014 by Christopher Heng. All rights reserved.">
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" media="screen" href="How%20to%20Allow%20Your%20Visitors%20to%20Switch%20Between%20Alternate%20CSS%20Styles%20_%20Themes%20%28thesitewizard.com%29-Dateien/screen.css" title="Current Style">
+<link rel="alternate stylesheet" type="text/css" media="screen" href="How%20to%20Allow%20Your%20Visitors%20to%20Switch%20Between%20Alternate%20CSS%20Styles%20_%20Themes%20%28thesitewizard.com%29-Dateien/style-alternate.css" title="Previous Style">
+<link rel="stylesheet" type="text/css" media="print" href="How%20to%20Allow%20Your%20Visitors%20to%20Switch%20Between%20Alternate%20CSS%20Styles%20_%20Themes%20%28thesitewizard.com%29-Dateien/printstyle.css">
+
+<link rel="alternate" type="application/rss+xml" title="thesitewizard.com RSS Feed" href="https://www.thesitewizard.com/thesitewizard.xml">
+<link rel="shortcut icon" href="https://www.thesitewizard.com/favicon.ico" type="image/x-icon">
+<link rel="search" href="https://www.thesitewizard.com/opensearch.xml" type="application/opensearchdescription+xml" title="thesitewizard.com Search">
+<script src="How%20to%20Allow%20Your%20Visitors%20to%20Switch%20Between%20Alternate%20CSS%20Styles%20_%20Themes%20%28thesitewizard.com%29-Dateien/ca-pub-2592812953019923.js"></script><script src="How%20to%20Allow%20Your%20Visitors%20to%20Switch%20Between%20Alternate%20CSS%20Styles%20_%20Themes%20%28thesitewizard.com%29-Dateien/ca-pub-2592812953019923.js"></script><script src="How%20to%20Allow%20Your%20Visitors%20to%20Switch%20Between%20Alternate%20CSS%20Styles%20_%20Themes%20%28thesitewizard.com%29-Dateien/common.js" language="JavaScript" type="text/javascript"></script>
+
+<link rel="home" href="https://www.thesitewizard.com/" title="thesitewizard.com's main page">
+<link rel="glossary" href="https://www.thesitewizard.com/faqs/glossary.shtml" title="Glossary of common used webmaster terms">
+<link rel="index" href="https://www.thesitewizard.com/sitemap.shtml" title="List of all documents on thesitewizard.com">
+<link rel="up" href="https://www.thesitewizard.com/css/index.shtml" title="More articles on Cascading Style Sheets">
+<link rel="canonical" href="How%20to%20Allow%20Your%20Visitors%20to%20Switch%20Between%20Alternate%20CSS%20Styles%20_%20Themes%20%28thesitewizard.com%29-Dateien/switch-alternate-css-styles_002.htm">
+
+</head>
+
+<body onload="framebreaker()">
+
+<div class="toppanel">
+<div class="logo">
+<a href="https://www.thesitewizard.com/" target="_top"><img src="How%20to%20Allow%20Your%20Visitors%20to%20Switch%20Between%20Alternate%20CSS%20Styles%20_%20Themes%20%28thesitewizard.com%29-Dateien/logo202x42.png" alt="thesitewizard.com: Web design, promotion, CGI, PHP, JavaScript scripting, and revenue earning." title="thesitewizard.com: Website design, site promotion, CGI, PHP, JavaScript programming, and revenue earning" height="42" width="202" border="0"></a>
+</div>
+</div>
+
+<div class="newmaincontent">
+<div class="newtoptitle">
+<h1>How to Allow Your Visitors to Switch Between Alternate CSS Styles / Themes</h1>
+<h2>Add Theme Support to Your Website</h2>
+</div>
+<br>
+
+<div class="noprint" style="width: 95%; margin-bottom: 1em">
+<script type="text/javascript">tsw_notify_user();</script>
+<!-- Google's use of HTML5 stuff means that the contents of this section will not validate on XHTML 1.0 pages. -->
+<script type="text/javascript" async="async" src="How%20to%20Allow%20Your%20Visitors%20to%20Switch%20Between%20Alternate%20CSS%20Styles%20_%20Themes%20%28thesitewizard.com%29-Dateien/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="display: block; height: 90px;" data-ad-client="ca-pub-2592812953019923" data-ad-slot="2754390004" data-ad-format="auto" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:1200px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:1200px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;" height="90" frameborder="0" width="1200"></iframe></ins></ins></ins>
+<script type="text/javascript">
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+
+<h1>How to Allow Your Visitors to Switch Between Alternate CSS Styles / Themes</h1>
+by Christopher Heng, <a href="https://www.thesitewizard.com/" target="_top">thesitewizard.com</a><br>
+
+<p>
+Cascading Style Sheets provide webmasters a lot of control over their websites' appearance. One of its features is that you
+can specify different or alternate style sheets for a page. If your visitor prefers a particular design, or theme, that person
+can simply switch to that theme using their browser.
+<a href="https://www.thesitewizard.com/css/switch-alternate-css-styles.shtml" target="_top">This article</a> describes how you
+can implement theme support, by giving your users the ability to switch between different styles on your website.
+</p>
+
+<p>
+Note that there are two parts to the tutorial. This chapter deals with the Cascading Style Sheets ("CSS") component.
+It is complete in itself, and with it, you can already implement CSS switching support (or theme support) on your site
+for most modern browsers. The <a href="https://www.thesitewizard.com/javascripts/change-style-sheets.shtml" target="_top">next chapter</a>
+provides a dynamic way for the user to permanently set the theme for your site using
+JavaScript. It also adds support for browsers that do not have built-in support for switching styles.
+</p>
+
+<p>
+This article requires you to have some knowledge of CSS. You don't have to be a guru or anything like that, but
+a little knowledge is needed otherwise you may be completely lost. You can read a
+<a href="https://www.thesitewizard.com/archive/css.shtml" target="_top">brief introduction to CSS</a> at
+https://www.thesitewizard.com/archive/css.shtml
+</p>
+
+<h2>Uses of Alternate Style Sheets / Themes</h2>
+
+<p>
+There are some reasons why you might choose to supply alternate style sheets for your users.
+</p>
+
+<ul>
+<li><h3>To Support Varying Tastes</h3>
+<p>
+Different designs appeal to different people. For example, some people like a colourful layout. Others prefer a plain
+"clean" design. By providing alternate style sheets, you can cater to all users.
+</p></li>
+<li><h3>To Provide for Special Needs</h3>
+<p>
+If your site has users with special needs, for example, older people who may need larger font sizes, alternate style
+sheets provide a way where you can have a large-font theme alongside a normal-sized default without having to
+create two versions of the same page.
+</p></li>
+</ul>
+
+<p>
+I'm not claiming that you must have alternate styles for your site because of these reasons. For most sites, an alternate
+CSS is an overkill. However, if you have established a community where users with very different demographics repeatedly
+return to your site, having alternative styles that appeal to different people may make your site more user-friendly.
+</p>
+
+<h2>Alternate CSS How-To</h2>
+
+<p>
+On most sites, web designers typically include a style sheet for their site using a link command like the following:
+</p>
+
+<div class="codeblock">
+&lt;link rel="stylesheet" type="text/css" href="http://example.com/css/style.css"&gt;
+</div>
+
+<p>
+If you want to provide alternate style sheets for your site, you will need to give each style sheet a title, so
+that the browser will know that you are providing alternatives for your site. For example, if you want to provide
+two themes for your site, one called "blue" and the other "pink", you can specify them as follows, instead of the
+above example.
+</p>
+
+<div class="codeblock">
+&lt;link rel="stylesheet" type="text/css" href="http://example.com/css/blue.css" title="blue"&gt;<br>
+&lt;link rel="alternate stylesheet" type="text/css" href="http://example.com/css/pink.css" title="pink"&gt;
+</div>
+
+<p>
+Notice that the default style sheet that will be used is "blue". This is the preferred style sheet, and it is
+indicated by specifying a "rel" attribute of "stylesheet". The "pink" stylesheet is an alternate style that the user
+can choose. As you can see, it has a "rel" attribute of "alternate stylesheet". Another way of specifying that
+a particular style sheet is to be the default is to create a meta tag like the following:
+</p>
+
+<div class="codeblock">
+&lt;meta http-equiv="Default-Style" content="blue"&gt;
+</div>
+
+<p>
+If you specify both the "alternate stylesheet" attribute value as well as the meta tag, the latter takes
+precedence. I suggest that you be consistent and stick to either one or the other method on all your pages.
+It'll make debugging and modifications easier, and reduce careless mistakes in the future.
+</p>
+
+<h2>Persistent Styles</h2>
+
+<p>
+Sometimes you may want a particular style sheet to be applied no matter which theme the user selects.
+Put all those common styles into a separate file, and include it without a title tag like this:
+</p>
+
+<div class="codeblock">
+&lt;link rel="stylesheet" type="text/css" href="http://example.com/css/common.css"&gt;
+</div>
+
+<p>
+When no title tag is specified, the browser will always load that stylesheet. Such a style sheet is regarded
+as "persistent".
+</p>
+
+<p>
+In other words, if a persistent style sheet is added to the example site above, the HEAD section will
+have the following declarations:
+</p>
+
+<div class="codeblock">
+&lt;link rel="stylesheet" type="text/css" href="http://example.com/css/common.css"&gt;<br>
+&lt;link rel="stylesheet" type="text/css" href="http://example.com/css/blue.css" title="blue"&gt;<br>
+&lt;link rel="alternate stylesheet" type="text/css" href="http://example.com/css/pink.css" title="pink"&gt;
+</div>
+
+<p>
+The common.css style sheet will always be loaded. The default style sheet that will be used is the "blue" one.
+If the browser supports style switching, the visitor will be able to switch to the "pink" style as well.
+</p>
+
+<h2>Groups of Style Sheets</h2>
+
+<p>
+It is still possible to separate styles for different aspects of your web page into different files. For example, if
+you like to put your menu styles in a separate file from your layout styles, you can do it this way:
+</p>
+
+<div class="codeblock">
+&lt;link rel="stylesheet" type="text/css" href="http://example.com/css/blue-menu.css" title="blue"&gt;<br>
+&lt;link rel="stylesheet" type="text/css" href="http://example.com/css/blue-layout.css" title="blue"&gt;<br>
+&lt;link rel="alternate stylesheet" type="text/css" href="http://example.com/css/pink-menu.css" title="pink"&gt;<br>
+&lt;link rel="alternate stylesheet" type="text/css" href="http://example.com/css/pink-layout.css" title="pink"&gt;
+</div>
+
+<p>
+The browser will see all the stylesheets with a common title as one set of styles to be applied together.
+</p>
+
+<h2>How to Switch Alternate Style Sheets / Themes</h2>
+
+<p>
+Most modern browsers provide a way for your users to change style sheets for your site on-the-fly. For ease of
+reference, when I say below "View | Page Style", it means to click the "View" menu, then the "Page Style" item
+on the menu that appears. A list of style sheets that you can switch to will then appear.
+</p>
+
+<ul>
+<li><h3>Internet Explorer 8 and above</h3>
+<p>
+View | Style
+</p></li>
+<li><h3>Firefox</h3>
+<p>
+View | Page Style
+</p></li>
+<li><h3>Opera</h3>
+<p>
+View | Style
+</p></li>
+<li><h3>Konqueror</h3>
+<p>
+View | Use StyleSheet
+</p></li>
+</ul>
+
+<p>
+For your convenience, I have provided an alternative to the default style for
+<a href="https://www.thesitewizard.com/css/switch-alternate-css-styles.shtml" target="_top">this page</a>,
+so if you have one of the above browsers, you can try out the above commands to switch between my two
+style sheets. The alternate style sheet is merely the old style sheet for thesitewizard.com, which,
+at this time, is being phased out.
+</p>
+
+<p>
+Observe the following deficiencies in the built-in browser support for alternate style sheets:
+</p>
+
+<ul>
+<li><p>
+Not all browsers support theme switching from their user interface (ie, menu). In particular, Internet Explorer 7 and
+below do not support it. And when I last checked Safari in 2008 (the date I wrote this article), it didn't have the
+ability to switch style sheets from its menu either.
+</p></li>
+<li><p>
+The selections are not "sticky". When you go to another page on the same site, you will have to re-select the
+theme again. (Note: don't bother trying to select an alternate theme on the other pages of thesitewizard.com.
+The alternate theme is only inserted in this page so that you can see how it works.)
+</p></li>
+</ul>
+
+<p>
+The next chapter, on
+<a href="https://www.thesitewizard.com/javascripts/change-style-sheets.shtml" target="_top">using JavaScript to change
+the style sheet dynamically</a>, will provide a way to deal with these shortcomings.
+</p>
+
+<h2>Conclusion</h2>
+
+<p>
+Alternate style sheets allow you to add a sort of theme support for your website. This chapter deals with the CSS
+component of adding themes to your site. In the <a href="https://www.thesitewizard.com/javascripts/change-style-sheets.shtml" target="_top">next
+chapter</a>, I will discuss how you can use JavaScript so that the 
+themes can be "sticky". That is, once the user selects a theme for your 
+site,
+he/she will be able to view your whole site using that particular theme.
+ The JavaScript will also add support for browsers that don't have
+built-in style switching.
+</p>
+
+<p>
+Copyright © 2008-2014 by Christopher Heng. All rights reserved.<br>
+Get more free tips and articles like <a href="https://www.thesitewizard.com/css/switch-alternate-css-styles.shtml" target="_top">this</a>,
+on web design, promotion, revenue and scripting, from <a href="https://www.thesitewizard.com/" target="_top">https://www.thesitewizard.com/</a>.
+</p>
+
+
+
+<div id="breadcrumbs">
+<p>
+You are here:
+<a href="https://www.thesitewizard.com/">Top</a> &gt;
+<a href="https://www.thesitewizard.com/css/index.shtml" target="_top">Cascading Style Sheets (CSS) Tutorials and Tips</a> &gt;
+<a href="https://www.thesitewizard.com/css/switch-alternate-css-styles.shtml">How to Allow Your Visitors to Switch Between Alternate CSS Styles / Themes</a>
+</p>
+<p>
+Other articles on:
+<a href="https://www.thesitewizard.com/css/index.shtml" target="_top">CSS</a>,
+<a href="https://www.thesitewizard.com/html-tutorial/index.shtml" target="_top">HTML</a>,
+<a href="https://www.thesitewizard.com/javascripts/index.shtml" target="_top">JavaScript</a>
+</p>
+</div>
+
+<h1>thesitewizard™ News Feed (RSS Site Feed)&nbsp;
+<a href="https://www.thesitewizard.com/thesitewizard.xml" title="Subscribe to thesitewizard.com RSS newsfeed" target="_top"><img src="How%20to%20Allow%20Your%20Visitors%20to%20Switch%20Between%20Alternate%20CSS%20Styles%20_%20Themes%20%28thesitewizard.com%29-Dateien/feed28x28.png" alt="Subscribe to thesitewizard.com newsfeed" height="28" width="28" border="0"></a></h1>
+<p>
+Do you find this article useful? You can learn of new articles and scripts that are published on
+<a href="https://www.thesitewizard.com/" target="_top">thesitewizard.com</a>
+by subscribing to the RSS feed. Simply point your RSS feed reader or a browser that supports RSS feeds at
+<a href="https://www.thesitewizard.com/thesitewizard.xml" title="RSS feed" target="_top">https://www.thesitewizard.com/thesitewizard.xml</a>.
+You can <a href="https://www.thesitewizard.com/faqs/howtoreadsitefeeds.shtml" target="_top">read more about how to subscribe to
+RSS site feeds</a> from my <a href="https://www.thesitewizard.com/faqs/howtoreadsitefeeds.shtml" target="_top">RSS FAQ</a>.
+</p>
+
+<h1>Please Do Not Reprint This Article</h1>
+<p>
+This article is copyrighted. Please do not reproduce or distribute this article in whole or part, in any form.
+</p>
+
+<h1>Related Pages</h1>
+<ul>
+<li><a href="https://www.thesitewizard.com/css/excludecss.shtml" target="_top">How to Use Different CSS Style Sheets For Different Browsers (and How to Hide CSS Code from Older Browsers)</a></li>
+<li><a href="https://www.thesitewizard.com/webdesign/multiplebrowsers.shtml" target="_top">How to Check Your Website with Multiple Browsers on a Single Machine (Cross-Browser Compatibility Checking)</a></li>
+<li><a href="https://www.thesitewizard.com/webdesign/design-theme-for-blog.shtml" target="_top">General Principles for Designing a New Theme or Template for Your Blog</a></li>
+<li><a href="https://www.thesitewizard.com/css/center-table-using-css-in-nvu.shtml" target="_top">How to Centre a Table Using CSS in Nvu and KompoZer</a></li>
+<li><a href="https://www.thesitewizard.com/webdesign/important-site-redesign-tips.shtml" target="_top">6 Things to Note Before Changing Your Site Design</a></li>
+<li><a href="https://www.thesitewizard.com/webhosting/fine-print-resource-usage-limits.shtml" target="_top">The Fine Print in Web Hosting: Resource Usage Limits</a></li>
+<li><a href="https://www.thesitewizard.com/archive/webhosting.shtml" target="_top">Which Web Host Do You Recommend? (FAQ)</a></li>
+<li><a href="https://www.thesitewizard.com/gettingstarted/precautions-to-take-when-buying-domain-names.shtml" target="_top">Important Precautions to Take When Buying a Domain Name</a></li>
+</ul>
+
+<h1>New Articles</h1>
+<ul>
+<li><a href="https://www.thesitewizard.com/css/web-fonts-coding.shtml" target="_top">How to Use Web Fonts: CSS Tutorial</a></li>
+<li><a href="https://www.thesitewizard.com/expression-web/unordered-lists.shtml" target="_top">How to Insert a Bullet Point (Unordered) List into Your Website with Expression Web</a></li>
+<li><a href="https://www.thesitewizard.com/expression-web/add-google-adsense-to-website.shtml" target="_top">How to Add Google AdSense to Your Website with Expression Web</a></li>
+<li><a href="https://www.thesitewizard.com/expression-web/insert-youtube-video.shtml" target="_top">How to Insert a YouTube Video into Your Website with Microsoft Expression Web</a></li>
+<li><a href="https://www.thesitewizard.com/expression-web/expression-web-4-tutorial-9.shtml" target="_top">How to Create a Contact Form with Expression Web</a></li>
+<li><a href="https://www.thesitewizard.com/apache/install-and-configure-xampp.shtml" target="_top">How to Install and Configure Apache, PHP, Perl and MySQL on Windows the Easy Way (with XAMPP)</a></li>
+<li><a href="https://www.thesitewizard.com/domain/register-with-icann-sans-middlemen.shtml" target="_top">Can you register a domain name directly with ICANN instead of through a middleman?</a></li>
+<li><a href="https://www.thesitewizard.com/css/mobile-friendly-responsive-design.shtml" target="_top">How to Make a Mobile-Friendly Website: Responsive Design in CSS</a></li>
+<li><a href="https://www.thesitewizard.com/blogging/blog-host-vs-normal-web-host.shtml" target="_top">Should I Use a Specialized Blog Host or Install My Own Blog Software?</a></li>
+<li><a href="https://www.thesitewizard.com/gettingstarted/difference-cms-site-builder.shtml" target="_top">What's the Difference Between a Content Management System (CMS), a Blog, a Web Editor and an Online Site Builder?</a></li>
+</ul>
+
+<h1>Popular Articles</h1>
+<ul>
+<li><a href="https://www.thesitewizard.com/gettingstarted/startwebsite.shtml" target="_top">How to Make / Create a Website: The Beginner's A-Z Guide</a></li>
+<li><a href="https://www.thesitewizard.com/archive/domainname.shtml" target="_top">Tips on Choosing a Good Domain Name</a></li>
+<li><a href="https://www.thesitewizard.com/archive/google.shtml" target="_top">How to Improve Your Search Engine Ranking on Google</a></li>
+<li><a href="https://www.thesitewizard.com/expression-web/expression-web-4-tutorial-1.shtml" target="_top">Expression Web Tutorial: How to Design a Website with Microsoft Expression Web</a></li>
+<li><a href="https://www.thesitewizard.com/dreamweaver/dreamweaver-cs6-tutorial-1.shtml" target="_top">Dreamweaver Tutorial: How to Design a Website with Dreamweaver CS6</a></li>
+<li><a href="https://www.thesitewizard.com/bluegriffon/bluegriffon-1-tutorial-1.shtml" target="_top">BlueGriffon Tutorial: How to Create a Website with the BlueGriffon Free Web Editor</a></li>
+<li><a href="https://www.thesitewizard.com/gettingstarted/kompozer-tutorial-1.shtml" target="_top">How to Design and Publish Your Website with KompoZer (free WYSIWYG web editor)</a></li>
+<li><a href="https://www.thesitewizard.com/wizards/feedbackform.shtml" target="_top">Free Customized Feedback Form Wizard (PHP / Perl Script)</a></li>
+</ul>
+
+
+<h1>How to Link to This Page</h1>
+<form action="/dontcrawl/">
+<p><label for="pagelinkcode">
+To link to this page from your website, simply cut and paste the following code to your
+web page.
+</label></p>
+<textarea id="pagelinkcode" class="linkinfo" rows="5" cols="43" title="Select the text here, click your right mouse button, click the Copy menu item, and paste it into your web page in HTML source mode" onclick="this.focus();this.select();" readonly="readonly">&lt;a
+ 
+href="https://www.thesitewizard.com/css/switch-alternate-css-styles.shtml"
+ target="_top"&gt;How to Allow Your Visitors to Switch Between Alternate
+ CSS Styles / Themes&lt;/a&gt;
+</textarea>
+</form>
+<p>
+It will appear on your page as:
+</p>
+<p>
+<a href="https://www.thesitewizard.com/css/switch-alternate-css-styles.shtml" target="_top">How to Allow Your Visitors to Switch Between Alternate CSS Styles / Themes</a>
+</p>
+
+<br>
+
+<div class="copyright">
+Copyright © 2008-2014 by Christopher Heng. All rights reserved.<br>
+thesitewizard™, thefreecountry™ and HowToHaven™ are trademarks of Christopher Heng.<br>
+This page was last updated on 2 April 2014.
+</div>
+
+<br>
+
+</div><div id="cookienotice">This site uses cookies. <a href="https://www.thesitewizard.com/privacy.shtml" id="cookiepolicylink" title="Read details" target="_top">Details</a> <a id="cookienoticebutton" href="#void" onclick="tsw_close_clicked();" title="Do not show this message">&nbsp;&nbsp;Close&nbsp;&nbsp;</a></div>	<!-- maincontent -->
+
+<div class="sidepanel">
+
+<br>
+
+<form method="get" action="https://www.thesitewizard.com/search/" target="_top">
+<div class="searchbutton"><label for="searchterms">Search This Site</label></div>
+<input class="searchentry" id="searchterms" name="q" accesskey="4" size="8" title="Type the words you want to look for here and click the Search button" type="text">
+<input value="Search" type="submit">
+</form>
+
+<br>
+
+
+
+<div class="button"><a href="https://www.thesitewizard.com/" accesskey="1" class="menubutton" target="_top" title="Main page on thesitewizard.com">Home</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/donation/index.shtml" accesskey="5" class="menubutton" target="_top" title="Donate to thesitewizard.com">Donate</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/feedback.php" accesskey="9" class="menubutton" target="_top" title="Feedback form">Contact</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/linktous.shtml" accesskey="6" class="menubutton" target="_top" title="Suggestions on how to link to thesitewizard.com">Link to Us</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/topics/index.shtml" accesskey="2" class="menubutton" target="_top" title="Articles organised by topics, categories and keywords">Topics</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/sitemap.shtml" accesskey="3" class="menubutton" target="_top" title="Comprehensive list of pages on thesitewizard.com">Site Map</a></div>
+
+<br>
+
+<div class="button"><a href="https://www.thesitewizard.com/gettingstarted/index.shtml" class="menubutton" target="_top" title="Tutorials on how you can get started in various aspects of your website">Getting Started</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/webdesign/index.shtml" class="menubutton" target="_top" title="Tutorials on web design and related matters">Web Design</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/sitepromotion/index.shtml" class="menubutton" target="_top" title="Tutorials on how you can promote your website and get more visitors">Search Engines</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/revenue/index.shtml" class="menubutton" target="_top" title="Tutorials on how you can earn money from your website. Includes ecommerce.">Revenue Making</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/domain/index.shtml" class="menubutton" target="_top" title="Domain Name tutorials and issues">Domains</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/webhosting/index.shtml" class="menubutton" target="_top" title="Web hosting issues and articles">Web Hosting</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/blogging/index.shtml" class="menubutton" target="_top" title="Articles on Blogging and Content Management System">Blogging</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/javascripts/index.shtml" class="menubutton" target="_top" title="Tutorials on how to use JavaScript for various tasks">JavaScripts</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/php/index.shtml" class="menubutton" target="_top" title="Tutorials on how to use PHP or write PHP Scripts for various tasks">PHP</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/perl/index.shtml" class="menubutton" target="_top" title="Tutorials on how to use Perl or write Perl Scripts for various tasks">Perl / CGI</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/html-tutorial/index.shtml" class="menubutton" target="_top" title="HTML Tutorials">HTML</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/css/index.shtml" class="menubutton" target="_top" title="Tutorials on how you can use CSS on your site">CSS</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/apache/index.shtml" class="menubutton" target="_top" title="Articles on the Apache web server and various .htaccess tricks">.htaccess / Apache</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/ezines/index.shtml" class="menubutton" target="_top" title="Tutorials on running your own email newsletters">Newsletters</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/general/index.shtml" class="menubutton" target="_top" title="Webmaster tutorials on a variety of topics">General</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/news/index.shtml" class="menubutton" target="_top" title="Articles on issues that are relevant only for a specific period of time">Seasonal</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/reviews/index.shtml" class="menubutton" target="_top" title="Reviews on services, software, and hardware relevant to webmasters and web developers">Reviews</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/faqs/index.shtml" class="menubutton" target="_top" title="Webmaster Frequently Asked Questions">FAQs</a></div>
+<div class="button"><a href="https://www.thesitewizard.com/wizards/index.shtml" class="menubutton" target="_top" title="Easy-to-use wizards to generate customized code that you can use on your website">Wizards</a></div>
+
+<br>&nbsp;<br>
+
+<script type="text/javascript">
+google_ad_client = "pub-2592812953019923";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "text";
+google_ad_channel = "0089840650";
+google_color_border = "000000";
+google_color_bg = "FFFFFF";
+google_color_link = "0000FF";
+google_color_text = "000000";
+google_color_url = "008000";
+</script>
+<script type="text/javascript" src="How%20to%20Allow%20Your%20Visitors%20to%20Switch%20Between%20Alternate%20CSS%20Styles%20_%20Themes%20%28thesitewizard.com%29-Dateien/show_ads.js">
+</script><ins id="aswift_0_expand" style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" height="600" frameborder="0" width="160"></iframe></ins></ins>
+<br>&nbsp;<br>
+
+
+<a href="https://www.thefreecountry.com/" target="_top"><img src="How%20to%20Allow%20Your%20Visitors%20to%20Switch%20Between%20Alternate%20CSS%20Styles%20_%20Themes%20%28thesitewizard.com%29-Dateien/tfc88x31.gif" alt="Free webmasters and programmers resources, scripts and tutorials" height="31" width="88" border="0"></a>
+<br>&nbsp;<br>
+
+<a href="https://www.howtohaven.com/" target="_top"><img src="How%20to%20Allow%20Your%20Visitors%20to%20Switch%20Between%20Alternate%20CSS%20Styles%20_%20Themes%20%28thesitewizard.com%29-Dateien/hth88x31dup.gif" alt="HowtoHaven.com: Free How-To Guides" height="31" width="88" border="0"></a>
+<br>&nbsp;<br>
+
+<a href="https://www.thesitewizard.com/" target="_top"><img src="How%20to%20Allow%20Your%20Visitors%20to%20Switch%20Between%20Alternate%20CSS%20Styles%20_%20Themes%20%28thesitewizard.com%29-Dateien/tsw88x31sdt.gif" alt="Site Design Tips at thesitewizard.com" height="31" width="88" border="0"></a><br>
+Find this site useful?<br>
+Please <a href="https://www.thesitewizard.com/linktous.shtml" target="_top">link to us</a>.
+<br>&nbsp;<br>
+
+
+
+</div> <!-- sidepanel -->
+
+
+
+</body></html>

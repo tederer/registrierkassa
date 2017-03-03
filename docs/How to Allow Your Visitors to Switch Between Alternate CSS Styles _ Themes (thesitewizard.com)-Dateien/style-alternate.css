@@ -1,0 +1,221 @@
+/*
+	style-alternate.css
+	Copyright 2002-2008 by Christopher Heng. All rights reserved.
+	https://www.thesitewizard.com/
+*/
+
+body {
+	background: white;
+	color: black;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 90% ;
+}
+a:link {
+	color: blue ;
+	background: transparent ;
+}
+a:visited {
+	color: purple ;
+	background: transparent ;
+}
+a:hover {
+	color: black ;
+	background: yellow ;
+}
+a:active {
+	color: red ;
+	background: transparent ;
+}
+h1 {
+	font-size: 130% ;
+	margin: 1px 1px ;
+}
+h2 {
+	font-size: 100% ;
+	font-weight: bold ;
+	margin: 1px 1px ;
+}
+h3 {
+	font-size: 100% ;
+	font-weight: bold ;
+	margin: 1px 1px ;
+}
+ul.listoflinks {
+	margin-left: 0 ;
+	margin-top: 0 ;
+	margin-bottom: 0 ;
+	padding-left: 1.1em ;
+	list-style-type: disc ;
+}
+ul.listoflinks li {
+	margin-top: 0 ;
+	margin-bottom: 0 ;
+}
+
+div.toppanel {
+	position: absolute ;
+	left: 5px ;
+	top: 5px ;
+	width: 98% ;
+}
+div.logo {
+	position: absolute ;
+	left: 0px ;
+	top: 0px ;
+	width: 202px ;
+}
+div.toptitle {
+	position: absolute ;
+	top: 0 ;
+	left: 210px ;
+	color: black ;
+	background: #f0f0f0 ;
+	border-top: 1px solid #c0c0c0 ;
+	border-right: 1px solid #333 ;
+	border-bottom: 1px solid #333 ;
+	border-left: 1px solid #c0c0c0 ;
+	padding: 5px ;
+}
+div.sidepanel {
+	position: absolute ;
+	top: 50px ;
+	left: 5px ;
+	width: 180px ;
+	text-align: center ;
+}
+div.newmaincontent {
+	position: absolute ;
+	top: 5px ;
+	left: 220px ;
+	right: 0 ;
+	width: auto ;
+	line-height: 1.3em ;
+	padding-right: 0.5em ;
+}
+div.newtoptitle {
+	color: black ;
+	background: #f0f0f0 ;
+	padding: 8px ;
+	border-top: 1px solid #c0c0c0 ;
+	border-right: 1px solid #333 ;
+	border-bottom: 1px solid #333 ;
+	border-left: 1px solid #c0c0c0 ;
+}
+div.maincontent {
+	position: absolute ;
+	top: 120px ;
+	left: 200px ;
+	right: 0 ;
+	width: auto ;
+	line-height: 1.3em ;
+	padding-right: 0.5em ;
+}
+div.codeblock {
+	border: 1px solid green;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 95% ;
+	padding: 8px 8px 8px 8px ;
+}
+div.copyright {
+	clear: both ;
+	/* width: 98% ; */ /* IE6: takes it as % of window, not containing div if xml tag not used */
+	color: black ;
+	background: #f0f0f0 ;
+	padding: 2px ;
+	border-top: 1px solid #c0c0c0 ;
+	border-right: 1px solid #333 ;
+	border-bottom: 1px solid #333 ;
+	border-left: 1px solid #c0c0c0 ;
+}
+div#breadcrumbs {
+	padding-left: 8px ;
+	padding-right: 8px ;
+	color: black ;
+	background-color: white ;
+	border: 1px solid black ;
+	margin-bottom: 12px ;
+}
+input.searchentry {
+	width: 100px ;
+}
+
+/* menu buttons */
+div.searchbutton {
+	color: black ;
+	background: white ;
+	border: 1px solid #808080 ;
+	margin: 2px 2px;
+}
+div.button {
+	color: black ;
+	background: #dcdcdc ;
+	border-top: 1px solid #ccc ;
+	border-right: 1px solid #333 ;
+	border-bottom: 1px solid #333 ;
+	border-left: 1px solid #ccc ;
+	margin: 2px 2px;
+}
+a.menubutton:link {
+	text-decoration: none ;
+	color: black ;
+	background: #dcdcdc ;
+	display: block ;
+}
+a.menubutton:visited {
+	text-decoration: none ;
+	color: black ;
+	background: #dcdcdc ;
+	display: block ;
+}
+a.menubutton:hover {
+	text-decoration: none ;
+	color: yellow ;
+	background: black ;
+	display: block ;
+}
+a.menubutton:active {
+	text-decoration: none ;
+	color: yellow ;
+	background: black ;
+	display: block ;
+}
+div#cookienotice {
+	position: fixed ;
+	left: 0 ;
+	bottom: 0 ;
+	border: 1px solid #444 ;
+	padding: 4px ;
+	color: white ;
+	background-color: #444 ;
+	width: 100% ;
+	font-size: 0.9em ;
+	z-index: 1 ;
+}
+a#cookiepolicylink:link, a#cookiepolicylink:visited {
+	color: #87ceeb ;
+	background-color: transparent ;
+}
+a#cookiepolicylink:hover, a#cookiepolicylink:visited:hover, a#cookiepolicylink:active {
+	color: yellow ;
+	background-color: transparent ;
+}
+a#cookienoticebutton {
+	color: black ;
+	background-color: #90ee90 ;
+	border: 1px solid #006400 ;
+	border-radius: 8px ;
+	text-decoration: none ;
+	margin-left: 5px ;
+}
+a#cookienoticebutton:visited {
+	color: black ;
+	background-color: #90ee90 ;
+}
+a#cookienoticebutton:hover {
+	color: yellow ;
+	background-color: #0000c0 ;
+}
+a#cookienoticebutton:active {
+	color: yellow ;
+	background-color: #0000c0 ;
+}

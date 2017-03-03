@@ -1,0 +1,99 @@
+/*
+	printstyle.css
+	Copyright 2007-2016 by Christopher Heng. All rights reserved.
+	https://www.thesitewizard.com/
+*/
+
+body {
+	background-color: white;
+	color: black;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12pt ;
+}
+code {
+	font-family: "Courier New", Courier, monospace ;
+	font-size: 12pt ;
+}
+img {
+	max-width: 100% ;
+	width: auto ;
+	height: auto ;
+}
+a:link, a:visited {
+	color: blue ;
+	background: transparent ;
+	text-decoration: underline ;
+}
+div.newmaincontent a:link:after, div.newmaincontent a:visited:after {
+	content: " (" attr(href) ") ";
+	font-family: "Times New Roman", Times, serif ;
+	font-size: 12pt;
+	font-style: italic ;
+	color: black ;
+	background-color: transparent ;
+}
+ul {
+	margin-left: 0 ;
+	padding-left: 1.1em ;
+	list-style-type: disc ;
+}
+ol {
+	margin-left: 0 ;
+	padding-left: 1.5em ;
+}
+ul.listoflinks {
+	margin-left: 0 ;
+	margin-top: 0 ;
+	margin-bottom: 0 ;
+	padding-left: 1.1em ;
+	list-style-type: disc ;
+}
+ul.listoflinks li {
+	margin-top: 0 ;
+	margin-bottom: 0 ;
+}
+
+div.sidepanel {
+	display: none ;
+}
+div.toptitle {
+	display: none ;
+}
+div.newtoptitle {
+	display: none ;
+}
+div.codeblock {
+	border: 1px solid green;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 12pt ;
+	padding: 8px 8px 8px 8px ;
+}
+div.copyright {
+	padding: 2px ;
+	border-top: 1px solid #c0c0c0 ;
+	border-right: 1px solid #333 ;
+	border-bottom: 1px solid #333 ;
+	border-left: 1px solid #c0c0c0 ;
+}
+.noprint {
+	display: none ;
+}
+div#breadcrumbs {
+	padding-left: 8px ;
+	padding-right: 8px ;
+	color: black ;
+	background-color: white ;
+	border: 1px solid black ;
+	margin-bottom: 12px ;
+}
+
+p.infobox, div.infobox {
+	border: 1px solid blue ;
+	padding: 8px ;
+}
+div.codeblock {
+	border: 1px solid green;
+	font-family: Consolas, "Courier New", Courier, monospace;
+	font-size: 1em ;
+	padding: 8px ;
+}
